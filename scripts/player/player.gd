@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	input_vector.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	input_vector = input_vector.normalized()
 	
-	# Restrict movement within the boundary
 	var new_position := global_position + input_vector * speed * delta
 	
 	velocity = (new_position - global_position).normalized() * speed
