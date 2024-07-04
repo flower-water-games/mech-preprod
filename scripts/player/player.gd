@@ -13,7 +13,6 @@ var fire_rate_timer := 0.0
 
 func _ready() -> void:
 	gun.damage = damage
-	gun.fire_rate = fire_rate
 
 func _physics_process(delta: float) -> void:
 	# Movement
