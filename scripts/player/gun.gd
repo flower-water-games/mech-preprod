@@ -1,24 +1,29 @@
 class_name Gun
 extends Node2D
 
-var bullet_scene: PackedScene
-var damage := 10.0
-var bullet_speed := 400.0
-var bullet_lifetime := 2.0
 @onready var bullet_spawner : Spawning = get_node("/root/Spawning") 
 
+@export var fire_rate := 0.2
+
+var can_fire := true
+var fire_rate_timer := 0.0
+
 func shoot() -> void:
-	# spawn_bullet()
 	var spawn_data = {
 		"position" : global_position,
 		"rotation": global_rotation,
 	}
 	bullet_spawner.spawn(spawn_data, "one" ,"0")
 
-func spawn_bullet() -> void:
-	var bullet := bullet_scene.instantiate() as Bullet
-	bullet.damage = damage
-	bullet.velocity = Vector2.RIGHT.rotated(global_rotation) * bullet_speed
-	bullet.lifetime = bullet_lifetime
-	get_node("/root/").add_child(bullet)
-	bullet.transform.origin = global_position
+func _physics_process(delta: float) -> void:
+	# Shooting
+	if Input.is_action_pressed("shoot") and can_fire:
+		shoot()
+		can_fire = false
+		fire_rate_timer = fire_rate
+		
+	# Fire rate cooldown
+	if not can_fire:
+		fire_rate_timer -= delta
+		if fire_rate_timer <= 0:
+			can_fire = true

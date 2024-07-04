@@ -1,7 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=22 format=3 uid="uid://ddoagydwlh5c1"]
 
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_8fb43"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
+[ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="5_fgscw"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
@@ -9,9 +9,13 @@
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_1xr6r"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="9_vcgyp"]
+[ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
 size = Vector2(282.46, 447.228)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_br1ko"]
 width = 25
@@ -27,7 +31,7 @@ height = 25
 script = ExtResource("8_isuse")
 anim_more = Array[ExtResource("7_a78k8")]([])
 damage = 1.0
-speed = 100.0
+speed = 450.0
 scale = 1.0
 angle = 0.0
 groups = PackedStringArray()
@@ -130,30 +134,54 @@ size = Vector2(33.03, 570)
 
 [node name="MainGameScene" type="Node"]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
 
-[node name="target" type="Node2D" parent="Node2D"]
+[node name="target" type="Node2D" parent="World2D"]
 position = Vector2(208, 52)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="Node2D"]
+[node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(0, 154)
-script = ExtResource("1_8fb43")
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" parent="World2D/Player"]
+script = ExtResource("1_i3mib")
+
+[node name="Sprite2D" type="Sprite2D" parent="World2D/Player/Character"]
 scale = Vector2(0.209879, 0.209879)
 texture = ExtResource("1_8v1rp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Character"]
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("RectangleShape2D_m7w0x")
 
-[node name="Gun" type="Sprite2D" parent="Node2D/CharacterBody2D"]
+[node name="Abilities" type="Node2D" parent="World2D/Player/Character"]
+
+[node name="Health" type="Node2D" parent="World2D/Player/Character/Abilities"]
+position = Vector2(128, 128)
+script = ExtResource("10_7pqt7")
+
+[node name="ProgressBar" type="ProgressBar" parent="World2D/Player/Character/Abilities/Health"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -50.0
+offset_right = -63.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
+
+[node name="Shoot" type="Node2D" parent="World2D/Player/Character/Abilities"]
+
+[node name="Gun" type="Sprite2D" parent="World2D/Player/Character/Abilities/Shoot"]
 position = Vector2(111, -1)
 texture = SubResource("NoiseTexture2D_br1ko")
 script = ExtResource("3_8loes")
 
-[node name="SpawnPoint" type="Node2D" parent="Node2D/CharacterBody2D/Gun"]
+[node name="SpawnPoint" type="Node2D" parent="World2D/Player/Character/Abilities/Shoot/Gun"]
 top_level = true
 z_index = 1
 position = Vector2(0, 1)
@@ -169,38 +197,44 @@ auto_start_at_distance = 5.0
 auto_distance_from = NodePath("")
 trigger_container = NodePath("")
 
-[node name="BulletPattern" type="Path2D" parent="Node2D/CharacterBody2D"]
+[node name="BulletPattern" type="Path2D" parent="World2D/Player/Character/Abilities/Shoot"]
 z_index = 1
 position = Vector2(0, -154)
 curve = SubResource("Curve2D_o0mh6")
 script = ExtResource("6_rvkt0")
 props = SubResource("PackedDataContainer_0w2bb")
 
-[node name="SpawnPattern" type="Path2D" parent="Node2D/CharacterBody2D"]
+[node name="SpawnPattern" type="Path2D" parent="World2D/Player/Character/Abilities/Shoot"]
 z_index = 1
 curve = SubResource("Curve2D_rm5i8")
 script = ExtResource("9_1xr6r")
 id = "one"
 pattern = SubResource("NavigationPolygon_gj5e2")
 
-[node name="Camera2D" type="Camera2D" parent="Node2D"]
+[node name="Camera2D" type="Camera2D" parent="World2D"]
 position_smoothing_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="World2D"]
 position = Vector2(0, 29)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/StaticBody2D"]
 position = Vector2(0, -285)
 shape = SubResource("RectangleShape2D_guylf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World2D/StaticBody2D"]
 position = Vector2(2.08165e-12, 307.5)
 shape = SubResource("RectangleShape2D_guylf")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World2D/StaticBody2D"]
 position = Vector2(-591, 16)
 shape = SubResource("RectangleShape2D_fwqsb")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World2D/StaticBody2D"]
 position = Vector2(595, 13)
 shape = SubResource("RectangleShape2D_fwqsb")
+
+[node name="Services" type="Node" parent="."]
+
+[node name="SpawnManager" type="Node" parent="Services"]
+
+[node name="GameManager" type="Node" parent="Services"]
