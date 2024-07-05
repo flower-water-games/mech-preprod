@@ -10,20 +10,26 @@ enum EnemyType { WEAK, NORMAL, STRONG, BOSS }
 # prob needs special case
 @export var boss_enemy_scene: PackedScene
 
+@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
+
 func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
-    var scene = get_enemy_scene(enemy_type)
-    if scene:
-        return scene.instantiate()
-    return null
+	var enemy = get_enemy_scene(enemy_type)
+	if enemy:
+		var instance := enemy.instantiate()
+		spawn_point.add_child(instance)
+		instance.global_position.y += randf_range(-100, 100)
+		print("spawning enemy")
+		return instance
+	return null
 
 func get_enemy_scene(enemy_type: EnemyType) -> PackedScene:
-    match enemy_type:
-        EnemyType.WEAK:
-            return weak_enemy_scene
-        EnemyType.NORMAL:
-            return normal_enemy_scene
-        EnemyType.STRONG:
-            return strong_enemy_scene
-        EnemyType.BOSS:
-            return boss_enemy_scene
-    return null
+	match enemy_type:
+		EnemyType.WEAK:
+			return weak_enemy_scene
+		EnemyType.NORMAL:
+			return normal_enemy_scene
+		EnemyType.STRONG:
+			return strong_enemy_scene
+		EnemyType.BOSS:
+			return boss_enemy_scene
+	return null

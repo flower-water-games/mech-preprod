@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=40 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -11,10 +11,129 @@
 [ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_a78k8"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
+[ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_1xr6r"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_nr4cm"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="14_idub4"]
+
+[sub_resource type="Curve" id="Curve_tktg1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bredi"]
+curve = SubResource("Curve_tktg1")
+
+[sub_resource type="Curve2D" id="Curve2D_il0gm"]
+
+[sub_resource type="Curve" id="Curve_x7d7h"]
+
+[sub_resource type="Curve" id="Curve_d4byg"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_h10vy"]
+script = ExtResource("8_isuse")
+anim_more = Array[ExtResource("7_a78k8")]([])
+damage = 1.0
+speed = -200.0
+scale = 1.0
+angle = 0.0004
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 2.08165e-12
+spec_trail_width = 2.08165e-12
+spec_trail_modulate = Color(1, 0.364706, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = true
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_x7d7h")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("../../Player/Body")
+homing_steer = 200.0
+homing_time_start = 3.0
+homing_duration = 9.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_d4byg")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_vg2jl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5hvo4"]
+resource_name = "PatternCircle"
+script = ExtResource("14_idub4")
+radius = 0
+angle_total = 6.28319
+angle_decal = 0.0
+symmetric = false
+center = 0
+symmetry_type = 0
+bullet = "two"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
 size = Vector2(282.46, 447.228)
@@ -37,13 +156,13 @@ script = ExtResource("8_isuse")
 anim_more = Array[ExtResource("7_a78k8")]([])
 damage = 10.0
 speed = 450.0
-scale = 5.0
+scale = 1.2
 angle = 0.0
 groups = PackedStringArray()
 spec_bounces = 0
 spec_no_collision = false
 spec_modulate_loop = 0.0
-spec_trail_length = 0.0
+spec_trail_length = 100.0
 spec_trail_width = 0.0
 spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
@@ -144,6 +263,8 @@ size = Vector2(33.03, 570)
 [node name="EnemyFactory" type="Node" parent="Services"]
 script = ExtResource("1_0p8pm")
 weak_enemy_scene = ExtResource("5_5jxh1")
+normal_enemy_scene = ExtResource("5_5jxh1")
+strong_enemy_scene = ExtResource("5_5jxh1")
 
 [node name="GameManager" type="Node" parent="Services"]
 script = ExtResource("1_klouh")
@@ -152,9 +273,35 @@ lose_scene = ExtResource("3_gbbo0")
 
 [node name="ScrollManager" type="Node" parent="Services"]
 script = ExtResource("6_2xlkp")
+difficulty_curve_texture = SubResource("CurveTexture_bredi")
+
+[node name="PauseMenuController" type="Node" parent="Services"]
+script = ExtResource("7_rslfr")
+pause_menu_packed = ExtResource("8_0225l")
+
+[node name="InGameMenuController" type="Node" parent="Services"]
+script = ExtResource("9_octrj")
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
+
+[node name="SpawnPoint" type="Node2D" parent="World2D"]
+show_behind_parent = true
+position = Vector2(502, 44)
+
+[node name="BulletPattern" type="Path2D" parent="World2D/SpawnPoint"]
+position = Vector2(-39, 29)
+curve = SubResource("Curve2D_il0gm")
+script = ExtResource("6_rvkt0")
+id = "two"
+props = SubResource("PackedDataContainer_h10vy")
+
+[node name="SpawnPattern" type="Path2D" parent="World2D/SpawnPoint"]
+position = Vector2(-39, 29)
+curve = SubResource("Curve2D_vg2jl")
+script = ExtResource("9_1xr6r")
+id = "two"
+pattern = SubResource("NavigationPolygon_5hvo4")
 
 [node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(0, 154)
@@ -217,6 +364,7 @@ pattern = SubResource("NavigationPolygon_3l4td")
 
 [node name="Bounds" type="StaticBody2D" parent="World2D"]
 position = Vector2(0, 29)
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Bounds"]
 position = Vector2(0, -281)

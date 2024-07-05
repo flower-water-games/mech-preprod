@@ -1,121 +1,13 @@
-[gd_scene load_steps=16 format=3 uid="uid://bst3kkowvpjsh"]
+[gd_scene load_steps=5 format=3 uid="uid://bst3kkowvpjsh"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_n0nl2"]
 [ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="2_31lo2"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_gyohp"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="4_0gnry"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="5_4hixp"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="6_fp8sa"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="7_v8dy6"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="8_mw0cf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
 size = Vector2(200, 100)
 
-[sub_resource type="Curve2D" id="Curve2D_il0gm"]
-
-[sub_resource type="Curve" id="Curve_x7d7h"]
-
-[sub_resource type="Curve" id="Curve_d4byg"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_h10vy"]
-script = ExtResource("6_fp8sa")
-anim_more = Array[ExtResource("5_4hixp")]([])
-damage = 1.0
-speed = -100.0
-scale = 1.0
-angle = 0.0
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate_loop = 0.0
-spec_trail_length = 0.0
-spec_trail_width = 0.0
-spec_trail_modulate = Color(1, 1, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = true
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_x7d7h")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 0.0
-homing_time_start = 0.0
-homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_d4byg")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(0, 0, 0)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-
-[sub_resource type="Curve2D" id="Curve2D_vg2jl"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_u6w84"]
-resource_name = "PatternOne"
-script = ExtResource("8_mw0cf")
-bullet = "two"
-nbr = 1
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-
 [node name="Enemy2D" type="CharacterBody2D"]
-position = Vector2(463, 73)
 collision_layer = 2
 script = ExtResource("1_n0nl2")
 
@@ -129,17 +21,5 @@ debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
 
 [node name="Health" parent="." instance=ExtResource("3_gyohp")]
 position = Vector2(2.08165e-12, 70)
-
-[node name="BulletPattern" type="Path2D" parent="."]
-curve = SubResource("Curve2D_il0gm")
-script = ExtResource("4_0gnry")
-id = "two"
-props = SubResource("PackedDataContainer_h10vy")
-
-[node name="SpawnPattern" type="Path2D" parent="."]
-curve = SubResource("Curve2D_vg2jl")
-script = ExtResource("7_v8dy6")
-id = "two"
-pattern = SubResource("NavigationPolygon_u6w84")
 
 [node name="Node2D" type="Node2D" parent="."]
