@@ -23,8 +23,9 @@ func enemy_die() -> void:
 	queue_free()
 
 func shoot() -> void:
+	var new_x = global_position.x  -190
 	var spawn_data = {
-		"position" : global_position,
+		"position" : Vector2(new_x, global_position.y),
 		"rotation": global_rotation,
 	}
 	Spawning.spawn(spawn_data, "two" ,"1")

@@ -1,8 +1,6 @@
 class_name Gun
 extends Node2D
 
-# @onready var bullet_spawner : Spawning = get_node("/root/Spawning") 
-
 @export var fire_rate := 0.2
 
 var can_fire := true

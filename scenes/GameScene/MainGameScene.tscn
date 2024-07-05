@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=32 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
@@ -95,6 +95,28 @@ r_scale_multi_iter_variation = Vector3(0, 0, 0)
 r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_vg2jl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_u6w84"]
+resource_name = "PatternOne"
+script = ExtResource("10_nr4cm")
+bullet = "1"
+nbr = 1
+iterations = 1
+pattern_angle = 0.0
+pattern_angle_target = NodePath("")
+pattern_angle_mouse = false
+forced_angle = 0.0
+forced_target = NodePath("")
+forced_lookat_mouse = false
+forced_pattern_lookat = true
+cooldown_stasis = false
+cooldown_spawn = 1.0
+cooldown_shoot = 0.0
+cooldown_next_spawn = 0.0
+cooldown_next_shoot = 0.0
+wait_tween_momentum = 0
+wait_tween_length = 0.0
+wait_tween_time = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
 size = Vector2(282.46, 447.228)
@@ -256,6 +278,9 @@ props = SubResource("PackedDataContainer_h10vy")
 curve = SubResource("Curve2D_vg2jl")
 script = ExtResource("9_1xr6r")
 id = "two"
+pattern = SubResource("NavigationPolygon_u6w84")
+
+[node name="Node2D" type="Node2D" parent="World2D/Enemy2D"]
 
 [node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(0, 154)
