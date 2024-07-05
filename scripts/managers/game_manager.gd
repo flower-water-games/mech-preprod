@@ -2,8 +2,11 @@ extends Node
 
 @export var win_scene : PackedScene
 @export var lose_scene : PackedScene
+
+
 @onready var player : Movement = get_node("/root/MainGameScene/World2D/Player/Body")
 @onready var enemy_factory : EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")
+@onready var scroll_manager : ScrollManager = get_node("/root/MainGameScene/Services/ScrollManager")
 
 func _ready():
 	InGameMenuController.scene_tree = get_tree()

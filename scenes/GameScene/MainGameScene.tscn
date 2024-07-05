@@ -1,13 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=28 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
-[ext_resource type="Script" path="res://scripts/factory/game_manager.gd" id="1_klouh"]
+[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_klouh"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
 [ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="5_5jxh1"]
+[ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_a78k8"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
@@ -148,6 +149,9 @@ weak_enemy_scene = ExtResource("5_5jxh1")
 script = ExtResource("1_klouh")
 win_scene = ExtResource("2_olcql")
 lose_scene = ExtResource("3_gbbo0")
+
+[node name="ScrollManager" type="Node" parent="Services"]
+script = ExtResource("6_2xlkp")
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
