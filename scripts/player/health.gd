@@ -2,6 +2,7 @@ extends Node2D
 class_name Health
 
 signal health_changed(value)
+signal died()
 
 @onready var progress_bar : ProgressBar = $ProgressBar
 
@@ -33,8 +34,12 @@ func update_progress_bar():
 	# Update the value
 	var weight = (current_health / max_health)
 	var value = int(weight * 100.0) # Update progress bar
+
 	# Let the parent know it died
 	if value <= 0:
+		died.emit()
+	
+	if value != progress_bar.value:
 		health_changed.emit(value)
 	
 	progress_bar.value = value

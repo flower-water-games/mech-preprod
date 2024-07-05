@@ -1,15 +1,100 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=31 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
+[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_lpp40"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHSpawnPoint.gd" id="5_fgscw"]
+[ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_hc0yx"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_a78k8"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_1xr6r"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternLine.gd" id="9_vcgyp"]
+[ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="10_4bbs3"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
+[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_nr4cm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
+size = Vector2(200, 100)
+
+[sub_resource type="Curve2D" id="Curve2D_il0gm"]
+
+[sub_resource type="Curve" id="Curve_x7d7h"]
+
+[sub_resource type="Curve" id="Curve_d4byg"]
+
+[sub_resource type="PackedDataContainer" id="PackedDataContainer_h10vy"]
+script = ExtResource("8_isuse")
+anim_more = Array[ExtResource("7_a78k8")]([])
+damage = 1.0
+speed = -100.0
+scale = 1.0
+angle = 0.0
+groups = PackedStringArray()
+spec_bounces = 0
+spec_no_collision = false
+spec_modulate_loop = 0.0
+spec_trail_length = 0.0
+spec_trail_width = 0.0
+spec_trail_modulate = Color(1, 1, 1, 1)
+spec_rotating_speed = 0.0
+death_after_time = 30.0
+death_outside_box = Rect2(0, 0, 0, 0)
+death_from_collision = true
+a_direction_equation = ""
+a_curve_movement = 0
+a_speed_multiplier = SubResource("Curve_x7d7h")
+a_speed_multi_iterations = 0
+a_speed_multi_scale = 0.0
+trigger_container = ""
+trigger_wait_for_shot = true
+homing_type = 0
+homing_target = NodePath("")
+homing_steer = 0.0
+homing_time_start = 0.0
+homing_duration = 999.0
+scale_multi_iterations = 0
+scale_multiplier = SubResource("Curve_d4byg")
+scale_multi_scale = 1.0
+r_randomisation_chances = 1.0
+r_speed_choice = PackedFloat32Array()
+r_speed_variation = Vector3(0, 0, 0)
+r_scale_choice = PackedFloat32Array()
+r_scale_variation = Vector3(0, 0, 0)
+r_angle_choice = PackedFloat32Array()
+r_angle_variation = Vector3(0, 0, 0)
+r_group_choice = []
+r_bounce_choice = PackedInt32Array()
+r_bounce_variation = Vector3(0, 0, 0)
+r_no_coll_chances = 0.0
+r_modulate_variation = Vector3(0, 0, 0)
+r_trail_length_variation = Vector3(0, 0, 0)
+r_trail_color_variation = Vector3(0, 0, 0)
+r_rotating_variation = Vector3(0, 0, 0)
+r_death_after_choice = PackedFloat32Array()
+r_death_after_variation = Vector3(0, 0, 0)
+r_death_outside_chances = 0.0
+r_dir_equation_choice = PackedStringArray()
+r_curve_choice = []
+r_speed_multi_curve_choice = []
+r_speed_multi_iter_variation = Vector3(0, 0, 0)
+r_speed_multi_scale_variation = Vector3(0, 0, 0)
+r_trigger_choice = PackedStringArray()
+r_wait_for_shot_chances = 0.0
+r_homing_target_choice = []
+r_special_target_choice = PackedStringArray()
+r_group_target_choice = PackedStringArray()
+r_pos_target_choice = PackedVector2Array()
+r_steer_choice = PackedFloat32Array()
+r_steer_variation = Vector3(0, 0, 0)
+r_homing_delay_choice = PackedFloat32Array()
+r_homing_delay_variation = Vector3(0, 0, 0)
+r_homing_dur_choice = PackedFloat32Array()
+r_homing_dur_variation = Vector3(0, 0, 0)
+r_scale_multi_curve_choice = []
+r_scale_multi_iter_variation = Vector3(0, 0, 0)
+r_scale_multi_scale_variation = Vector3(0, 0, 0)
+
+[sub_resource type="Curve2D" id="Curve2D_vg2jl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
 size = Vector2(282.46, 447.228)
@@ -30,9 +115,9 @@ height = 25
 [sub_resource type="PackedDataContainer" id="PackedDataContainer_0w2bb"]
 script = ExtResource("8_isuse")
 anim_more = Array[ExtResource("7_a78k8")]([])
-damage = 1.0
+damage = 10.0
 speed = 450.0
-scale = 1.0
+scale = 5.0
 angle = 0.0
 groups = PackedStringArray()
 spec_bounces = 0
@@ -44,7 +129,7 @@ spec_trail_modulate = Color(1, 1, 1, 1)
 spec_rotating_speed = 0.0
 death_after_time = 30.0
 death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = false
+death_from_collision = true
 a_direction_equation = ""
 a_curve_movement = 0
 a_speed_multiplier = SubResource("Curve_4ga06")
@@ -101,13 +186,11 @@ r_scale_multi_scale_variation = Vector3(0, 0, 0)
 
 [sub_resource type="Curve2D" id="Curve2D_rm5i8"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_gj5e2"]
-resource_name = "PatternLine"
-script = ExtResource("9_vcgyp")
-offset = Vector2(0, 0)
-center = 1
-symmetric = true
-bullet = ""
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3l4td"]
+resource_name = "PatternOne"
+parsed_collision_mask = 4294967294
+script = ExtResource("10_nr4cm")
+bullet = "one"
 nbr = 1
 iterations = 1
 pattern_angle = 0.0
@@ -132,35 +215,70 @@ size = Vector2(1200, 21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwqsb"]
 size = Vector2(33.03, 570)
 
+[sub_resource type="LabelSettings" id="LabelSettings_8vp01"]
+
 [node name="MainGameScene" type="Node"]
+
+[node name="Services" type="Node" parent="."]
+
+[node name="SpawnManager" type="Node2D" parent="Services"]
+
+[node name="SpawnTimer" type="Timer" parent="Services/SpawnManager"]
+
+[node name="GameManager" type="Node" parent="Services"]
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
 
-[node name="target" type="Node2D" parent="World2D"]
-position = Vector2(208, 52)
+[node name="Enemy2D" type="CharacterBody2D" parent="World2D"]
+position = Vector2(463, 73)
+collision_layer = 2
+script = ExtResource("1_lpp40")
+
+[node name="Sprite2D" type="Sprite2D" parent="World2D/Enemy2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("10_4bbs3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Enemy2D"]
+shape = SubResource("RectangleShape2D_rt1ds")
+debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
+
+[node name="Health" parent="World2D/Enemy2D" instance=ExtResource("3_hc0yx")]
+position = Vector2(2.08165e-12, 70)
+
+[node name="BulletPattern" type="Path2D" parent="World2D/Enemy2D"]
+curve = SubResource("Curve2D_il0gm")
+script = ExtResource("6_rvkt0")
+id = "two"
+props = SubResource("PackedDataContainer_h10vy")
+
+[node name="SpawnPattern" type="Path2D" parent="World2D/Enemy2D"]
+curve = SubResource("Curve2D_vg2jl")
+script = ExtResource("9_1xr6r")
+id = "two"
 
 [node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(0, 154)
 
-[node name="Character" type="CharacterBody2D" parent="World2D/Player"]
+[node name="Body" type="CharacterBody2D" parent="World2D/Player"]
+collision_mask = 3
 script = ExtResource("1_i3mib")
 
-[node name="Sprite2D" type="Sprite2D" parent="World2D/Player/Character"]
+[node name="Sprite2D" type="Sprite2D" parent="World2D/Player/Body"]
 scale = Vector2(0.209879, 0.209879)
 texture = ExtResource("1_8v1rp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Character"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body"]
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("RectangleShape2D_m7w0x")
 
-[node name="Abilities" type="Node2D" parent="World2D/Player/Character"]
+[node name="Abilities" type="Node2D" parent="World2D/Player/Body"]
 
-[node name="Health" type="Node2D" parent="World2D/Player/Character/Abilities"]
+[node name="Health" type="Node2D" parent="World2D/Player/Body/Abilities"]
 position = Vector2(128, 128)
 script = ExtResource("10_7pqt7")
 
-[node name="ProgressBar" type="ProgressBar" parent="World2D/Player/Character/Abilities/Health"]
+[node name="ProgressBar" type="ProgressBar" parent="World2D/Player/Body/Abilities/Health"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -174,67 +292,61 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 
-[node name="Shoot" type="Node2D" parent="World2D/Player/Character/Abilities"]
+[node name="Shoot" type="Node2D" parent="World2D/Player/Body/Abilities"]
 
-[node name="Gun" type="Sprite2D" parent="World2D/Player/Character/Abilities/Shoot"]
+[node name="Gun" type="Node2D" parent="World2D/Player/Body/Abilities/Shoot"]
 position = Vector2(111, -1)
-texture = SubResource("NoiseTexture2D_br1ko")
 script = ExtResource("3_8loes")
 
-[node name="SpawnPoint" type="Node2D" parent="World2D/Player/Character/Abilities/Shoot/Gun"]
-top_level = true
-z_index = 1
-position = Vector2(0, 1)
-script = ExtResource("5_fgscw")
-active = true
-auto_pattern_id = "one"
-shared_area_name = "0"
-rotating_speed = 0.0
-pool_amount = 1000
-auto_start_on_cam = true
-auto_start_after_time = 0.0
-auto_start_at_distance = 5.0
-auto_distance_from = NodePath("")
-trigger_container = NodePath("")
+[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Abilities/Shoot/Gun"]
+texture = SubResource("NoiseTexture2D_br1ko")
 
-[node name="BulletPattern" type="Path2D" parent="World2D/Player/Character/Abilities/Shoot"]
+[node name="BulletPattern" type="Path2D" parent="World2D/Player/Body/Abilities/Shoot"]
 z_index = 1
 position = Vector2(0, -154)
 curve = SubResource("Curve2D_o0mh6")
 script = ExtResource("6_rvkt0")
+id = "one"
 props = SubResource("PackedDataContainer_0w2bb")
 
-[node name="SpawnPattern" type="Path2D" parent="World2D/Player/Character/Abilities/Shoot"]
+[node name="SpawnPattern" type="Path2D" parent="World2D/Player/Body/Abilities/Shoot"]
 z_index = 1
 curve = SubResource("Curve2D_rm5i8")
 script = ExtResource("9_1xr6r")
 id = "one"
-pattern = SubResource("NavigationPolygon_gj5e2")
+pattern = SubResource("NavigationPolygon_3l4td")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
-position_smoothing_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="World2D"]
+[node name="Bounds" type="StaticBody2D" parent="World2D"]
 position = Vector2(0, 29)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/StaticBody2D"]
-position = Vector2(0, -285)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Bounds"]
+position = Vector2(0, -281)
 shape = SubResource("RectangleShape2D_guylf")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="World2D/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World2D/Bounds"]
 position = Vector2(2.08165e-12, 307.5)
 shape = SubResource("RectangleShape2D_guylf")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="World2D/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="World2D/Bounds"]
 position = Vector2(-591, 16)
 shape = SubResource("RectangleShape2D_fwqsb")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="World2D/StaticBody2D"]
-position = Vector2(595, 13)
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="World2D/Bounds"]
+position = Vector2(559, 13)
 shape = SubResource("RectangleShape2D_fwqsb")
 
-[node name="Services" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="SpawnManager" type="Node" parent="Services"]
-
-[node name="GameManager" type="Node" parent="Services"]
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ui vibes if needed
+"
+label_settings = SubResource("LabelSettings_8vp01")
+horizontal_alignment = 1
+vertical_alignment = 2

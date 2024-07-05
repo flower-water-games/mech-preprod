@@ -1,7 +1,7 @@
 class_name Gun
 extends Node2D
 
-@onready var bullet_spawner : Spawning = get_node("/root/Spawning") 
+# @onready var bullet_spawner : Spawning = get_node("/root/Spawning") 
 
 @export var fire_rate := 0.2
 
@@ -13,7 +13,7 @@ func shoot() -> void:
 		"position" : global_position,
 		"rotation": global_rotation,
 	}
-	bullet_spawner.spawn(spawn_data, "one" ,"0")
+	Spawning.spawn(spawn_data, "one" ,"0")
 
 func _physics_process(delta: float) -> void:
 	# Shooting
