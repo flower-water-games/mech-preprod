@@ -1,125 +1,19 @@
-[gd_scene load_steps=35 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=27 format=3 uid="uid://ddoagydwlh5c1"]
 
+[ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
 [ext_resource type="Script" path="res://scripts/factory/game_manager.gd" id="1_klouh"]
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_lpp40"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
-[ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_hc0yx"]
+[ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="5_5jxh1"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_a78k8"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_1xr6r"]
-[ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="10_4bbs3"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
 [ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_nr4cm"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
-size = Vector2(200, 100)
-
-[sub_resource type="Curve2D" id="Curve2D_il0gm"]
-
-[sub_resource type="Curve" id="Curve_x7d7h"]
-
-[sub_resource type="Curve" id="Curve_d4byg"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_h10vy"]
-script = ExtResource("8_isuse")
-anim_more = Array[ExtResource("7_a78k8")]([])
-damage = 1.0
-speed = -100.0
-scale = 1.0
-angle = 0.0
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate_loop = 0.0
-spec_trail_length = 0.0
-spec_trail_width = 0.0
-spec_trail_modulate = Color(1, 1, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = true
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_x7d7h")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 0.0
-homing_time_start = 0.0
-homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_d4byg")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(0, 0, 0)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-
-[sub_resource type="Curve2D" id="Curve2D_vg2jl"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_u6w84"]
-resource_name = "PatternOne"
-script = ExtResource("10_nr4cm")
-bullet = "two"
-nbr = 1
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
 size = Vector2(282.46, 447.228)
@@ -246,9 +140,9 @@ size = Vector2(33.03, 570)
 
 [node name="Services" type="Node" parent="."]
 
-[node name="EnemyFactory" type="Node2D" parent="Services"]
-
-[node name="SpawnTimer" type="Timer" parent="Services/EnemyFactory"]
+[node name="EnemyFactory" type="Node" parent="Services"]
+script = ExtResource("1_0p8pm")
+weak_enemy_scene = ExtResource("5_5jxh1")
 
 [node name="GameManager" type="Node" parent="Services"]
 script = ExtResource("1_klouh")
@@ -257,36 +151,6 @@ lose_scene = ExtResource("3_gbbo0")
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
-
-[node name="Enemy2D" type="CharacterBody2D" parent="World2D"]
-position = Vector2(463, 73)
-collision_layer = 2
-script = ExtResource("1_lpp40")
-
-[node name="Sprite2D" type="Sprite2D" parent="World2D/Enemy2D"]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("10_4bbs3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Enemy2D"]
-shape = SubResource("RectangleShape2D_rt1ds")
-debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
-
-[node name="Health" parent="World2D/Enemy2D" instance=ExtResource("3_hc0yx")]
-position = Vector2(2.08165e-12, 70)
-
-[node name="BulletPattern" type="Path2D" parent="World2D/Enemy2D"]
-curve = SubResource("Curve2D_il0gm")
-script = ExtResource("6_rvkt0")
-id = "two"
-props = SubResource("PackedDataContainer_h10vy")
-
-[node name="SpawnPattern" type="Path2D" parent="World2D/Enemy2D"]
-curve = SubResource("Curve2D_vg2jl")
-script = ExtResource("9_1xr6r")
-id = "two"
-pattern = SubResource("NavigationPolygon_u6w84")
-
-[node name="Node2D" type="Node2D" parent="World2D/Enemy2D"]
 
 [node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(0, 154)

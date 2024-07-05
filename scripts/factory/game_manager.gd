@@ -7,18 +7,17 @@ extends Node
 
 func _ready():
 	InGameMenuController.scene_tree = get_tree()
-	#TODO is this right? it works!
 	await player.ready
-	register_player()
+	_register_player()
 
 
-func register_player():
-	player.health.died.connect(_on_level_lost)
+func _register_player():
+	player.health.died.connect(_on_game_lost)
 
 
-func _on_level_lost():
+func _on_game_lost():
 	InGameMenuController.open_menu(lose_scene, get_viewport())
 
-func _on_level_won():
+func _on_game_won():
 	InGameMenuController.open_menu(win_scene, get_viewport())
 

@@ -17,7 +17,8 @@ func _ready():
 	health.died.connect(player_died)
 
 func player_died():
-	queue_free()
+	# queue_free()
+	pass
 
 func bullet_collided(body:Node,body_shape_index:int, bullet:Dictionary, local_shape_index:int,shared_area:Area2D):
 	# Your custom code here
