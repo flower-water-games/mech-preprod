@@ -90,6 +90,7 @@ points = PackedVector2Array(0, 0)
 [node name="BulletHellManager" type="Node2D"]
 z_index = 999
 script = ExtResource("1")
+GROUP_BOUNCE = "Slime"
 default_idle = SubResource("Resource_uhb1j")
 default_spawn = SubResource("Resource_f2r10")
 default_shoot = SubResource("Resource_i42bv")
@@ -108,7 +109,6 @@ collision_layer = 2
 visible = false
 sprite_frames = SubResource("1")
 animation = &"Example"
-frame_progress = 0.608517
 
 [node name="0" type="CollisionShape2D" parent="ShapeManager"]
 shape = SubResource("2")
