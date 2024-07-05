@@ -38,6 +38,7 @@ func update_progress_bar():
 	# Let the parent know it died
 	if value <= 0:
 		died.emit()
+		SceneLoader.change_scene_to_loading_screen()
 	
 	if value != progress_bar.value:
 		health_changed.emit(value)
