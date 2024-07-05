@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Movement
 
 # Physics
 const MAX_SPEED : float = 500
@@ -7,9 +8,22 @@ const ACCELERATION : float = 2000
 var motion : Vector2 = Vector2.ZERO # Equaliant to Vector2(0,0)
 var facing_right : bool = true
 
+@onready var health : Health = $Health
+
 # Initialize
 func _ready():
 	add_to_group("Player")
+	Spawning.bullet_collided_body.connect(bullet_collided)
+	health.died.connect(player_died)
+
+func player_died():
+	queue_free()
+
+func bullet_collided(body:Node,body_shape_index:int, bullet:Dictionary, local_shape_index:int,shared_area:Area2D):
+	# Your custom code here
+	if (body.collision_layer == 1):
+		health.add_or_subtract_health_by_value(-bullet.props.damage)
+	pass # Replace with function body.
 
 # Called every frame
 func _physics_process(delta):

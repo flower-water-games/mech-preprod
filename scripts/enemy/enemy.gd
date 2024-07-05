@@ -1,23 +1,27 @@
-extends Node2D
+extends CharacterBody2D
+class_name Enemy
 
 @onready var health : Health = $Health
 
 func _ready() -> void:
 	Spawning.bullet_collided_body.connect(enemy_collided)
 	health.died.connect(enemy_die) 
+	velocity = Vector2(-50,0) 
 
 var time_passed = 0.9
 func _process(delta: float) -> void:
 	time_passed += delta
-	if time_passed >= 1.0:
+	if time_passed >= .2:
 		shoot()
 		time_passed = 0.0
 
+func _physics_process(delta: float) -> void:
+	move_and_slide()
 
-func enemy_collided(body, body_shape_index, bullet, local_shape_index, shared_area) -> void:
-	# Your custom code here
-	health.add_or_subtract_health_by_value(-bullet.props.damage)
-	pass # Replace with function body.
+
+func enemy_collided(body:CollisionObject2D,body_shape_index:int, bullet:Dictionary, local_shape_index:int,shared_area:Area2D):
+	if (body.collision_layer == 2):
+		health.add_or_subtract_health_by_value(-bullet.props.damage)
 
 func enemy_die() -> void:
 	queue_free()
