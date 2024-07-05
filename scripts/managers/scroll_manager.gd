@@ -3,7 +3,7 @@ class_name ScrollManager
 
 signal scroll_completed
 
-@export var total_game_time: float = 12.0  # Total game duration in seconds
+@export var total_game_time: float = 60.0  # Total game duration in seconds
 @export var difficulty_curve_texture: CurveTexture
 
 var current_game_time: float = 0.0

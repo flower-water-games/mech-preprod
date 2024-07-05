@@ -15,28 +15,28 @@ var current_difficulty := 0.0
 const SPAWN_CONFIGS = [
 	[{
 			"type" : EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 1.0,
+			"spawn_rate": 4.0,
 			"spawn_count": 3
 	}],
 	[{
 			"type":EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 1.0,
+			"spawn_rate": 4.0,
 			"spawn_count": 9
 		},
 		{
 			"type":EnemyFactory.EnemyType.NORMAL,
-			"spawn_rate": 2.0,
+			"spawn_rate": 3.0,
 			"spawn_count": 4
 		}
 	],
 	[{
 			"type":EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 1.0,
+			"spawn_rate": 4.0,
 			"spawn_count": 9
 		},
 		{
 			"type":EnemyFactory.EnemyType.NORMAL,
-			"spawn_rate": 2.0,
+			"spawn_rate": 4.0,
 			"spawn_count": 2
 		}
 	]
