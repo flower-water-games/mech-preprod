@@ -365,6 +365,9 @@ parameters/conditions/intro_done = false
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 stream = ExtResource("3_i2jea")
 
+[node name="BackgroundTextureRect" parent="." index="4"]
+stretch_mode = 0
+
 [node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
 

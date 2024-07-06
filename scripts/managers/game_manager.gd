@@ -52,7 +52,7 @@ func _ready():
 	player.health.died.connect(_on_game_lost)
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if waiting_for_all_enemies_dead:
 		if !enemy_factory.are_enemies_alive():
 			_on_game_won()
