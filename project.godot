@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="mechjam5-godot"
+config/version="0.0.1"
 run/main_scene="res://scenes/Opening/OpeningWithLogo.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://freshlogo.png"
 
 [autoload]
 
