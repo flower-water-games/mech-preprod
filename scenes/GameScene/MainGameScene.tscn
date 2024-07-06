@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=24 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
+[ext_resource type="AudioStream" uid="uid://d0j0b43l6rnk5" path="res://assets/audio/Space Cadet.ogg" id="10_6jvi1"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 
@@ -65,6 +66,10 @@ pause_menu_packed = ExtResource("8_0225l")
 
 [node name="InGameMenuController" type="Node" parent="Services"]
 script = ExtResource("9_octrj")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Services"]
+stream = ExtResource("10_6jvi1")
+autoplay = true
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)

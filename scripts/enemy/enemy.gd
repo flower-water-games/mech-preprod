@@ -19,7 +19,7 @@ func _ready() -> void:
 var time_passed = 0.9
 func _process(delta: float) -> void:
 	time_passed += delta
-	if time_passed >= .2 && shoots:
+	if shoots && time_passed >= .2: 
 		shoot()
 		time_passed = 0.0
 
