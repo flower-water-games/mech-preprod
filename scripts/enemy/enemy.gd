@@ -3,7 +3,8 @@ class_name Enemy
 
 enum MovementType {
 	LINEAR,
-	VERTICAL_SPLINE
+	VERTICAL_SPLINE,
+	STOPPED
 }
 
 @onready var health : Health = $Health
@@ -59,6 +60,9 @@ func _physics_process(delta: float) -> void:
 			move_linear(delta)
 		MovementType.VERTICAL_SPLINE:
 			move_vertical_spline(delta)
+		MovementType.STOPPED:
+			velocity = Vector2(0,0)
+			move_and_slide()
 
 func move_linear(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
@@ -85,7 +89,7 @@ func enemy_destroy() -> void:
 
 func enemy_die() -> void:
 	enemy_died.emit()
-	velocity = Vector2(0,0)
+	movement_type = MovementType.STOPPED
 	# short delay before destroying itself for sfx to play
 	await get_tree().create_timer(0.5).timeout
 	queue_free()
