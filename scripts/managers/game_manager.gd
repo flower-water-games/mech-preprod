@@ -15,31 +15,9 @@ var current_difficulty := 0.0
 const SPAWN_CONFIGS = [
 	[{
 			"type" : EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 4.0,
-			"spawn_count": 3
-	}],
-	[{
-			"type":EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 4.0,
-			"spawn_count": 9
-		},
-		{
-			"type":EnemyFactory.EnemyType.NORMAL,
-			"spawn_rate": 3.0,
-			"spawn_count": 4
-		}
-	],
-	[{
-			"type":EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 4.0,
-			"spawn_count": 9
-		},
-		{
-			"type":EnemyFactory.EnemyType.NORMAL,
-			"spawn_rate": 4.0,
-			"spawn_count": 2
-		}
-	]
+			"spawn_rate": 1.3,
+			"spawn_count": 99
+	}]
 ]
 
 func _ready():
@@ -57,7 +35,6 @@ var current_spawn_config := []
 var time_since_last_update = 1.0
 var update_time = 1.0
 func _process(delta: float) -> void:
-
 	time_since_last_update += delta
 	if (time_since_last_update >= update_time):
 		# get the current difficulty, 0-1

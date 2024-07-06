@@ -20,7 +20,7 @@ func player_died():
 	# queue_free()
 	pass
 
-func bullet_collided(body:Node,body_shape_index:int, bullet:Dictionary, local_shape_index:int,shared_area:Area2D):
+func bullet_collided(body:Node,_body_shape_index:int, bullet:Dictionary, _local_shape_index:int,_shared_area:Area2D):
 	# Your custom code here
 	if (body.collision_layer == 1 && body == self):
 		health.add_or_subtract_health_by_value(-bullet.props.damage)
