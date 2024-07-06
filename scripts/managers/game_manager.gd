@@ -21,13 +21,10 @@ const SPAWN_CONFIGS = [
 ]
 
 func _ready():
-	Spawning.reset()
 	InGameMenuController.scene_tree = get_tree()
 	await player.ready
 	_register_player()
 	scroll_manager.scroll_completed.connect(_on_game_won)
-	Spawning.create_pool("one", "0", 1000)
-	Spawning.create_pool("two", "1", 1000)
 
 
 var current_spawn_config := []

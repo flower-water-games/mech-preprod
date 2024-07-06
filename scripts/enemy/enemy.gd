@@ -10,7 +10,6 @@ class_name Enemy
 signal enemy_died()
 
 func _ready() -> void:
-	Spawning.bullet_collided_body.connect(enemy_collided)
 	health.died.connect(enemy_die) 
 	velocity = custom_velocity
 
@@ -25,9 +24,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func enemy_collided(_body:CollisionObject2D,_body_shape_index:int, _bullet:Dictionary, _local_shape_index:int,_shared_area:Area2D):
-	if (_body.collision_layer == 2 && _body == self):
-		health.add_or_subtract_health_by_value(-_bullet.props.damage)
+# func enemy_collided(_body:CollisionObject2D,_body_shape_index:int, _bullet:Dictionary, _local_shape_index:int,_shared_area:Area2D):
+# 	if (_body.collision_layer == 2 && _body == self):
+# 		health.add_or_subtract_health_by_value(-_bullet.props.damage)
 
 func enemy_die() -> void:
 	enemy_died.emit()
@@ -35,8 +34,10 @@ func enemy_die() -> void:
 
 func shoot() -> void:
 	# var new_x = global_position.x  -190
-	var spawn_data = {
-		"position" : global_position,
-		"rotation": global_rotation,
-	}
-	Spawning.spawn(spawn_data, "two" ,"1")
+	print("enemy pew")
+	return
+	# var spawn_data = {
+	# 	"position" : global_position,
+	# 	"rotation": global_rotation,
+	# }
+	# Spawning.spawn(spawn_data, "two" ,"1")

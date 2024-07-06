@@ -7,11 +7,8 @@ var can_fire := true
 var fire_rate_timer := 0.0
 
 func shoot() -> void:
-	var spawn_data = {
-		"position" : global_position,
-		"rotation": global_rotation,
-	}
-	Spawning.spawn(spawn_data, "one" ,"0")
+	print("pew")
+	return
 
 func _physics_process(delta: float) -> void:
 	# Shooting

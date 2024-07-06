@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc37235kj4384"]
+[gd_scene load_steps=2 format=3 uid="uid://cc37235kj4384"]
 
 [ext_resource type="Script" path="res://addons/maaacks_game_template/base/scripts/UISoundController.gd" id="1_dmagn"]
-[ext_resource type="AudioStream" uid="uid://dt72cdin30aml" path="res://addons/BulletUpHell/Bullet/Hit Hurt.wav" id="2_vxpgo"]
 
 [node name="ProjectUISoundController" type="Node"]
 script = ExtResource("1_dmagn")
-hit = ExtResource("2_vxpgo")
