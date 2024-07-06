@@ -13,12 +13,15 @@
 ## Detailed Script Overview
 
 ### Enemy
-- `enemy.gd`: 
+- `enemy.gd`: Core class that all enemies use, each configurable component can be tweaked then saved into its scene. the enemy factory also allows for any scene that inherits from enemy to be considered an enemy "type" that the game manager can use to define waves.
 - `enemy_factory.gd`: Handles enemy creation, spawning, and specifies enemy types.
 
 ### Managers
-- `game_manager.gd`: Oversees game state, score, and overall game flow.
+- `game_manager.gd`: Primarily, this class spawns enemies according to the current difficulty. It defines a list of "spawn configurations" per wave, and keeps track of the waves spawning based on changes in the difficulty. Spawn configs can spawn multiple groups of enemies simultaneously.
+
 - `scroll_manager.gd`: Based on the defined game time and a tweakable difficulty curve, returns a 0-1 difficulty score (or raw progress) usable by the GameManager to determine enemy spawning.
+
+![/documentation/images/difficulty.png](/documentation/images/difficulty.png)
 
 ### Player
 - `bullet.gd`: Extends `CharacterBody2D`. Controls bullet behavior, movement, damage, collision.

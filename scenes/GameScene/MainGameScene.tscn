@@ -19,7 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249128, 0.768264), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_bredi"]

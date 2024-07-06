@@ -53,6 +53,7 @@ signal new_wave_spawned
 func _ready():
 	await player.ready
 	player.health.died.connect(_on_game_lost)
+	await scroll_manager.ready
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
 	new_wave_spawned.connect(_cross_checkpoint)
 
@@ -73,7 +74,7 @@ func _on_scroll_completed():
 	spawning_completed.emit()
 
 func _cross_checkpoint():
-	player.health.add_or_subtract_health_by_value(15)
+	player.health.add_or_subtract_health_by_value(40)
 
 func update_current_wave(difficulty: float) -> void:
 	for i in range(waves.size()):

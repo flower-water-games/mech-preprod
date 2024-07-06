@@ -36,8 +36,6 @@ For more details, please read: [technical documentation](/documentation/README.m
 ## Important Scenes
 ![directory structure](/documentation/images/mainfiles.png)
 - `/scenes/GameScene/MainGameScene.tscn`: Main game scene.
-![current scene tree](/documentation/images/image.png) 
-
 - `/Components`: Reusable scene components (bullets, enemies, health).
 - `/EnemyVariants`: Custom enemy types inheriting from `enemy_2d.tscn`.
 
@@ -51,6 +49,7 @@ For more details, please read: [technical documentation](/documentation/README.m
 - **Services**: Game managers and menu controllers.
 - **World2D**: In-game entities.
 - **CanvasLayer**: UI elements.
+![current scene tree](/documentation/images/image.png) 
 
 ## Additional Resources
 - Uses [Maaack's game template](https://github.com/Maaack/Godot-Game-Template) for scene loading, transitions, menus, and score saving.
