@@ -1,19 +1,29 @@
 [gd_scene load_steps=3 format=3 uid="uid://u1ql8q06tcml"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_l8vq1"]
+[ext_resource type="PackedScene" uid="uid://t2dui8ppm3a4" path="res://addons/maaacks_game_template/base/scenes/Credits/Credits.tscn" id="1_l8vq1"]
 [ext_resource type="Script" path="res://scenes/Credits/Credits.gd" id="2_dgem4"]
 
 [node name="Credits" instance=ExtResource("1_l8vq1")]
 script = ExtResource("2_dgem4")
 attribution_file_path = "res://ATTRIBUTION.md"
 
+[node name="HeaderSpace" parent="ScrollContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(0, 648)
+
 [node name="CreditsLabel" parent="ScrollContainer/VBoxContainer" index="1"]
+custom_minimum_size = Vector2(1152, 0)
 text = "[center][font_size=48]Collaborators[/font_size]
 
 [font_size=32]Role[/font_size]
-Person 1  
-Person 2  
-[url=]Person w/ Link[/url]  
+Bokhum - Art Director/Art asset creation
+Chris Manasse - Art asset creation/emergency developer
+jason - PM, developer
+bbp - developer, lead designer
+cm - developer
+elliot - asset curation, QA, writing
+Tyler Gonelli - audio
+Lori - Technical artist
+<!-- [url=]Person w/ Link[/url]   -->
 
 
 [font_size=48]Sourced / Unaffiliated[/font_size]
@@ -40,3 +50,6 @@ Author: [url=https://github.com/Maaack/Godot-Game-Template/graphs/contributors]M
 Source: [url=https://github.com/Maaack/Godot-Game-Template]github: Godot-Game-Template[/url]  
 License: [url=LICENSE.txt]MIT License[/url]  
 [/center]"
+
+[node name="FooterSpace" parent="ScrollContainer/VBoxContainer" index="2"]
+custom_minimum_size = Vector2(0, 648)

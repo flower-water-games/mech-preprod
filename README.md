@@ -1,5 +1,7 @@
 # Mech Jam Project
 
+[![.github/workflows/main.yml](https://github.com/flower-water-games/mech-preprod/actions/workflows/main.yml/badge.svg)](https://github.com/flower-water-games/mech-preprod/actions/workflows/main.yml)
+
 ## Current Status Overview
 This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose).
 
@@ -52,3 +54,4 @@ For more details, please read: [technical documentation](/documentation/README.m
 
 ## Additional Resources
 - Uses [Maaack's game template](https://github.com/Maaack/Godot-Game-Template) for scene loading, transitions, menus, and score saving.
+
