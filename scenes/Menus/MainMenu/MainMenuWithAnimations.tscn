@@ -364,7 +364,6 @@ parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 stream = ExtResource("3_i2jea")
-bus = &"Master"
 
 [node name="VersionNameLabel" parent="." index="5"]
 modulate = Color(1, 1, 1, 0)
