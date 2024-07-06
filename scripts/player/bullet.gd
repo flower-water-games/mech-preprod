@@ -19,5 +19,4 @@ func _handle_collision(col : KinematicCollision2D) -> void:
 	if (collider.collision_layer == 2):
 		bullet_hit.emit()
 		collider.health.add_or_subtract_health_by_value(-damage)
-		# col.get .health.add_or_subtract_health_by_value(-damage)
 		queue_free()

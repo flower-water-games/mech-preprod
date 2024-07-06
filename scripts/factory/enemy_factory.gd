@@ -33,3 +33,10 @@ func get_enemy_scene(enemy_type: EnemyType) -> PackedScene:
 		EnemyType.BOSS:
 			return boss_enemy_scene
 	return null
+
+## Checks the spawn point for any active children
+func are_enemies_alive() -> bool:
+	return spawn_point.get_child_count() > 0
+
+func get_enemy_count() -> int:
+	return spawn_point.get_child_count()

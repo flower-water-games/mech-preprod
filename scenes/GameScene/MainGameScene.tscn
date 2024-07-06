@@ -16,8 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.249128, 0.768264), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_bredi"]
 curve = SubResource("Curve_tktg1")
@@ -72,14 +72,6 @@ position = Vector2(581, 322)
 [node name="SpawnPoint" type="Node2D" parent="World2D"]
 show_behind_parent = true
 position = Vector2(623, 44)
-
-[node name="SpawnPoint2" type="Node2D" parent="World2D/SpawnPoint"]
-show_behind_parent = true
-position = Vector2(0, 186)
-
-[node name="SpawnPoint3" type="Node2D" parent="World2D/SpawnPoint"]
-show_behind_parent = true
-position = Vector2(0, -180)
 
 [node name="Player" type="Node2D" parent="World2D" groups=["Player"]]
 position = Vector2(0, 154)
