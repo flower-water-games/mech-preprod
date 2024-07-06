@@ -17,7 +17,8 @@ func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
 	if enemy:
 		var instance := enemy.instantiate()
 		spawn_point.add_child(instance)
-		instance.global_position.y += randf_range(-200, 200)
+		# Set random Y position
+		instance.global_position.y += randf_range(-350, 350)
 		print("spawning enemy")
 		return instance
 	return null
@@ -33,3 +34,10 @@ func get_enemy_scene(enemy_type: EnemyType) -> PackedScene:
 		EnemyType.BOSS:
 			return boss_enemy_scene
 	return null
+
+## Checks the spawn point for any active children
+func are_enemies_alive() -> bool:
+	return spawn_point.get_child_count() > 0
+
+func get_enemy_count() -> int:
+	return spawn_point.get_child_count()

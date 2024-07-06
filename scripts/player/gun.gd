@@ -10,7 +10,8 @@ var fire_rate_timer := 0.0
 func shoot() -> void:
 	var b = bullet_scene.instantiate()
 	b.global_position = global_position
-	get_tree().get_root().add_child(b)
+	get_node("/root/MainGameScene").add_child(b)
+	$AudioStreamPlayer.play()
 
 func _physics_process(delta: float) -> void:
 	# Shooting

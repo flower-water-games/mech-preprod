@@ -2,9 +2,21 @@
 
 ## basic overview of high level systems
 
-- `enemy_factory.gd` - used to spawn new enemies and specify types
-- `game_manager.gd` - defines the waves of enemies spawning according to difficulties, and other game state items, like game over, and player score
-- `scroll_manager.gd` - based on the defined time scale, returns back a 0-1 difficulty score usable by the game manager to determine which enemies to spawn
+## Scripts Overview
+
+### Enemy
+- `enemy.gd`:`CharacterBody2D` Defines basic enemy behavior and attributes.
+- `enemy_factory.gd`: Handles enemy creation, spawning, and specifies types.
+
+### Managers
+- `game_manager.gd`: Oversees game state, score, and overall game flow.
+- `scroll_manager.gd`: based on the defined time of the game, and a tweakable difficulty curve, returns back a 0-1 difficulty score(or raw progress) usable by the game manager to determine which enemies to spawn
+
+### Player
+- `bullet.gd`: `CharacterBody2D` Controls bullet behavior, movement, and collision.
+- `gun.gd`: Handles shooting mechanics and weapon properties (for the player).
+- `health.gd`: Manages player health and damage system. Also used by `Enemy`
+- `movement.gd`: `CharacterBody2D` Controls player movement and physics, also stores a reference to health
 
 
 <!-- ## scene tree

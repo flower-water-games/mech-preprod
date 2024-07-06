@@ -3,7 +3,7 @@ class_name ScrollManager
 
 signal scroll_completed
 
-@export var total_game_time: float = 60.0  # Total game duration in seconds
+@export var total_game_time: float = 15.0  # Total game duration in seconds
 @export var difficulty_curve_texture: CurveTexture
 
 var current_game_time: float = 0.0
@@ -34,11 +34,6 @@ func reset_game():
 
 ## Returns the raw progress of the game as a float between 0 and 1.
 ##
-## This function calculates the current progress of the game based on the 
-## elapsed time (current_game_time) relative to the total game duration 
-## (total_game_time). The result is clamped between 0 and 1 to ensure it 
-## always returns a valid progress value.
-##
 ## Returns:
 ## float: A value between 0 (game start) and 1 (game end) representing the 
 ## current progress.
@@ -46,11 +41,6 @@ func get_raw_progress() -> float:
 	return clamp(current_game_time / total_game_time, 0.0, 1.0)
 
 ## Returns the current difficulty of the game based on the difficulty curve.
-##
-## This function first gets the raw progress of the game using get_raw_progress(),
-## then uses this value to sample the difficulty curve. The difficulty curve is 
-## defined by the CurveTexture resource and should be 
-## edited in the Godot editor.
 ##
 ## Returns:
 ## float: A value between 0 and 1 representing the current difficulty, where 
