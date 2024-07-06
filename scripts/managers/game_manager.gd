@@ -15,7 +15,7 @@ var current_difficulty := 0.0
 const SPAWN_CONFIGS = [
 	[{
 			"type" : EnemyFactory.EnemyType.WEAK,
-			"spawn_rate": 1.3,
+			"spawn_rate": .3,
 			"spawn_count": 99
 	}]
 ]

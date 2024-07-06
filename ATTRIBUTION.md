@@ -2,9 +2,15 @@
 ## Collaborators
 
 ### Role
-Person 1  
-Person 2  
-[Person w/ Link]()  
+Bokhum - Art Director/Art asset creation
+Chris Manasse - Art asset creation/emergency developer
+jason - PM, developer
+bbp - developer, lead designer
+cm - developer
+elliot - asset curation, QA, writing
+Tyler Gonelli - audio
+Lori - Technical artist
+<!-- [Person w/ Link]()   -->
 
 
 ## Sourced / Unaffiliated

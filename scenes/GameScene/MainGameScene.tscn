@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
+[ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
@@ -22,14 +23,14 @@ point_count = 2
 curve = SubResource("Curve_tktg1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
-size = Vector2(282.46, 447.228)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
-bg_color = Color(1, 1, 1, 1)
+size = Vector2(282.46, 500.188)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_br1ko"]
 width = 25
 height = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guylf"]
 size = Vector2(1200, 21)
@@ -80,10 +81,10 @@ position = Vector2(0, 186)
 show_behind_parent = true
 position = Vector2(0, -180)
 
-[node name="Player" type="Node2D" parent="World2D"]
+[node name="Player" type="Node2D" parent="World2D" groups=["Player"]]
 position = Vector2(0, 154)
 
-[node name="Body" type="CharacterBody2D" parent="World2D/Player"]
+[node name="Body" type="CharacterBody2D" parent="World2D/Player" groups=["Player"]]
 collision_mask = 7
 script = ExtResource("1_i3mib")
 
@@ -91,9 +92,20 @@ script = ExtResource("1_i3mib")
 scale = Vector2(0.209879, 0.209879)
 texture = ExtResource("1_8v1rp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body" groups=["Player"]]
+position = Vector2(0, 1)
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("RectangleShape2D_m7w0x")
+
+[node name="Shoot" type="Node2D" parent="World2D/Player/Body"]
+
+[node name="Gun" type="Node2D" parent="World2D/Player/Body/Shoot"]
+position = Vector2(111, -1)
+script = ExtResource("3_8loes")
+bullet_scene = ExtResource("14_300t5")
+
+[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
+texture = SubResource("NoiseTexture2D_br1ko")
 
 [node name="Health" type="Node2D" parent="World2D/Player/Body"]
 position = Vector2(128, 128)
@@ -112,15 +124,6 @@ offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
-
-[node name="Shoot" type="Node2D" parent="World2D/Player/Body"]
-
-[node name="Gun" type="Node2D" parent="World2D/Player/Body/Shoot"]
-position = Vector2(111, -1)
-script = ExtResource("3_8loes")
-
-[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
-texture = SubResource("NoiseTexture2D_br1ko")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 

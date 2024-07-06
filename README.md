@@ -13,5 +13,5 @@
 
 ## additional libraries
 
-- bulletuphell library for bullet hell mechanics
+<!-- - bulletuphell library for bullet hell mechanics -->
 - [maack's game template for scene loading, transitions, menus, saving player score](/addons/maaacks_game_template/docs/NewProject.md)

@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsuto3ei8ab8q"]
+[gd_scene load_steps=4 format=3 uid="uid://dsuto3ei8ab8q"]
+
+[ext_resource type="Texture2D" uid="uid://b4wbwg1r76gir" path="res://assets/images/kenney/fire15.png" id="1_swwqk"]
+[ext_resource type="Script" path="res://scripts/player/bullet.gd" id="1_u5j4o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glcw5"]
 
 [node name="Bullet" type="CharacterBody2D"]
+collision_mask = 3
+script = ExtResource("1_u5j4o")
+bullet_velocity = Vector2(350, 2.08165e-12)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-5, 0)
+rotation = -1.5708
+texture = ExtResource("1_swwqk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_glcw5")
