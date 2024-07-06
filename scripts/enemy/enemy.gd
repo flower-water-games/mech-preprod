@@ -3,36 +3,47 @@ class_name Enemy
 
 @onready var health : Health = $Health
 
-signal enemy_died()
+# tweakable parameters
+@export var custom_velocity := Vector2(-50, 0)
+@export var shoots := false
+@export var on_hit_damage = 5
+@export var health_value = 2
+
+signal enemy_died
 
 func _ready() -> void:
-	Spawning.bullet_collided_body.connect(enemy_collided)
+	health.set_max_health(health_value)
 	health.died.connect(enemy_die) 
-	velocity = Vector2(-50,0) 
+	velocity = custom_velocity
 
 var time_passed = 0.9
 func _process(delta: float) -> void:
 	time_passed += delta
-	if time_passed >= .2:
+	if time_passed >= .2 && shoots:
 		shoot()
 		time_passed = 0.0
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		_handle_hit_collision(collision)
 
+func _handle_hit_collision(col : KinematicCollision2D) -> void:
+	var collider : Node2D = col.get_collider() 
+	if collider.is_in_group("Player"):
+		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
+		enemy_die()
 
-func enemy_collided(body:CollisionObject2D,body_shape_index:int, bullet:Dictionary, local_shape_index:int,shared_area:Area2D):
-	if (body.collision_layer == 2 && body == self):
-		health.add_or_subtract_health_by_value(-bullet.props.damage)
 
 func enemy_die() -> void:
 	enemy_died.emit()
 	queue_free()
 
 func shoot() -> void:
-	# var new_x = global_position.x  -190
-	var spawn_data = {
-		"position" : global_position,
-		"rotation": global_rotation,
-	}
-	Spawning.spawn(spawn_data, "two" ,"1")
+	#identify current target position
+	# spawn a target
+	# wait some time ("target_wait")
+	# shoot high velocity bullet
+	print("enemy pew")
+	return
+

@@ -39,6 +39,9 @@ const MAX_DEPTH = 16
 @export var line_text_submitted : AudioStream
 @export var line_text_change_rejected : AudioStream
 
+# @export_group("Bullet Sounds")
+# @export var hit : AudioStream
+
 @onready var root_node : Node = get_node(root_path)
 
 var button_hovered_player : AudioStreamPlayer

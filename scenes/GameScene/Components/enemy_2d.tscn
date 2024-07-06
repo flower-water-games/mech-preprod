@@ -5,22 +5,24 @@
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_gyohp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
-size = Vector2(200, 100)
+size = Vector2(200, 155)
 
 [node name="Enemy2D" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_n0nl2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.02, 0.02)
 texture = ExtResource("2_31lo2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_rt1ds")
 debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
 
 [node name="Health" parent="." instance=ExtResource("3_gyohp")]
-position = Vector2(2.08165e-12, 70)
+position = Vector2(0, -14)
+scale = Vector2(0.2, 0.2)
 
 [node name="Node2D" type="Node2D" parent="."]

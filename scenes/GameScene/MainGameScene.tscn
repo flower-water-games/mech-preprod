@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -9,16 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
 [ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="5_5jxh1"]
 [ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHBulletProperties.gd" id="6_rvkt0"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/animStates.gd" id="7_a78k8"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Bullet/BulletProps.gd" id="8_isuse"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/Nodes/BuHPattern.gd" id="9_1xr6r"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternOne.gd" id="10_nr4cm"]
-[ext_resource type="Script" path="res://addons/BulletUpHell/SpawnPatterns/PatternCircle.gd" id="14_idub4"]
+[ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.4, 0.0, 0, 0]
@@ -27,226 +22,15 @@ point_count = 2
 [sub_resource type="CurveTexture" id="CurveTexture_bredi"]
 curve = SubResource("Curve_tktg1")
 
-[sub_resource type="Curve2D" id="Curve2D_il0gm"]
-
-[sub_resource type="Curve" id="Curve_x7d7h"]
-
-[sub_resource type="Curve" id="Curve_d4byg"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_h10vy"]
-script = ExtResource("8_isuse")
-anim_more = Array[ExtResource("7_a78k8")]([])
-damage = 1.0
-speed = -200.0
-scale = 1.0
-angle = 0.0004
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate_loop = 0.0
-spec_trail_length = 2.08165e-12
-spec_trail_width = 2.08165e-12
-spec_trail_modulate = Color(1, 0.364706, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = true
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_x7d7h")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 2.08165e-12
-homing_time_start = 2.08165e-12
-homing_duration = 2.08165e-12
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_d4byg")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(1, 1, 1)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-
-[sub_resource type="Curve2D" id="Curve2D_vg2jl"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_r7x6b"]
-resource_name = "PatternCircle"
-script = ExtResource("14_idub4")
-radius = 0
-angle_total = 6.28319
-angle_decal = 0.0
-symmetric = false
-center = 0
-symmetry_type = 0
-bullet = "two"
-nbr = 5
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
-size = Vector2(282.46, 447.228)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
-bg_color = Color(1, 1, 1, 1)
+size = Vector2(282.46, 500.188)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_br1ko"]
 width = 25
 height = 25
 
-[sub_resource type="Curve2D" id="Curve2D_o0mh6"]
-
-[sub_resource type="Curve" id="Curve_4ga06"]
-
-[sub_resource type="Curve" id="Curve_obnp3"]
-
-[sub_resource type="PackedDataContainer" id="PackedDataContainer_0w2bb"]
-script = ExtResource("8_isuse")
-anim_more = Array[ExtResource("7_a78k8")]([])
-damage = 10.0
-speed = 450.0
-scale = 1.2
-angle = 0.0
-groups = PackedStringArray()
-spec_bounces = 0
-spec_no_collision = false
-spec_modulate_loop = 0.0
-spec_trail_length = 100.0
-spec_trail_width = 0.0
-spec_trail_modulate = Color(1, 1, 1, 1)
-spec_rotating_speed = 0.0
-death_after_time = 30.0
-death_outside_box = Rect2(0, 0, 0, 0)
-death_from_collision = true
-a_direction_equation = ""
-a_curve_movement = 0
-a_speed_multiplier = SubResource("Curve_4ga06")
-a_speed_multi_iterations = 0
-a_speed_multi_scale = 0.0
-trigger_container = ""
-trigger_wait_for_shot = true
-homing_type = 0
-homing_target = NodePath("")
-homing_steer = 0.0
-homing_time_start = 0.0
-homing_duration = 999.0
-scale_multi_iterations = 0
-scale_multiplier = SubResource("Curve_obnp3")
-scale_multi_scale = 1.0
-r_randomisation_chances = 1.0
-r_speed_choice = PackedFloat32Array()
-r_speed_variation = Vector3(0, 0, 0)
-r_scale_choice = PackedFloat32Array()
-r_scale_variation = Vector3(0, 0, 0)
-r_angle_choice = PackedFloat32Array()
-r_angle_variation = Vector3(0, 0, 0)
-r_group_choice = []
-r_bounce_choice = PackedInt32Array()
-r_bounce_variation = Vector3(0, 0, 0)
-r_no_coll_chances = 0.0
-r_modulate_variation = Vector3(0, 0, 0)
-r_trail_length_variation = Vector3(0, 0, 0)
-r_trail_color_variation = Vector3(0, 0, 0)
-r_rotating_variation = Vector3(0, 0, 0)
-r_death_after_choice = PackedFloat32Array()
-r_death_after_variation = Vector3(0, 0, 0)
-r_death_outside_chances = 0.0
-r_dir_equation_choice = PackedStringArray()
-r_curve_choice = []
-r_speed_multi_curve_choice = []
-r_speed_multi_iter_variation = Vector3(0, 0, 0)
-r_speed_multi_scale_variation = Vector3(0, 0, 0)
-r_trigger_choice = PackedStringArray()
-r_wait_for_shot_chances = 0.0
-r_homing_target_choice = []
-r_special_target_choice = PackedStringArray()
-r_group_target_choice = PackedStringArray()
-r_pos_target_choice = PackedVector2Array()
-r_steer_choice = PackedFloat32Array()
-r_steer_variation = Vector3(0, 0, 0)
-r_homing_delay_choice = PackedFloat32Array()
-r_homing_delay_variation = Vector3(0, 0, 0)
-r_homing_dur_choice = PackedFloat32Array()
-r_homing_dur_variation = Vector3(0, 0, 0)
-r_scale_multi_curve_choice = []
-r_scale_multi_iter_variation = Vector3(0, 0, 0)
-r_scale_multi_scale_variation = Vector3(0, 0, 0)
-
-[sub_resource type="Curve2D" id="Curve2D_rm5i8"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_3l4td"]
-resource_name = "PatternOne"
-parsed_collision_mask = 4294967294
-script = ExtResource("10_nr4cm")
-bullet = "one"
-nbr = 1
-iterations = 1
-pattern_angle = 0.0
-pattern_angle_target = NodePath("")
-pattern_angle_mouse = false
-forced_angle = 0.0
-forced_target = NodePath("")
-forced_lookat_mouse = false
-forced_pattern_lookat = true
-cooldown_stasis = false
-cooldown_spawn = 1.0
-cooldown_shoot = 0.0
-cooldown_next_spawn = 0.0
-cooldown_next_shoot = 0.0
-wait_tween_momentum = 0
-wait_tween_length = 0.0
-wait_tween_time = 0.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guylf"]
 size = Vector2(1200, 21)
@@ -287,26 +71,20 @@ position = Vector2(581, 322)
 
 [node name="SpawnPoint" type="Node2D" parent="World2D"]
 show_behind_parent = true
-position = Vector2(502, 44)
+position = Vector2(623, 44)
 
-[node name="BulletPattern" type="Path2D" parent="World2D/SpawnPoint"]
-position = Vector2(-39, 29)
-curve = SubResource("Curve2D_il0gm")
-script = ExtResource("6_rvkt0")
-id = "two"
-props = SubResource("PackedDataContainer_h10vy")
+[node name="SpawnPoint2" type="Node2D" parent="World2D/SpawnPoint"]
+show_behind_parent = true
+position = Vector2(0, 186)
 
-[node name="SpawnPattern" type="Path2D" parent="World2D/SpawnPoint"]
-position = Vector2(-39, 29)
-curve = SubResource("Curve2D_vg2jl")
-script = ExtResource("9_1xr6r")
-id = "two"
-pattern = SubResource("NavigationPolygon_r7x6b")
+[node name="SpawnPoint3" type="Node2D" parent="World2D/SpawnPoint"]
+show_behind_parent = true
+position = Vector2(0, -180)
 
-[node name="Player" type="Node2D" parent="World2D"]
+[node name="Player" type="Node2D" parent="World2D" groups=["Player"]]
 position = Vector2(0, 154)
 
-[node name="Body" type="CharacterBody2D" parent="World2D/Player"]
+[node name="Body" type="CharacterBody2D" parent="World2D/Player" groups=["Player"]]
 collision_mask = 7
 script = ExtResource("1_i3mib")
 
@@ -314,9 +92,20 @@ script = ExtResource("1_i3mib")
 scale = Vector2(0.209879, 0.209879)
 texture = ExtResource("1_8v1rp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body" groups=["Player"]]
+position = Vector2(0, 1)
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("RectangleShape2D_m7w0x")
+
+[node name="Shoot" type="Node2D" parent="World2D/Player/Body"]
+
+[node name="Gun" type="Node2D" parent="World2D/Player/Body/Shoot"]
+position = Vector2(111, -1)
+script = ExtResource("3_8loes")
+bullet_scene = ExtResource("14_300t5")
+
+[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
+texture = SubResource("NoiseTexture2D_br1ko")
 
 [node name="Health" type="Node2D" parent="World2D/Player/Body"]
 position = Vector2(128, 128)
@@ -335,30 +124,6 @@ offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
-
-[node name="Shoot" type="Node2D" parent="World2D/Player/Body"]
-
-[node name="Gun" type="Node2D" parent="World2D/Player/Body/Shoot"]
-position = Vector2(111, -1)
-script = ExtResource("3_8loes")
-
-[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
-texture = SubResource("NoiseTexture2D_br1ko")
-
-[node name="BulletPattern" type="Path2D" parent="World2D/Player/Body/Shoot"]
-z_index = 1
-position = Vector2(0, -154)
-curve = SubResource("Curve2D_o0mh6")
-script = ExtResource("6_rvkt0")
-id = "one"
-props = SubResource("PackedDataContainer_0w2bb")
-
-[node name="SpawnPattern" type="Path2D" parent="World2D/Player/Body/Shoot"]
-z_index = 1
-curve = SubResource("Curve2D_rm5i8")
-script = ExtResource("9_1xr6r")
-id = "one"
-pattern = SubResource("NavigationPolygon_3l4td")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 

@@ -2,16 +2,15 @@ class_name Gun
 extends Node2D
 
 @export var fire_rate := 0.2
+@export var bullet_scene : PackedScene
 
 var can_fire := true
 var fire_rate_timer := 0.0
 
 func shoot() -> void:
-	var spawn_data = {
-		"position" : global_position,
-		"rotation": global_rotation,
-	}
-	Spawning.spawn(spawn_data, "one" ,"0")
+	var b = bullet_scene.instantiate()
+	b.global_position = global_position
+	get_tree().get_root().add_child(b)
 
 func _physics_process(delta: float) -> void:
 	# Shooting
