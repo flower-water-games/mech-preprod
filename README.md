@@ -1,29 +1,54 @@
-# mech jam project
+# Mech Jam Project
 
-## basic overview of high level systems
+## Current Status Overview
+This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose).
 
-## Scripts Overview
+NOTE: To add a boss, modify the code that spawns the "win" screen, spawn a boss, and hook in the conditions to win to be when that boss dies.
 
+## Detailed Documentation
+
+For more details, please read: [technical documentation](/documentation/README.md)
+
+
+## Core Systems
+- **ScrollManager**: Controls game duration and difficulty progression.
+- **GameManager**: Manages game state and enemy spawning based on current difficulty.
+- **EnemyFactory**: Handles enemy creation and types.
+- **Player**: Consists of movement, shooting, and health components.
+
+## Key Scripts
 ### Enemy
-- `enemy.gd`:`CharacterBody2D` Defines basic enemy behavior and attributes.
-- `enemy_factory.gd`: Handles enemy creation, spawning, and specifies types.
+- `enemy.gd`: Base enemy behavior (extends CharacterBody2D).
+- `enemy_factory.gd`: Enemy spawning and type management.
 
 ### Managers
-- `game_manager.gd`: Oversees game state, score, and overall game flow.
-- `scroll_manager.gd`: based on the defined time of the game, and a tweakable difficulty curve, returns back a 0-1 difficulty score(or raw progress) usable by the game manager to determine which enemies to spawn
+- `game_manager.gd`: Overall game flow and state control.
+- `scroll_manager.gd`: Difficulty progression and game time management.
 
 ### Player
-- `bullet.gd`: `CharacterBody2D` Controls bullet behavior, movement, and collision.
-- `gun.gd`: Handles shooting mechanics and weapon properties (for the player).
-- `health.gd`: Manages player health and damage system. Also used by `Enemy`
-- `movement.gd`: `CharacterBody2D` Controls player movement and physics, also stores a reference to health
+- `bullet.gd`: Bullet physics and collision (extends CharacterBody2D).
+- `gun.gd`: Player weapon mechanics.
+- `health.gd`: Health system for player and enemies.
+- `movement.gd`: Player movement and physics (extends CharacterBody2D).
 
+## Important Scenes
+![directory structure](/documentation/images/mainfiles.png)
+- `/scenes/GameScene/MainGameScene.tscn`: Main game scene.
+![current scene tree](/documentation/images/image.png) 
 
-<!-- ## scene tree
+- `/Components`: Reusable scene components (bullets, enemies, health).
+- `/EnemyVariants`: Custom enemy types inheriting from `enemy_2d.tscn`.
 
-![current scene tree](/documentation/images/image.png) -->
+## Global Systems (Autoloads)
+- **AppConfig**: Persistent player data.
+- **SceneLoader**: Handles scene transitions.
+- **ProjectMusicController**: Manages background music.
+- **ProjectUISoundsController**: Handles UI sound effects.
 
-## additional libraries
+## MainGameScene Structure
+- **Services**: Game managers and menu controllers.
+- **World2D**: In-game entities.
+- **CanvasLayer**: UI elements.
 
-<!-- - bulletuphell library for bullet hell mechanics -->
-- [maack's game template for scene loading, transitions, menus, saving player score](/addons/maaacks_game_template/docs/NewProject.md)
+## Additional Resources
+- Uses [Maaack's game template](https://github.com/Maaack/Godot-Game-Template) for scene loading, transitions, menus, and score saving.
