@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bst3kkowvpjsh"]
+[gd_scene load_steps=6 format=3 uid="uid://bst3kkowvpjsh"]
 
 [ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_n0nl2"]
 [ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="2_31lo2"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_gyohp"]
+[ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="4_007ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
 size = Vector2(200, 155)
@@ -10,6 +11,7 @@ size = Vector2(200, 155)
 [node name="Enemy2D" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_n0nl2")
+movement_type = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.02, 0.02)
@@ -26,3 +28,7 @@ position = Vector2(0, -14)
 scale = Vector2(0.2, 0.2)
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_007ev")
+bus = &"SFX"

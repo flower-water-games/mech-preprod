@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cafp2ojl4bajy"]
+
+[ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="1_a5mye"]
+
+[node name="Enemy2D" instance=ExtResource("1_a5mye")]
+on_hit_damage = 10
+health_value = 1
+movement_type = 1

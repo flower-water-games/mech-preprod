@@ -11,6 +11,7 @@ func shoot() -> void:
 	var b = bullet_scene.instantiate()
 	b.global_position = global_position
 	get_node("/root/MainGameScene").add_child(b)
+	$AudioStreamPlayer.play()
 
 func _physics_process(delta: float) -> void:
 	# Shooting
