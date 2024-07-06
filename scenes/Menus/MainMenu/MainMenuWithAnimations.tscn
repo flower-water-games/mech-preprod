@@ -359,25 +359,7 @@ libraries = {
 [node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
-parameters/current_length = 2.4
-parameters/current_position = 2.4
-parameters/current_delta = 0.0
 parameters/conditions/intro_done = false
-parameters/End/current_length = null
-parameters/End/current_position = null
-parameters/End/current_delta = null
-parameters/Intro/current_length = 2.4
-parameters/Intro/current_position = 2.4
-parameters/Intro/current_delta = 0.0
-parameters/OpenMainMenu/current_length = null
-parameters/OpenMainMenu/current_position = null
-parameters/OpenMainMenu/current_delta = null
-parameters/OpenSubMenu/current_length = null
-parameters/OpenSubMenu/current_position = null
-parameters/OpenSubMenu/current_delta = null
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
 bus = &"Master"
@@ -391,7 +373,10 @@ text = "mechjam5"
 
 [node name="SubTitle" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="1"]
 modulate = Color(1, 1, 1, 0)
-text = "sidescroller 2d godot 4.3-beta1"
+text = "sidescroller 2d - wasd + click to shoot
+godot 4.2.2-stable
+
+freshwater games"
 
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
