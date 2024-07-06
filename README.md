@@ -5,7 +5,7 @@
 ## Current Status Overview
 This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose).
 
-NOTE: To add a boss, modify the code that spawns the "win" screen, spawn a boss, and hook in the conditions to win to be when that boss dies.
+NOTE: To add a boss, modify the code that spawns the "win" screen, spawn a boss, and hook in the conditions to win to be when that boss dies, or, you can spawn a "final wave" of your extra big special enemy (currently this happens at difficulty = .9, with just a regular enemy)
 
 ## Detailed Documentation
 
