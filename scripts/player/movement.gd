@@ -1,4 +1,6 @@
 extends CharacterBody2D
+# this maybe should be a "player" class by this point - it is not a composable class anymore
+# but i know the horrors of changing the class name in godot on an important script so we should keep it as Movement lolz
 class_name Movement
 
 # Physics
