@@ -9,7 +9,8 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-# Tweakable parameters
+# Tweakable parameters, 
+# btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
 @export var custom_velocity := Vector2(-250, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
@@ -18,6 +19,7 @@ enum MovementType {
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
 @export var spline_randomized := false
+@export var score = 50 # when enemy dies, how much score
 
 signal bomb_thrown
 # after this value of time has elapsed, kill this entity
@@ -100,13 +102,6 @@ func enemy_die() -> void:
 	queue_free()
 
 func shoot() -> void:
-	#identify current target position
-
-	# var target_position = player.global_position
-	# spawn a target
-	await get_tree().create_timer(0.5).timeout
-
-	# wait some time ("target_wait")
-	# shoot high velocity bullet
-	print("enemy pew")
+	bomb_thrown.emit()
+	# print("enemy pew")
 	return

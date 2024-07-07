@@ -11,9 +11,7 @@ signal gun_shot(position : Vector2)
 
 func shoot() -> void:
 	gun_shot.emit(global_position)
-	# var b = bullet_scene.instantiate()
-	# b.global_position = global_position
-	# get_node("/root/MainGameScene").add_child(b)
+	#TODO put an sfx manager in the services
 	$AudioStreamPlayer.play()
 
 func _physics_process(delta: float) -> void:

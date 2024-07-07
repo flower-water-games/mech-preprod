@@ -11,6 +11,7 @@ class_name GameManager
 @onready var bullet_factory: BulletFactory = get_node("/root/MainGameScene/Services/BulletFactory")
 @onready var scroll_manager: ScrollManager = get_node("/root/MainGameScene/Services/ScrollManager")
 @onready var label: Label = get_node("/root/MainGameScene/CanvasLayer/Label")
+@onready var score: Label = get_node("/root/MainGameScene/CanvasLayer/Score")
 
 # spawning
 @onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
@@ -44,8 +45,15 @@ var waves = [
 	{
 		"difficulty_threshold": 0.7,
 		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": .2, "base_spawn_count": 10},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 0.3, "base_spawn_count": 40},
+			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.3, "base_spawn_count": 4},
+			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
+		]
+	},
+	{
+		# to make this a "boss" you could do difficulty_threshold at .99 and just spawn one enemy. the game will wait until all enemies are dead anyways
+		"difficulty_threshold": 0.99,
+		"enemies": [
+			{"type": EnemyFactory.EnemyType.BOSS, "base_spawn_rate": 0.3, "base_spawn_count": 1},
 		]
 	}
 ]
@@ -56,7 +64,6 @@ var spawned_waves :Array[int]= []
 var waiting_for_all_enemies_dead = false
 var is_spawning = false
 
-# TODO save this player score in AppConfig
 var player_score = 0
 
 # signals
@@ -76,6 +83,17 @@ func _player_shoot(position : Vector2):
 	b.global_position = position
 	bullet_spawn.add_child(b)
 
+func _enemy_shoot(position : Vector2):
+	#identify current target position
+
+	# var target_position = player.global_position
+	# spawn a target
+	await get_tree().create_timer(0.5).timeout
+
+	# wait some time ("target_wait")
+	# shoot high velocity bullet
+	# print("enemy pew")
+	return
 
 func _process(_delta: float) -> void:
 	# current "end state" condition - when all waves are spawned, just clear the screen to trigger the end
@@ -124,6 +142,7 @@ func spawn_wave(wave_index: int) -> void:
 
 func update_ui():
 	label.text = "Progress: %d%% | Wave: %d" % [int(scroll_manager.get_raw_progress() * 100), current_wave_index + 1]
+	score.text = "Score: %d" % player_score
 
 func _on_game_lost():
 	InGameMenuController.open_menu(lose_scene, get_viewport())
@@ -136,11 +155,15 @@ func spawn_enemy_group(enemy_config: Dictionary) -> void:
 		for i in range(enemy_config.base_spawn_count):
 			var e = enemy_factory.create_enemy(enemy_config.type)
 			spawn_point.add_child(e)
+			e.enemy_died.connect(_add_score.bind(e.score))
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
 		print("Completed spawning enemy type: ", enemy_config.type)
 
 	# Start the spawning task without waiting for it to complete (cool trick)
 	spawn_task.call_deferred()
+
+func _add_score(value:int)->void:
+	player_score+=value
 
 ## Checks the spawn point for any active children
 func are_enemies_alive() -> bool:
