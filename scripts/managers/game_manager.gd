@@ -8,6 +8,8 @@ class_name GameManager
 @onready var enemy_factory: EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")
 @onready var scroll_manager: ScrollManager = get_node("/root/MainGameScene/Services/ScrollManager")
 @onready var label: Label = get_node("/root/MainGameScene/CanvasLayer/Label")
+@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
+
 # spawn waves based on a diffulty threshold, can spawn multiple different types of enemies per waves
 var waves = [
 	{
@@ -50,6 +52,7 @@ var player_score = 0
 
 signal spawning_completed
 signal new_wave_spawned
+
 func _ready():
 	await player.ready
 	player.health.died.connect(_on_game_lost)
@@ -59,7 +62,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if waiting_for_all_enemies_dead:
-		if !enemy_factory.are_enemies_alive():
+		if !are_enemies_alive():
 			_on_game_won()
 	else: 
 		var difficulty = scroll_manager.get_difficulty()
@@ -108,9 +111,17 @@ func _on_game_won():
 func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	var spawn_task = func():
 		for i in range(enemy_config.base_spawn_count):
-			enemy_factory.create_enemy(enemy_config.type)
+			var e = enemy_factory.create_enemy(enemy_config.type)
+			spawn_point.add_child(e)
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
 		print("Completed spawning enemy type: ", enemy_config.type)
 
 	# Start the spawning task without waiting for it to complete
 	spawn_task.call_deferred()
+
+## Checks the spawn point for any active children
+func are_enemies_alive() -> bool:
+	return spawn_point.get_child_count() > 0
+
+func get_enemy_count() -> int:
+	return spawn_point.get_child_count()

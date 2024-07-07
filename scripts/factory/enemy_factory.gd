@@ -10,14 +10,11 @@ enum EnemyType { WEAK, NORMAL, STRONG, BOSS }
 # prob needs special case
 @export var boss_enemy_scene: PackedScene
 
-@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
 
 func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
 	var enemy = get_enemy_scene(enemy_type)
 	if enemy:
 		var instance := enemy.instantiate()
-		#TODO probably for consistency move this out into the gamemanager
-		spawn_point.add_child(instance)
 		instance.global_position.y += randf_range(-330, 330)
 		return instance
 	return null
@@ -34,9 +31,3 @@ func get_enemy_scene(enemy_type: EnemyType) -> PackedScene:
 			return boss_enemy_scene
 	return null
 
-## Checks the spawn point for any active children
-func are_enemies_alive() -> bool:
-	return spawn_point.get_child_count() > 0
-
-func get_enemy_count() -> int:
-	return spawn_point.get_child_count()
