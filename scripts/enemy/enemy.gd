@@ -25,7 +25,6 @@ signal bomb_thrown
 # after this value of time has elapsed, kill this entity
 var lifetime = 10.0
 var death_timer : Timer
-@onready var audio_sfx : AudioStreamPlayer = $AudioStreamPlayer
 signal enemy_died
 
 var time_passed = 0.9
@@ -41,7 +40,6 @@ func _ready() -> void:
 	else:
 		initial_y_position = global_position.y
 
-	enemy_died.connect(audio_sfx.play)
 	# set up death timer
 	 # Set up and start the death timer
 	death_timer = Timer.new()
@@ -97,8 +95,6 @@ func enemy_destroy() -> void:
 func enemy_die() -> void:
 	enemy_died.emit()
 	movement_type = MovementType.STOPPED
-	# short delay before destroying itself for sfx to play
-	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
 func shoot() -> void:

@@ -17,6 +17,10 @@ class_name GameManager
 @onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
 @onready var bullet_spawn = get_node("/root/MainGameScene")
 
+# simple audio node stuff (will be updated w a proper sfx manager)
+@onready var death_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer")
+@onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
+
 # spawn waves based on a diffulty threshold, can spawn multiple different types of enemies per waves
 var waves = [
 	{
@@ -82,6 +86,7 @@ func _player_shoot(position : Vector2):
 	var b = bullet_factory.create_bullet(BulletFactory.BulletType.PLAYER_BULLET)
 	b.global_position = position
 	bullet_spawn.add_child(b)
+	shoot_sfx.play()
 
 func _enemy_shoot(position : Vector2):
 	#identify current target position
@@ -156,6 +161,7 @@ func spawn_enemy_group(enemy_config: Dictionary) -> void:
 			var e = enemy_factory.create_enemy(enemy_config.type)
 			spawn_point.add_child(e)
 			e.enemy_died.connect(_add_score.bind(e.score))
+			e.enemy_died.connect(death_sfx.play)
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
 		print("Completed spawning enemy type: ", enemy_config.type)
 
