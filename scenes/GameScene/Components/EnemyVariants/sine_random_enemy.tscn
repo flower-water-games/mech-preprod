@@ -4,6 +4,6 @@
 
 [node name="Enemy2D" instance=ExtResource("1_35ree")]
 on_hit_damage = 10
-health_value = 1
 movement_type = 1
+spline_amplitude = 50.0
 spline_randomized = true

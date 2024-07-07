@@ -15,7 +15,7 @@ func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
 	var enemy = get_enemy_scene(enemy_type)
 	if enemy:
 		var instance := enemy.instantiate()
-		instance.global_position.y += randf_range(-330, 330)
+		instance.global_position.y += randf_range(-200, 200)
 		return instance
 	return null
 

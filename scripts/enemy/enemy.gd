@@ -19,6 +19,7 @@ enum MovementType {
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
 @export var spline_randomized := false
 
+signal bomb_thrown
 # after this value of time has elapsed, kill this entity
 var lifetime = 10.0
 var death_timer : Timer
@@ -27,13 +28,13 @@ signal enemy_died
 
 var time_passed = 0.9
 var initial_y_position : float
+var player : Movement
 
 func _ready() -> void:
 	health.set_max_health(health_value)
 	health.died.connect(enemy_die) 
 	velocity = custom_velocity
 	if (spline_randomized):
-
 		initial_y_position = global_position.y + randf_range(-350, 350)
 	else:
 		initial_y_position = global_position.y
@@ -47,6 +48,10 @@ func _ready() -> void:
 	death_timer.timeout.connect(enemy_destroy)
 	add_child(death_timer)
 	death_timer.start()
+
+	if (shoots):
+		player = get_node("/root/MainGameScene/World2D/Player/Body")
+
 
 
 func _process(delta: float) -> void:
@@ -96,7 +101,11 @@ func enemy_die() -> void:
 
 func shoot() -> void:
 	#identify current target position
+
+	# var target_position = player.global_position
 	# spawn a target
+	await get_tree().create_timer(0.5).timeout
+
 	# wait some time ("target_wait")
 	# shoot high velocity bullet
 	print("enemy pew")

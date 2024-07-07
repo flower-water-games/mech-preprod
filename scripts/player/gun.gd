@@ -1,5 +1,5 @@
-class_name Gun
 extends Node2D
+class_name Gun
 
 @export var fire_rate := 0.2
 @export var bullet_scene : PackedScene
@@ -7,10 +7,13 @@ extends Node2D
 var can_fire := true
 var fire_rate_timer := 0.0
 
+signal gun_shot(position : Vector2)
+
 func shoot() -> void:
-	var b = bullet_scene.instantiate()
-	b.global_position = global_position
-	get_node("/root/MainGameScene").add_child(b)
+	gun_shot.emit(global_position)
+	# var b = bullet_scene.instantiate()
+	# b.global_position = global_position
+	# get_node("/root/MainGameScene").add_child(b)
 	$AudioStreamPlayer.play()
 
 func _physics_process(delta: float) -> void:
