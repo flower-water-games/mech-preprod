@@ -15,8 +15,8 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
-[ext_resource type="AudioStream" uid="uid://d0j0b43l6rnk5" path="res://assets/audio/Space Cadet.ogg" id="10_6jvi1"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
+[ext_resource type="AudioStream" uid="uid://oeewql88flad" path="res://assets/audio/tylerg/maintrack.ogg" id="14_5q3jf"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
@@ -45,6 +45,7 @@ size = Vector2(1200, 21)
 size = Vector2(33.03, 570)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8vp01"]
+font_size = 33
 
 [node name="MainGameScene" type="Node"]
 
@@ -78,7 +79,7 @@ pause_menu_packed = ExtResource("8_0225l")
 script = ExtResource("9_octrj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services"]
-stream = ExtResource("10_6jvi1")
+stream = ExtResource("14_5q3jf")
 autoplay = true
 bus = &"Music"
 
