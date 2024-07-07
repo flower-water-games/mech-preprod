@@ -1,21 +1,24 @@
-[gd_scene load_steps=26 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=29 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
+[ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
 [ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_klouh"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
 [ext_resource type="PackedScene" uid="uid://cafp2ojl4bajy" path="res://scenes/GameScene/Components/EnemyVariants/sine_enemy.tscn" id="3_081cb"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
+[ext_resource type="PackedScene" uid="uid://cy5p4f700u66a" path="res://scenes/GameScene/Components/EnemyVariants/sine_random_enemy.tscn" id="4_wkr42"]
 [ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="5_5jxh1"]
 [ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
-[ext_resource type="AudioStream" uid="uid://d0j0b43l6rnk5" path="res://assets/audio/Space Cadet.ogg" id="10_6jvi1"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
+[ext_resource type="AudioStream" uid="uid://oeewql88flad" path="res://assets/audio/tylerg/maintrack.ogg" id="14_5q3jf"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
+[ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
@@ -42,16 +45,22 @@ size = Vector2(1200, 21)
 size = Vector2(33.03, 570)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8vp01"]
+font_size = 33
 
 [node name="MainGameScene" type="Node"]
 
 [node name="Services" type="Node" parent="."]
 
+[node name="BulletFactory" type="Node" parent="Services"]
+script = ExtResource("1_gp423")
+player_bullet = ExtResource("14_300t5")
+
 [node name="EnemyFactory" type="Node" parent="Services"]
 script = ExtResource("1_0p8pm")
 weak_enemy_scene = ExtResource("5_5jxh1")
 normal_enemy_scene = ExtResource("3_081cb")
-strong_enemy_scene = ExtResource("5_5jxh1")
+strong_enemy_scene = ExtResource("4_wkr42")
+boss_enemy_scene = ExtResource("5_5jxh1")
 
 [node name="GameManager" type="Node" parent="Services"]
 script = ExtResource("1_klouh")
@@ -70,9 +79,19 @@ pause_menu_packed = ExtResource("8_0225l")
 script = ExtResource("9_octrj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services"]
-stream = ExtResource("10_6jvi1")
+stream = ExtResource("14_5q3jf")
 autoplay = true
 bus = &"Music"
+
+[node name="SFXManager" type="Node" parent="Services"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services/SFXManager"]
+stream = ExtResource("15_0vwig")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Services/SFXManager"]
+stream = ExtResource("15_kev3k")
+bus = &"SFX"
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)
@@ -81,7 +100,7 @@ position = Vector2(581, 322)
 show_behind_parent = true
 position = Vector2(623, 44)
 
-[node name="Player" type="Node2D" parent="World2D" groups=["Player"]]
+[node name="Player" type="Node2D" parent="World2D"]
 position = Vector2(-462, 154)
 
 [node name="Body" type="CharacterBody2D" parent="World2D/Player" groups=["Player"]]
@@ -106,10 +125,6 @@ bullet_scene = ExtResource("14_300t5")
 
 [node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
 texture = SubResource("NoiseTexture2D_br1ko")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World2D/Player/Body/Shoot/Gun"]
-stream = ExtResource("15_kev3k")
-bus = &"SFX"
 
 [node name="Health" type="Node2D" parent="World2D/Player/Body"]
 position = Vector2(128, 128)
@@ -165,3 +180,14 @@ text = "ui vibes if needed
 label_settings = SubResource("LabelSettings_8vp01")
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ui vibes if needed
+"
+label_settings = SubResource("LabelSettings_8vp01")
+horizontal_alignment = 1

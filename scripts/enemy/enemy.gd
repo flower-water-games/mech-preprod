@@ -9,7 +9,8 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-# Tweakable parameters
+# Tweakable parameters, 
+# btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
 @export var custom_velocity := Vector2(-250, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
@@ -18,27 +19,27 @@ enum MovementType {
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
 @export var spline_randomized := false
+@export var score = 50 # when enemy dies, how much score
 
+signal bomb_thrown
 # after this value of time has elapsed, kill this entity
 var lifetime = 10.0
 var death_timer : Timer
-@onready var audio_sfx : AudioStreamPlayer = $AudioStreamPlayer
 signal enemy_died
 
 var time_passed = 0.9
 var initial_y_position : float
+var player : Movement
 
 func _ready() -> void:
 	health.set_max_health(health_value)
 	health.died.connect(enemy_die) 
 	velocity = custom_velocity
 	if (spline_randomized):
-
 		initial_y_position = global_position.y + randf_range(-350, 350)
 	else:
 		initial_y_position = global_position.y
 
-	enemy_died.connect(audio_sfx.play)
 	# set up death timer
 	 # Set up and start the death timer
 	death_timer = Timer.new()
@@ -47,6 +48,10 @@ func _ready() -> void:
 	death_timer.timeout.connect(enemy_destroy)
 	add_child(death_timer)
 	death_timer.start()
+
+	if (shoots):
+		player = get_node("/root/MainGameScene/World2D/Player/Body")
+
 
 
 func _process(delta: float) -> void:
@@ -90,14 +95,9 @@ func enemy_destroy() -> void:
 func enemy_die() -> void:
 	enemy_died.emit()
 	movement_type = MovementType.STOPPED
-	# short delay before destroying itself for sfx to play
-	await get_tree().create_timer(0.5).timeout
 	queue_free()
 
 func shoot() -> void:
-	#identify current target position
-	# spawn a target
-	# wait some time ("target_wait")
-	# shoot high velocity bullet
-	print("enemy pew")
+	bomb_thrown.emit()
+	# print("enemy pew")
 	return

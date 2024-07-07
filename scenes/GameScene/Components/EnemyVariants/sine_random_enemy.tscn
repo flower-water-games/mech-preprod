@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy5p4f700u66a"]
+
+[ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="1_35ree"]
+
+[node name="Enemy2D" instance=ExtResource("1_35ree")]
+on_hit_damage = 10
+movement_type = 1
+spline_amplitude = 50.0
+spline_randomized = true
