@@ -16,8 +16,8 @@ func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
 	var enemy = get_enemy_scene(enemy_type)
 	if enemy:
 		var instance := enemy.instantiate()
-		spawn_point.add_child(instance)
 		#TODO probably for consistency move this out into the gamemanager
+		spawn_point.add_child(instance)
 		instance.global_position.y += randf_range(-330, 330)
 		return instance
 	return null

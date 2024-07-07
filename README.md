@@ -3,9 +3,9 @@
 [![.github/workflows/main.yml](https://github.com/flower-water-games/mech-preprod/actions/workflows/main.yml/badge.svg)](https://github.com/flower-water-games/mech-preprod/actions/workflows/main.yml)
 
 ## Current Status Overview
-This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose).
+This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose). 
 
-NOTE: To add a boss, modify the code that spawns the "win" screen, spawn a boss, and hook in the conditions to win to be when that boss dies, or, you can spawn a "final wave" of your extra big special enemy (currently this happens at difficulty = .9, with just a regular enemy)
+NOTE, To quickly add a boss, you can add a final "wave" with one large enemy.
 
 ## Detailed Documentation
 
@@ -13,7 +13,7 @@ For more details, please read: [technical documentation](/documentation/README.m
 
 
 ## Core Systems
-- **ScrollManager**: Controls game duration and difficulty progression.
+- **ScrollManager**: Controls game duration and difficulty progression based on a curve.
 - **GameManager**: Manages game state and enemy spawning based on current difficulty.
 - **EnemyFactory**: Handles enemy creation and types.
 - **Player**: Consists of movement, shooting, and health components.
@@ -36,8 +36,6 @@ For more details, please read: [technical documentation](/documentation/README.m
 ## Important Scenes
 ![directory structure](/documentation/images/mainfiles.png)
 - `/scenes/GameScene/MainGameScene.tscn`: Main game scene.
-![current scene tree](/documentation/images/image.png) 
-
 - `/Components`: Reusable scene components (bullets, enemies, health).
 - `/EnemyVariants`: Custom enemy types inheriting from `enemy_2d.tscn`.
 
@@ -51,6 +49,7 @@ For more details, please read: [technical documentation](/documentation/README.m
 - **Services**: Game managers and menu controllers.
 - **World2D**: In-game entities.
 - **CanvasLayer**: UI elements.
+![current scene tree](/documentation/images/image.png) 
 
 ## Additional Resources
 - Uses [Maaack's game template](https://github.com/Maaack/Godot-Game-Template) for scene loading, transitions, menus, and score saving.
