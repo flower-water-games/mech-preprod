@@ -125,10 +125,6 @@ bullet_scene = ExtResource("14_300t5")
 [node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
 texture = SubResource("NoiseTexture2D_br1ko")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="World2D/Player/Body/Shoot/Gun"]
-stream = ExtResource("15_kev3k")
-bus = &"SFX"
-
 [node name="Health" type="Node2D" parent="World2D/Player/Body"]
 position = Vector2(128, 128)
 script = ExtResource("10_7pqt7")
