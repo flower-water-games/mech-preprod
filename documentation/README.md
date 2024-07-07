@@ -25,8 +25,8 @@
 
 ### Player
 - `bullet.gd`: Extends `CharacterBody2D`. Controls bullet behavior, movement, damage, collision.
-- `gun.gd`: Handles spawning bullet and managing fire rate and user input
-- `health.gd`: Manages player health and damage system. Also used by `Enemy`.
+- `gun.gd`: Handles spawning bullet and managing fire rate and user input (this could be changed to an autogun, or used by enemies)
+- `health.gd`: Manages player health and damage system for both enemies and players.
 - `movement.gd`: Extends `CharacterBody2D`. Controls player movement and physics. Stores a reference to health.
 
 ## Scene Structure
@@ -41,7 +41,7 @@
 - Health component
 
 ### Enemy Variants
-`/EnemyVariants` contains all inherited enemies from the `enemy_2d.tscn` scene. Devs should:
+`/EnemyVariants` contains all inherited enemies from the `enemy_2d.tscn` scene. To create a new variant, we should:
 - Place all custom enemy types here
 - Only modify `enemy_2d.tscn` when necessary
 - Check all variants after modifying the base enemy scene
@@ -54,7 +54,6 @@ When the game is running, several autoloads have been initialized and are runnin
 - **SceneLoader**: Facilitates transitions between scenes (currently used for win/lose states).
 - **ProjectMusicController**: Detects any `AudioStreamPlayer` nodes with autoplay enabled for background music and handles music transitions.
 - **ProjectUISoundsController**: Manages UI sound effects.
-
 
 ## MainGameScene Hierarchy
 
