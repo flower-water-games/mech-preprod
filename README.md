@@ -34,7 +34,8 @@ cm notes
 ![a1](/documentation/images/actions/a1.png)
 ![a2](/documentation/images/actions/a2.png)
 ![a3](/documentation/images/actions/a3.png)
-<!-- ![a4](/documentation/images/actions/a4.png) -->
+![a4](/documentation/images/actions/a4.png)
+![a5](/documentation/images/actions/a5.png)
 
 ## Current Game Overview
 This is an "infinite-style" 2D sidescroller where players shoot enemies in progressively difficult waves of enemies. The game ends when the player completes all waves (win) or dies (lose). 
