@@ -10,6 +10,9 @@
 4. Checkout a new branch with a descriptive name `feature/feature-name`
 5. Bump the minor version number in ProjectSettings (`0.0.1` -> `0.0.2`)
 6. Test and build (Export) your game locally via RemoteDebug Feature in Godot (test it in a browser)
+7. Create a Pull Request into the desired branch (typically `main`), and merge it in with an optional reviewer
+8. Check to verify that your build successfully ran. Be sure to stop any workflow that takes longer than normal.
+9. Verify the build on itch.io works as expected.
 
 ## Devops
 
