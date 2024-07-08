@@ -54,8 +54,8 @@ var waves = [
 		]
 	},
 	{
-		# to make this a "boss" you could do difficulty_threshold at .99 and just spawn one enemy. the game will wait until all enemies are dead anyways
-		"difficulty_threshold": 0.99,
+		# to make this a "boss" you could do difficulty_threshold at .9 and just spawn one enemy. the game will wait until all enemies are dead anyways
+		"difficulty_threshold": 0.9,
 		"enemies": [
 			{"type": EnemyFactory.EnemyType.BOSS, "base_spawn_rate": 0.3, "base_spawn_count": 1},
 		]
@@ -124,18 +124,18 @@ func _on_scroll_completed():
 
 ## triggers crossing a checkpoint functionality
 func _cross_checkpoint():
-	player.health.add_or_subtract_health_by_value(40)
+	player.health.add_or_subtract_health_by_value(10)
 
 func update_current_wave(difficulty: float) -> void:
 	for i in range(waves.size()):
 		if difficulty >= waves[i].difficulty_threshold and i not in spawned_waves:
 			current_wave_index = i
+			new_wave_spawned.emit()
 			return
 # 
 func spawn_wave(wave_index: int) -> void:
 	if wave_index in spawned_waves:
 		return
-	new_wave_spawned.emit()
 	
 	is_spawning = true
 	var wave = waves[wave_index]
