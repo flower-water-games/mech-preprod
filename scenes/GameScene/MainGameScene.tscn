@@ -1,12 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
-[ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
-[ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_i3mib"]
 [ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_klouh"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
-[ext_resource type="Script" path="res://scripts/player/gun.gd" id="3_8loes"]
 [ext_resource type="PackedScene" uid="uid://cafp2ojl4bajy" path="res://scenes/GameScene/Components/EnemyVariants/sine_enemy.tscn" id="3_081cb"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
 [ext_resource type="PackedScene" uid="uid://cy5p4f700u66a" path="res://scenes/GameScene/Components/EnemyVariants/sine_random_enemy.tscn" id="4_wkr42"]
@@ -15,11 +12,11 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
-[ext_resource type="Script" path="res://scripts/player/health.gd" id="10_7pqt7"]
 [ext_resource type="AudioStream" uid="uid://oeewql88flad" path="res://assets/audio/tylerg/maintrack.ogg" id="14_5q3jf"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
+[ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Components/Player/Player.tscn" id="17_cjse5"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
@@ -27,16 +24,6 @@ point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_bredi"]
 curve = SubResource("Curve_tktg1")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7w0x"]
-size = Vector2(282.46, 500.188)
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_br1ko"]
-width = 25
-height = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swn8e"]
-bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guylf"]
 size = Vector2(1200, 21)
@@ -100,49 +87,8 @@ position = Vector2(581, 322)
 show_behind_parent = true
 position = Vector2(623, 44)
 
-[node name="Player" type="Node2D" parent="World2D"]
-position = Vector2(-462, 154)
-
-[node name="Body" type="CharacterBody2D" parent="World2D/Player" groups=["Player"]]
-collision_mask = 7
-script = ExtResource("1_i3mib")
-
-[node name="Sprite2D" type="Sprite2D" parent="World2D/Player/Body"]
-scale = Vector2(0.209879, 0.209879)
-texture = ExtResource("1_8v1rp")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Player/Body" groups=["Player"]]
-position = Vector2(0, 1)
-scale = Vector2(0.339872, 0.339872)
-shape = SubResource("RectangleShape2D_m7w0x")
-
-[node name="Shoot" type="Node2D" parent="World2D/Player/Body"]
-
-[node name="Gun" type="Node2D" parent="World2D/Player/Body/Shoot"]
-position = Vector2(111, -1)
-script = ExtResource("3_8loes")
-bullet_scene = ExtResource("14_300t5")
-
-[node name="GunSprite2D" type="Sprite2D" parent="World2D/Player/Body/Shoot/Gun"]
-texture = SubResource("NoiseTexture2D_br1ko")
-
-[node name="Health" type="Node2D" parent="World2D/Player/Body"]
-position = Vector2(128, 128)
-script = ExtResource("10_7pqt7")
-
-[node name="ProgressBar" type="ProgressBar" parent="World2D/Player/Body/Health"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -191.0
-offset_top = -50.0
-offset_right = -63.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
+[node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
+position = Vector2(-485, 153)
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 
