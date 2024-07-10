@@ -9,12 +9,12 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-# Tweakable parameters, 
+# Tweakable parameters,
 # btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
 @export var custom_velocity := Vector2(-250, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
-@export var health_value = 2
+@export var health_value = 5
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
@@ -33,7 +33,7 @@ var player : Movement
 
 func _ready() -> void:
 	health.set_max_health(health_value)
-	health.died.connect(enemy_die) 
+	health.died.connect(enemy_die)
 	velocity = custom_velocity
 	if (spline_randomized):
 		initial_y_position = global_position.y + randf_range(-350, 350)
@@ -78,13 +78,13 @@ func move_vertical_spline(delta: float) -> void:
 	var horizontal_movement = velocity.x * delta
 	var vertical_movement = sin(time_passed * spline_frequency) * spline_amplitude
 	var target_position = Vector2(global_position.x + horizontal_movement, initial_y_position + vertical_movement)
-	
+
 	var collision = move_and_collide(target_position - global_position)
 	if collision:
 		_handle_hit_collision(collision)
 
 func _handle_hit_collision(col : KinematicCollision2D) -> void:
-	var collider : Node2D = col.get_collider() 
+	var collider : Node2D = col.get_collider()
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
 		enemy_die()

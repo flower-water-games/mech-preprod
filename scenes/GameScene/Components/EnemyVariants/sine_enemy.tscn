@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://cafp2ojl4bajy"]
+[gd_scene load_steps=3 format=3 uid="uid://cafp2ojl4bajy"]
 
 [ext_resource type="PackedScene" uid="uid://bst3kkowvpjsh" path="res://scenes/GameScene/Components/enemy_2d.tscn" id="1_a5mye"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dbw30"]
+radius = 107.565
+height = 290.2
 
 [node name="Enemy2D" instance=ExtResource("1_a5mye")]
 on_hit_damage = 10
 health_value = 1
 movement_type = 1
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1.90735e-06, 9.53674e-07)
+scale = Vector2(0.0449515, 0.0449515)
+
+[node name="CollisionShape2D" parent="." index="1"]
+rotation = 1.55509
+shape = SubResource("CapsuleShape2D_dbw30")

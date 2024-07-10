@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://bjcx072xancx6"]
+
+[ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_4afsl"]
+[ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_lr0nm"]
+[ext_resource type="Script" path="res://scripts/player/gun.gd" id="2_pgd61"]
+[ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="3_5ab8q"]
+[ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
+[ext_resource type="Script" path="res://scripts/player/health.gd" id="4_xgasw"]
+[ext_resource type="Script" path="res://scripts/player/cursor.gd" id="5_rb5or"]
+[ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
+radius = 91.2108
+height = 282.459
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i04yn"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Player" type="Node2D"]
+
+[node name="Body" type="CharacterBody2D" parent="." groups=["Player"]]
+collision_mask = 11
+script = ExtResource("1_lr0nm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+scale = Vector2(0.209879, 0.209879)
+texture = ExtResource("1_4afsl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
+position = Vector2(0, 1)
+scale = Vector2(0.339872, 0.339872)
+shape = SubResource("CapsuleShape2D_rhp08")
+
+[node name="Shoot" type="Node2D" parent="Body"]
+
+[node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
+position = Vector2(232, 0)
+texture = ExtResource("4_600tr")
+script = ExtResource("5_rb5or")
+
+[node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
+position = Vector2(111, -1)
+script = ExtResource("2_pgd61")
+bullet_scene = ExtResource("3_5ab8q")
+cursor = NodePath("../Cursor")
+
+[node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
+texture = ExtResource("7_h25id")
+
+[node name="Health" type="Node2D" parent="Body"]
+position = Vector2(128, 128)
+script = ExtResource("4_xgasw")
+
+[node name="ProgressBar" type="ProgressBar" parent="Body/Health"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -50.0
+offset_right = -63.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_i04yn")
+metadata/_edit_use_anchors_ = true
