@@ -14,7 +14,7 @@ enum MovementType {
 @export var custom_velocity := Vector2(-250, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
-@export var health_value = 2
+@export var health_value = 5
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down

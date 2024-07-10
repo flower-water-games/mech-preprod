@@ -5,8 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_gyohp"]
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="4_007ev"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt1ds"]
-size = Vector2(200, 155)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nb6ji"]
+radius = 154.981
+height = 575.0
 
 [node name="Enemy2D" type="CharacterBody2D"]
 collision_layer = 2
@@ -14,13 +15,15 @@ script = ExtResource("1_n0nl2")
 movement_type = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.02, 0.02)
+position = Vector2(7.62939e-06, 1.90735e-06)
+scale = Vector2(0.0682524, 0.0682524)
 texture = ExtResource("2_31lo2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2.5)
+position = Vector2(-1, -2)
+rotation = 1.55509
 scale = Vector2(0.2, 0.2)
-shape = SubResource("RectangleShape2D_rt1ds")
+shape = SubResource("CapsuleShape2D_nb6ji")
 debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
 
 [node name="Health" parent="." instance=ExtResource("3_gyohp")]
