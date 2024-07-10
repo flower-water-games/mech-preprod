@@ -1,17 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjcx072xancx6"]
+[gd_scene load_steps=11 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_4afsl"]
 [ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_lr0nm"]
 [ext_resource type="Script" path="res://scripts/player/gun.gd" id="2_pgd61"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="3_5ab8q"]
+[ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
 [ext_resource type="Script" path="res://scripts/player/health.gd" id="4_xgasw"]
+[ext_resource type="Script" path="res://scripts/player/cursor.gd" id="5_rb5or"]
+[ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujqnu"]
 size = Vector2(282.46, 500.188)
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ji4ka"]
-width = 25
-height = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i04yn"]
 bg_color = Color(1, 1, 1, 1)
@@ -33,13 +32,19 @@ shape = SubResource("RectangleShape2D_ujqnu")
 
 [node name="Shoot" type="Node2D" parent="Body"]
 
-[node name="Gun" type="Node2D" parent="Body/Shoot"]
+[node name="CursorSprite" type="Sprite2D" parent="Body/Shoot"]
+position = Vector2(232, 0)
+texture = ExtResource("4_600tr")
+script = ExtResource("5_rb5or")
+
+[node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
 position = Vector2(111, -1)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
+cursor = NodePath("../CursorSprite")
 
 [node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
-texture = SubResource("NoiseTexture2D_ji4ka")
+texture = ExtResource("7_h25id")
 
 [node name="Health" type="Node2D" parent="Body"]
 position = Vector2(128, 128)
