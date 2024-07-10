@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=30 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="14_300t5"]
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
+[ext_resource type="PackedScene" uid="uid://cxbk2r0h8hrbm" path="res://scenes/GameScene/Components/MovementTracking/MovementTracking.tscn" id="21_rvsd4"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
@@ -143,6 +144,8 @@ offset_bottom = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
+
+[node name="MovementTracking" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 
