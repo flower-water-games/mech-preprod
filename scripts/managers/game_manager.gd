@@ -9,6 +9,7 @@ class_name GameManager
 # core services nodes
 @onready var player: Movement = get_node("/root/MainGameScene/World2D/Player/Body")
 @onready var player_gun: Gun = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Gun")
+@onready var player_cursor: Cursor = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Cursor")
 @onready var enemy_factory: EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")
 @onready var bullet_factory: BulletFactory = get_node("/root/MainGameScene/Services/BulletFactory")
 @onready var scroll_manager: ScrollManager = get_node("/root/MainGameScene/Services/ScrollManager")
@@ -138,6 +139,12 @@ func _add_score(value:int)->void:
 func _player_shoot(position : Vector2):
 	var b = bullet_factory.create_bullet(BulletFactory.BulletType.PLAYER_BULLET)
 	b.global_position = position
+
+	var sourcePos = player_gun.position
+	var targetPos = player_cursor.position
+	b.bullet_dir = sourcePos.direction_to(targetPos)
+	b.rotation = sourcePos.angle_to(targetPos)
+
 	bullet_spawn.add_child(b)
 	shoot_sfx.play()
 

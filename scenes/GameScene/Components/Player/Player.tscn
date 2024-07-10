@@ -9,8 +9,9 @@
 [ext_resource type="Script" path="res://scripts/player/cursor.gd" id="5_rb5or"]
 [ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujqnu"]
-size = Vector2(282.46, 500.188)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
+radius = 91.2108
+height = 282.459
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i04yn"]
 bg_color = Color(1, 1, 1, 1)
@@ -18,7 +19,7 @@ bg_color = Color(1, 1, 1, 1)
 [node name="Player" type="Node2D"]
 
 [node name="Body" type="CharacterBody2D" parent="." groups=["Player"]]
-collision_mask = 7
+collision_mask = 11
 script = ExtResource("1_lr0nm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
@@ -28,11 +29,11 @@ texture = ExtResource("1_4afsl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
 position = Vector2(0, 1)
 scale = Vector2(0.339872, 0.339872)
-shape = SubResource("RectangleShape2D_ujqnu")
+shape = SubResource("CapsuleShape2D_rhp08")
 
 [node name="Shoot" type="Node2D" parent="Body"]
 
-[node name="CursorSprite" type="Sprite2D" parent="Body/Shoot"]
+[node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
 position = Vector2(232, 0)
 texture = ExtResource("4_600tr")
 script = ExtResource("5_rb5or")
@@ -41,7 +42,7 @@ script = ExtResource("5_rb5or")
 position = Vector2(111, -1)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
-cursor = NodePath("../CursorSprite")
+cursor = NodePath("../Cursor")
 
 [node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
 texture = ExtResource("7_h25id")

@@ -7,9 +7,8 @@
 
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 2
 script = ExtResource("1_u5j4o")
-bullet_velocity = Vector2(3600, 2.08165e-12)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-5, 0)
