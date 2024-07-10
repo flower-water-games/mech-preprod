@@ -28,14 +28,14 @@ func _physics_process(delta):
 	var axis = get_input_axis()
 	# ternary vibes https://forum.godotengine.org/t/alternative-to-the-ternary-operator-in-gdscript/40160/3?u=carlosmichael
 	var speed_multiplier = SHOOTING_SPEED_MULTIPLIER if gun.is_currently_shooting() else 1.0
-	
+
 	# If the player is not providing input
 	if axis == Vector2.ZERO:
 		apply_friction(ACCELERATION * delta)
 	else: # Otherwise move
 		facing_right = true if (axis.x > 0) else false
 		apply_movement(axis * ACCELERATION * delta * speed_multiplier)
-	
+
 	# Apply the motion
 	velocity = motion
 	# Move to the position unless it hits a collision then it will stop at the collision point
@@ -52,7 +52,7 @@ func apply_friction(amount):
 		motion -= motion.normalized() * amount
 	else:
 		motion = Vector2.ZERO
-		
+
 func apply_movement(acceleration):
 	motion += acceleration
 	if motion.length() > MAX_SPEED:

@@ -105,8 +105,8 @@ func _process(_delta: float) -> void:
 	if waiting_for_all_enemies_dead:
 		if !are_enemies_alive():
 			_on_game_won()
-	else: 
-		# core game loop 
+	else:
+		# core game loop
 		# 1. get the current difficulty
 		# 2. check if a new wave exists that meets its threshold
 		# 3. if so, spawn it
@@ -114,7 +114,7 @@ func _process(_delta: float) -> void:
 		update_current_wave(difficulty)
 		if !is_spawning && !(current_wave_index in spawned_waves):
 			spawn_wave(current_wave_index)
-	
+
 	update_ui()
 
 ## when we've reached scroll zero, stop spawning, and wait until all enemies are dead
@@ -132,11 +132,11 @@ func update_current_wave(difficulty: float) -> void:
 			current_wave_index = i
 			new_wave_spawned.emit()
 			return
-# 
+#
 func spawn_wave(wave_index: int) -> void:
 	if wave_index in spawned_waves:
 		return
-	
+
 	is_spawning = true
 	var wave = waves[wave_index]
 	for enemy_config in wave.enemies:

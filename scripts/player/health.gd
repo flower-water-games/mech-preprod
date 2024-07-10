@@ -38,10 +38,10 @@ func update_progress_bar():
 	# Let the parent know it died
 	if value <= 0:
 		died.emit()
-	
+
 	if value != progress_bar.value:
 		health_changed.emit(value)
-	
+
 	progress_bar.value = value
 	# Change the color
 	modulate = health_color_gradient.sample(weight)

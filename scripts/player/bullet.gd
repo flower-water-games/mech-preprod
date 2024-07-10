@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 	if (col):
 		_handle_collision(col)
 
-
 func _handle_collision(col : KinematicCollision2D) -> void:
 	var collider = col.get_collider()
 	if (collider.collision_layer == 2):
