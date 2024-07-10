@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxbk2r0h8hrbm"]
+[gd_scene load_steps=3 format=3 uid="uid://cxbk2r0h8hrbm"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Components/MovementTracking/MovementTracking.gd" id="1_htt14"]
+[ext_resource type="Texture2D" uid="uid://dfs0m7hhu2quw" path="res://assets/images/kenney/numeralX.png" id="2_l6jkk"]
 
 [node name="MovementTracking" type="Node2D"]
 script = ExtResource("1_htt14")
@@ -10,3 +11,6 @@ width = 8.0
 default_color = Color(1, 0, 0.592157, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="Foot" type="Sprite2D" parent="."]
+texture = ExtResource("2_l6jkk")
