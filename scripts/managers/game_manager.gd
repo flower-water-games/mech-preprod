@@ -1,6 +1,8 @@
 extends Node
 class_name GameManager
 
+#region Properties
+
 @export var win_scene: PackedScene
 @export var lose_scene: PackedScene
 
@@ -74,6 +76,10 @@ var player_score = 0
 signal spawning_completed
 signal new_wave_spawned
 
+#endregion
+
+#region Init and Main
+
 func _ready():
 	await player.ready
 	player.health.died.connect(_on_game_lost)
@@ -81,24 +87,6 @@ func _ready():
 	await scroll_manager.ready
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
 	new_wave_spawned.connect(_cross_checkpoint)
-
-func _player_shoot(position : Vector2):
-	var b = bullet_factory.create_bullet(BulletFactory.BulletType.PLAYER_BULLET)
-	b.global_position = position
-	bullet_spawn.add_child(b)
-	shoot_sfx.play()
-
-func _enemy_shoot(position : Vector2):
-	#identify current target position
-
-	# var target_position = player.global_position
-	# spawn a target
-	await get_tree().create_timer(0.5).timeout
-
-	# wait some time ("target_wait")
-	# shoot high velocity bullet
-	# print("enemy pew")
-	return
 
 func _process(_delta: float) -> void:
 	# current "end state" condition - when all waves are spawned, just clear the screen to trigger the end
@@ -117,6 +105,10 @@ func _process(_delta: float) -> void:
 
 	update_ui()
 
+#endregion
+
+#region Game Manager
+
 ## when we've reached scroll zero, stop spawning, and wait until all enemies are dead
 func _on_scroll_completed():
 	waiting_for_all_enemies_dead = true
@@ -126,13 +118,42 @@ func _on_scroll_completed():
 func _cross_checkpoint():
 	player.health.add_or_subtract_health_by_value(10)
 
+func update_ui():
+	label.text = "Progress: %d%% | Wave: %d" % [int(scroll_manager.get_raw_progress() * 100), current_wave_index + 1]
+	score.text = "Score: %d" % player_score
+
+func _on_game_lost():
+	InGameMenuController.open_menu(lose_scene, get_viewport())
+
+func _on_game_won():
+	InGameMenuController.open_menu(win_scene, get_viewport())
+
+func _add_score(value:int)->void:
+	player_score+=value
+
+#endregion
+
+#region Player
+
+func _player_shoot(position : Vector2):
+	var b = bullet_factory.create_bullet(BulletFactory.BulletType.PLAYER_BULLET)
+	b.global_position = position
+	bullet_spawn.add_child(b)
+	shoot_sfx.play()
+
+#endregion
+
+#region Enemies
+
+## Checks the spawn point for any active children
+
 func update_current_wave(difficulty: float) -> void:
 	for i in range(waves.size()):
 		if difficulty >= waves[i].difficulty_threshold and i not in spawned_waves:
 			current_wave_index = i
 			new_wave_spawned.emit()
 			return
-#
+
 func spawn_wave(wave_index: int) -> void:
 	if wave_index in spawned_waves:
 		return
@@ -144,16 +165,6 @@ func spawn_wave(wave_index: int) -> void:
 	spawned_waves.append(wave_index)
 	is_spawning = false
 	print("Completed spawning wave: ", wave_index)
-
-func update_ui():
-	label.text = "Progress: %d%% | Wave: %d" % [int(scroll_manager.get_raw_progress() * 100), current_wave_index + 1]
-	score.text = "Score: %d" % player_score
-
-func _on_game_lost():
-	InGameMenuController.open_menu(lose_scene, get_viewport())
-
-func _on_game_won():
-	InGameMenuController.open_menu(win_scene, get_viewport())
 
 func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	var spawn_task = func():
@@ -168,12 +179,22 @@ func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	# Start the spawning task without waiting for it to complete (cool trick)
 	spawn_task.call_deferred()
 
-func _add_score(value:int)->void:
-	player_score+=value
-
-## Checks the spawn point for any active children
 func are_enemies_alive() -> bool:
 	return spawn_point.get_child_count() > 0
 
 func get_enemy_count() -> int:
 	return spawn_point.get_child_count()
+
+func _enemy_shoot(position : Vector2):
+	#identify current target position
+
+	# var target_position = player.global_position
+	# spawn a target
+	await get_tree().create_timer(0.5).timeout
+
+	# wait some time ("target_wait")
+	# shoot high velocity bullet
+	# print("enemy pew")
+	return
+
+#endregion
