@@ -85,7 +85,6 @@ func _ready():
 	await player.ready
 	player.health.died.connect(_on_game_lost)
 	player_gun.gun_shot.connect(_player_shoot)
-	await scroll_manager.ready
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
 	new_wave_spawned.connect(_cross_checkpoint)
 
