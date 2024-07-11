@@ -13,7 +13,8 @@ func _ready():
 
 func update_foot_offset():
 	update_position()
-	track_position -= Vector2(walk_distance, 0)
+	if offset_foot:
+		track_position -= Vector2(walk_distance * 0.5, 0)
 
 func update_position():
 	track_position = global_position
