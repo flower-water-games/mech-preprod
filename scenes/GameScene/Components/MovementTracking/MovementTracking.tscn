@@ -16,3 +16,8 @@ end_cap_mode = 2
 z_index = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_l6jkk")
+
+[node name="TargetPosition" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+z_index = 1
+texture = ExtResource("2_l6jkk")
