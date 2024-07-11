@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyvp768i4sd0"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Components/MovementTracking/Body.gd" id="1_5cxwr"]
+[ext_resource type="Texture2D" uid="uid://cllscyvckgwyb" path="res://assets/images/Circle.png" id="2_pclpp"]
+
+[node name="MovementBody" type="Node2D"]
+script = ExtResource("1_5cxwr")
+
+[node name="Body" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.15)
+texture = ExtResource("2_pclpp")

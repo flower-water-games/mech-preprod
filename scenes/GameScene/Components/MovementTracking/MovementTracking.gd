@@ -4,7 +4,7 @@ extends Node2D
 @onready var foot : Sprite2D = $Foot
 
 var track_position : Vector2 = Vector2.ZERO
-var walk_distance : float = 96.0
+var walk_distance : float = 64.0
 
 func _ready():
 	update_position.call_deferred()
@@ -27,5 +27,6 @@ func _process(delta):
 		update_position()
 	
 	# Foot lerps to new position
-	foot.position.x = lerpf(foot.position.x, relative_position.x, 0.2)
-	foot.position.y = lerpf(foot.position.y, relative_position.y, 0.2)
+	foot.position = relative_position
+	#foot.position.x = lerpf(foot.position.x, relative_position.x, 0.1)
+	#foot.position.y = lerpf(foot.position.y, relative_position.y, 0.1)

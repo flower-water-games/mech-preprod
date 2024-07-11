@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=31 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_8v1rp"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 [ext_resource type="PackedScene" uid="uid://cxbk2r0h8hrbm" path="res://scenes/GameScene/Components/MovementTracking/MovementTracking.tscn" id="21_rvsd4"]
+[ext_resource type="PackedScene" uid="uid://dyvp768i4sd0" path="res://scenes/GameScene/Components/MovementTracking/Body.tscn" id="22_xogi4"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
@@ -109,6 +110,7 @@ collision_mask = 7
 script = ExtResource("1_i3mib")
 
 [node name="Sprite2D" type="Sprite2D" parent="World2D/Player/Body"]
+visible = false
 scale = Vector2(0.209879, 0.209879)
 texture = ExtResource("1_8v1rp")
 
@@ -146,6 +148,22 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 
 [node name="MovementTracking" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+position = Vector2(-64, -32)
+
+[node name="MovementTracking2" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+position = Vector2(64, -32)
+
+[node name="MovementTracking3" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+position = Vector2(64, 32)
+
+[node name="MovementTracking4" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+position = Vector2(-64, 32)
+
+[node name="MovementBody" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
+top_left_leg = NodePath("../MovementTracking")
+top_right_leg = NodePath("../MovementTracking2")
+bottom_left_leg = NodePath("../MovementTracking3")
+bottom_right_leg = NodePath("../MovementTracking4")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 
