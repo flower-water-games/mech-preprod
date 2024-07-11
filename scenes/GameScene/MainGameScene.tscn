@@ -147,23 +147,25 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 
-[node name="MovementTracking" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+[node name="TopLeft" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
 position = Vector2(-64, -32)
 
-[node name="MovementTracking2" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+[node name="TopRight" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
 position = Vector2(64, -32)
+offset_foot = true
 
-[node name="MovementTracking3" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+[node name="BottomRight" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
 position = Vector2(64, 32)
 
-[node name="MovementTracking4" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
+[node name="BottomLeft" parent="World2D/Player/Body" instance=ExtResource("21_rvsd4")]
 position = Vector2(-64, 32)
+offset_foot = true
 
 [node name="MovementBody" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
-top_left_leg = NodePath("../MovementTracking")
-top_right_leg = NodePath("../MovementTracking2")
-bottom_left_leg = NodePath("../MovementTracking3")
-bottom_right_leg = NodePath("../MovementTracking4")
+top_left_leg = NodePath("../TopLeft")
+top_right_leg = NodePath("../TopRight")
+bottom_left_leg = NodePath("../BottomRight")
+bottom_right_leg = NodePath("../BottomLeft")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 

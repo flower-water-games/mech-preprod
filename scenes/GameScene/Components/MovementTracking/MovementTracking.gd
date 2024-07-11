@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var offset_foot : bool = false
+
 @onready var line_2d : Line2D = $Line2D
 @onready var foot : Sprite2D = $Foot
 
@@ -7,7 +9,11 @@ var track_position : Vector2 = Vector2.ZERO
 var walk_distance : float = 64.0
 
 func _ready():
-	update_position.call_deferred()
+	update_foot_offset.call_deferred()
+
+func update_foot_offset():
+	update_position()
+	track_position -= Vector2(walk_distance, 0)
 
 func update_position():
 	track_position = global_position
