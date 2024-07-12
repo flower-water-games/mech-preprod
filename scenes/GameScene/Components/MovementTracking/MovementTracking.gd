@@ -7,23 +7,18 @@ extends Node2D
 @onready var target_position_sprite : Sprite2D = $TargetPosition
 
 var previous_position : Vector2 = Vector2.ZERO
-
 var foot_position : Vector2 = Vector2.ZERO
-var walk_distance : float = 64.0
-
+var walk_distance : float = 48.0
 var target_position : Vector2 = Vector2.ZERO
 
 func _ready():
 	update_foot_offset.call_deferred()
 
 func update_foot_offset():
-	update_position()
+	foot_position = global_position
 	previous_position = global_position
 	if offset_foot:
 		foot_position -= Vector2(walk_distance * 0.5, 0)
-
-func update_position():
-	foot_position = global_position
 
 func _process(delta):
 	# Moving direction
@@ -43,10 +38,25 @@ func _process(delta):
 	line_2d.clear_points()
 	line_2d.add_point(Vector2.ZERO)
 	line_2d.add_point(relative_foot_position)
+
+	# Pre-calculate the new position
+	var lerp_foot_position : Vector2 = Vector2.ZERO
+	lerp_foot_position.x = lerpf(foot.global_position.x, foot_position.x, 0.1)
+	lerp_foot_position.y = lerpf(foot.global_position.y, foot_position.y, 0.1)
+
+	# Check if you are moving towards the TARGET
+	# If you are then LERP
+	# If you are moving away then STICK TO THE GROUND
 	
 	# Smooth animate the jump between positions
-	foot.global_position.x = lerpf(foot.global_position.x, foot_position.x, 0.1)
-	foot.global_position.y = lerpf(foot.global_position.y, foot_position.y, 0.1)
+	var global_target_position = target_position_sprite.global_position
+	if foot.global_position.distance_to(global_target_position) > lerp_foot_position.distance_to(global_target_position):
+		foot.global_position = lerp_foot_position
+	else:
+		foot.global_position = foot_position
 
 	# Store previous position
 	previous_position = global_position
+
+	# Feet should not be able to PASS through each other (Could be fixed just by walk_distance)
+	# Feet need to remain OFFSET
