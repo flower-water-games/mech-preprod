@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="17_cjse5"]
+[ext_resource type="Texture2D" uid="uid://skmgf77epyva" path="res://assets/images/env/PHBackdrop.png" id="17_xo8pj"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
@@ -25,7 +26,7 @@ point_count = 3
 curve = SubResource("Curve_tktg1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guylf"]
-size = Vector2(1200, 21)
+size = Vector2(1200, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwqsb"]
 size = Vector2(33.03, 570)
@@ -86,9 +87,10 @@ show_behind_parent = true
 position = Vector2(623, 44)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
-position = Vector2(-485, 153)
+position = Vector2(-485, -130)
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
+position = Vector2(-261, -140)
 
 [node name="Bounds" type="StaticBody2D" parent="World2D"]
 position = Vector2(0, 29)
@@ -96,20 +98,32 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World2D/Bounds"]
-position = Vector2(0, -281)
+position = Vector2(-285, -215)
 shape = SubResource("RectangleShape2D_guylf")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World2D/Bounds"]
-position = Vector2(2.08165e-12, 307.5)
+position = Vector2(-205, 17)
 shape = SubResource("RectangleShape2D_guylf")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="World2D/Bounds"]
-position = Vector2(-591, 16)
+position = Vector2(-597, -108)
 shape = SubResource("RectangleShape2D_fwqsb")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="World2D/Bounds"]
-position = Vector2(559, 13)
+position = Vector2(75, -149)
 shape = SubResource("RectangleShape2D_fwqsb")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="World2D"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="World2D/ParallaxBackground"]
+position = Vector2(581, 322)
+motion_mirroring = Vector2(640, 0)
+
+[node name="BG" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
+z_index = -1
+position = Vector2(-581, -322)
+texture = ExtResource("17_xo8pj")
+offset = Vector2(320, 180)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

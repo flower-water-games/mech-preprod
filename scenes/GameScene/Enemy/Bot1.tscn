@@ -112,6 +112,7 @@ _data = {
 }
 
 [node name="Bot1" type="CharacterBody2D"]
+z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_5766m")
 movement_type = 0
