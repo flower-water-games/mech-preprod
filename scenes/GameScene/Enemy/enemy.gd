@@ -14,7 +14,6 @@ enum MovementType {
 @export var custom_velocity := Vector2(-250, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
-@export var health_value = 5
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
@@ -32,7 +31,6 @@ var initial_y_position : float
 var player : Movement
 
 func _ready() -> void:
-	health.set_max_health(health_value)
 	health.died.connect(enemy_die)
 	velocity = custom_velocity
 	if (spline_randomized):
