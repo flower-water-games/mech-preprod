@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Texture2D" uid="uid://dv246cdofsxms" path="res://assets/images/zenith.png" id="1_4afsl"]
-[ext_resource type="Script" path="res://scripts/player/movement.gd" id="1_lr0nm"]
-[ext_resource type="Script" path="res://scripts/player/gun.gd" id="2_pgd61"]
-[ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Components/bullet.tscn" id="3_5ab8q"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player/movement.gd" id="1_lr0nm"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player/gun.gd" id="2_pgd61"]
+[ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="3_5ab8q"]
 [ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
-[ext_resource type="Script" path="res://scripts/player/health.gd" id="4_xgasw"]
-[ext_resource type="Script" path="res://scripts/player/cursor.gd" id="5_rb5or"]
+[ext_resource type="Script" path="res://scenes/GameScene/Components/health.gd" id="4_xgasw"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player/cursor.gd" id="5_rb5or"]
 [ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
