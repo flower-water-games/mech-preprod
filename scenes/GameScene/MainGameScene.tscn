@@ -5,13 +5,13 @@
 [ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_klouh"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
-[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot1.tscn" id="4_fmvdt"]
+[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/Bot1.tscn" id="4_fmvdt"]
 [ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot2.tscn" id="5_ptvus"]
 [ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
-[ext_resource type="AudioStream" uid="uid://oeewql88flad" path="res://assets/audio/tylerg/maintrack.ogg" id="14_5q3jf"]
+[ext_resource type="AudioStream" uid="uid://bcvfxprfarboc" path="res://assets/audio/tylerg/leveltrack v1.1.ogg" id="13_wcpky"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="14_300t5"]
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
@@ -66,7 +66,7 @@ pause_menu_packed = ExtResource("8_0225l")
 script = ExtResource("9_octrj")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services"]
-stream = ExtResource("14_5q3jf")
+stream = ExtResource("13_wcpky")
 autoplay = true
 bus = &"Music"
 
