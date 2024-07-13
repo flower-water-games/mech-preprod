@@ -7,7 +7,7 @@ signal died()
 @onready var progress_bar : ProgressBar = $ProgressBar
 
 # Variables
-var max_health : float = 100.0
+@export var max_health : float = 100.0
 var current_health : float = 100.0
 
 # Color Gradient

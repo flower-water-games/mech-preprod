@@ -10,7 +10,6 @@ enum EnemyType { WEAK, NORMAL, STRONG, BOSS }
 # prob needs special case
 @export var boss_enemy_scene: PackedScene
 
-
 func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
 	var enemy = get_enemy_scene(enemy_type)
 	if enemy:

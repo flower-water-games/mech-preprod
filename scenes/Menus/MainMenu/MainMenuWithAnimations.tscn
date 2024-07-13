@@ -377,10 +377,7 @@ text = "mechjam5"
 
 [node name="SubTitle" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="1"]
 modulate = Color(1, 1, 1, 0)
-text = "sidescroller 2d - wasd + click to shoot
-godot 4.2.2-stable
-
-freshwater games"
+text = "freshwater games"
 
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)

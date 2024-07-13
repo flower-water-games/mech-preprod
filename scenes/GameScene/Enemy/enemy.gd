@@ -11,10 +11,9 @@ enum MovementType {
 
 # Tweakable parameters,
 # btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
-@export var custom_velocity := Vector2(-250, 0)
+@export var custom_velocity := Vector2(-125, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
-@export var health_value = 5
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
@@ -32,7 +31,7 @@ var initial_y_position : float
 var player : Movement
 
 func _ready() -> void:
-	health.set_max_health(health_value)
+	$SpriteSheet/AnimationPlayer.play("run")
 	health.died.connect(enemy_die)
 	velocity = custom_velocity
 	if (spline_randomized):
@@ -51,8 +50,6 @@ func _ready() -> void:
 
 	if (shoots):
 		player = get_node("/root/MainGameScene/World2D/Player/Body")
-
-
 
 func _process(delta: float) -> void:
 	time_passed += delta

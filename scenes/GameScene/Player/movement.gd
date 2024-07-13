@@ -4,8 +4,8 @@ extends CharacterBody2D
 class_name Movement
 
 # Physics
-const MAX_SPEED : float = 500
-const ACCELERATION : float = 2000
+const MAX_SPEED : float = 200
+const ACCELERATION : float = 1000
 const SHOOTING_SPEED_MULTIPLIER : float = 0.1
 
 var motion : Vector2 = Vector2.ZERO
@@ -18,6 +18,7 @@ var facing_right : bool = true
 func _ready():
 	add_to_group("Player")
 	health.died.connect(player_died)
+	$Mech/AnimationPlayer.play("idle")
 
 func player_died():
 	# queue_free()

@@ -100,9 +100,8 @@ func _process(_delta: float) -> void:
 		# 3. if so, spawn it
 		var difficulty = scroll_manager.get_difficulty()
 		update_current_wave(difficulty)
-		if !is_spawning && !(current_wave_index in spawned_waves):
+		if !is_spawning:
 			spawn_wave(current_wave_index)
-
 	update_ui()
 
 #endregion
@@ -186,7 +185,7 @@ func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	spawn_task.call_deferred()
 
 func are_enemies_alive() -> bool:
-	return spawn_point.get_child_count() > 0
+	return get_enemy_count() > 0
 
 func get_enemy_count() -> int:
 	return spawn_point.get_child_count()

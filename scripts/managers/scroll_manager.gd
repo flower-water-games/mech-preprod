@@ -11,7 +11,7 @@ var is_game_active: bool = false
 
 func _ready():
 	if not difficulty_curve_texture:
-		printerr("Error: No difficulty curve texture set.") 
+		printerr("Error: No difficulty curve texture set.")
 	start_game()
 
 func _process(delta):
@@ -35,7 +35,7 @@ func reset_game():
 ## Returns the raw progress of the game as a float between 0 and 1.
 ##
 ## Returns:
-## float: A value between 0 (game start) and 1 (game end) representing the 
+## float: A value between 0 (game start) and 1 (game end) representing the
 ## current progress.
 func get_raw_progress() -> float:
 	return clamp(current_game_time / total_game_time, 0.0, 1.0)
@@ -43,8 +43,8 @@ func get_raw_progress() -> float:
 ## Returns the current difficulty of the game based on the difficulty curve.
 ##
 ## Returns:
-## float: A value between 0 and 1 representing the current difficulty, where 
-## 0 is the easiest and 1 is the hardest. The exact value depends on the 
+## float: A value between 0 and 1 representing the current difficulty, where
+## 0 is the easiest and 1 is the hardest. The exact value depends on the
 ## shape of the difficulty curve.
 func get_difficulty() -> float:
 	var raw_progress = get_raw_progress()

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bst3kkowvpjsh"]
 
-[ext_resource type="Script" path="res://scripts/enemy/enemy.gd" id="1_n0nl2"]
-[ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="2_31lo2"]
-[ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_gyohp"]
-[ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="4_007ev"]
+[ext_resource type="Script" path="res://scenes/GameScene/Enemy/enemy.gd" id="1_tak5k"]
+[ext_resource type="Texture2D" uid="uid://6s0p0syognwp" path="res://assets/images/enemy.png" id="2_gxv7c"]
+[ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="3_ptg5s"]
+[ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="4_17vky"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nb6ji"]
 radius = 154.981
@@ -11,13 +11,13 @@ height = 575.0
 
 [node name="Enemy2D" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_n0nl2")
+script = ExtResource("1_tak5k")
 movement_type = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(7.62939e-06, 1.90735e-06)
 scale = Vector2(0.0682524, 0.0682524)
-texture = ExtResource("2_31lo2")
+texture = ExtResource("2_gxv7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2)
@@ -26,12 +26,12 @@ scale = Vector2(0.2, 0.2)
 shape = SubResource("CapsuleShape2D_nb6ji")
 debug_color = Color(0.935214, 1.56405e-05, 0.637334, 0.42)
 
-[node name="Health" parent="." instance=ExtResource("3_gyohp")]
+[node name="Health" parent="." instance=ExtResource("3_ptg5s")]
 position = Vector2(0, -14)
 scale = Vector2(0.2, 0.2)
 
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_007ev")
+stream = ExtResource("4_17vky")
 bus = &"SFX"
