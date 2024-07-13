@@ -52,8 +52,6 @@ func _ready() -> void:
 	if (shoots):
 		player = get_node("/root/MainGameScene/World2D/Player/Body")
 
-
-
 func _process(delta: float) -> void:
 	time_passed += delta
 	if (shoots):
