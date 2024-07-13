@@ -11,7 +11,7 @@ enum MovementType {
 
 # Tweakable parameters,
 # btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
-@export var custom_velocity := Vector2(-250, 0)
+@export var custom_velocity := Vector2(-125, 0)
 @export var shoots := false
 @export var on_hit_damage = 5
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
@@ -31,6 +31,7 @@ var initial_y_position : float
 var player : Movement
 
 func _ready() -> void:
+	$SpriteSheet/AnimationPlayer.play("run")
 	health.died.connect(enemy_die)
 	velocity = custom_velocity
 	if (spline_randomized):

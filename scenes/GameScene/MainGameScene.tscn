@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=24 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
 [ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="17_cjse5"]
+[ext_resource type="Script" path="res://scenes/GameScene/ParallaxLayer.gd" id="17_xitfh"]
 [ext_resource type="Texture2D" uid="uid://skmgf77epyva" path="res://assets/images/env/PHBackdrop.png" id="17_xo8pj"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
@@ -116,14 +117,13 @@ shape = SubResource("RectangleShape2D_fwqsb")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="World2D"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="World2D/ParallaxBackground"]
-position = Vector2(581, 322)
 motion_mirroring = Vector2(640, 0)
+script = ExtResource("17_xitfh")
 
 [node name="BG" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
 z_index = -1
-position = Vector2(-581, -322)
 texture = ExtResource("17_xo8pj")
-offset = Vector2(320, 180)
+centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

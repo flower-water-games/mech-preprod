@@ -3,4 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot1.tscn" id="1_yglal"]
 
 [node name="Bot1" instance=ExtResource("1_yglal")]
-movement_type = 1
