@@ -85,7 +85,7 @@ position = Vector2(581, 322)
 
 [node name="SpawnPoint" type="Node2D" parent="World2D"]
 show_behind_parent = true
-position = Vector2(623, 44)
+position = Vector2(75, -90)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
 position = Vector2(-485, -130)
