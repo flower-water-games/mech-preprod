@@ -56,13 +56,6 @@ var waves = [
 			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
 		]
 	},
-	{
-		# to make this a "boss" you could do difficulty_threshold at .9 and just spawn one enemy. the game will wait until all enemies are dead anyways
-		"difficulty_threshold": 0.9,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.BOSS, "base_spawn_rate": 0.3, "base_spawn_count": 1},
-		]
-	}
 ]
 
 # state variables for waves, keep track of current wave and previously spawned waves
