@@ -9,7 +9,7 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-@export var custom_velocity := Vector2(-125, 0)
+@export var speed := Vector2(-125, 0)
 @export var on_hit_damage = 0.1
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
@@ -46,7 +46,7 @@ func _init_properties():
 	AP.animation_finished.connect(_deathanim_end)
 
 	_cur_movement = movement_type
-	velocity = custom_velocity
+	velocity = speed
 	if (spline_randomized):
 		_spline_initial_y = global_position.y + randf_range(-350, 350)
 	else:
@@ -110,6 +110,8 @@ func _throwanim_end(animation_name):
 	if animation_name == "throw":
 		_actor_state = ACTOR_STATE.run
 		_cur_movement = movement_type
+		velocity = speed
+		AP.play("RESET")
 
 #endregion
 
