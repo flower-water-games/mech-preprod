@@ -147,29 +147,31 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 
-[node name="TopLeft" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(-64, -48)
-sibling_foot = NodePath("../TopRight")
-
-[node name="TopRight" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(64, -48)
+[node name="Top" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
+position = Vector2(0, -32)
 offset_foot = true
-sibling_foot = NodePath("../TopLeft")
+sibling_foot = NodePath("../Bottom")
 
-[node name="BottomRight" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(64, 48)
-sibling_foot = NodePath("../BottomLeft")
-
-[node name="BottomLeft" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(-64, 48)
+[node name="Left" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
+position = Vector2(-64, 0)
 offset_foot = true
-sibling_foot = NodePath("../BottomRight")
+sibling_foot = NodePath("../Right")
+
+[node name="Right" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
+position = Vector2(64, 0)
+sibling_foot = NodePath("../Left")
+
+[node name="Bottom" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
+position = Vector2(0, 32)
+offset_foot = true
+sibling_foot = NodePath("../Left")
+offset_percent = 0.6
 
 [node name="MovementBody" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
-top_left_leg = NodePath("../TopLeft")
-top_right_leg = NodePath("../TopRight")
-bottom_left_leg = NodePath("../BottomRight")
-bottom_right_leg = NodePath("../BottomLeft")
+top_left_leg = NodePath("../Top")
+top_right_leg = NodePath("../Right")
+bottom_left_leg = NodePath("../Bottom")
+bottom_right_leg = NodePath("../Left")
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 

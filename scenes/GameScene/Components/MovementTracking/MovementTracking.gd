@@ -15,6 +15,8 @@ var walk_distance : float = 48.0
 var target_position : Vector2 = Vector2.ZERO
 var global_target_position : Vector2 = Vector2.ZERO
 
+@export var offset_percent : float = 0.9
+
 var foot_moving_forward : bool = false
 
 # Offsetting feet
@@ -48,7 +50,11 @@ func _process(delta):
 	var moving_direction = previous_position.direction_to(global_position)
 	var target_position = moving_direction * walk_distance
 	if target_position != Vector2.ZERO:
-		target_position_sprite.position = target_position
+		#var random_x_range : float = 8.0
+		#var random_y_range : float = 4.0
+		#var x_offset : float = randf_range(-random_x_range, random_x_range)
+		#var y_offset : float = randf_range(-random_y_range, random_y_range)
+		target_position_sprite.position = target_position #+ Vector2(random_x_range, random_y_range)
 	
 	
 	# Update tracking if you move past the distance
@@ -86,7 +92,7 @@ func _process(delta):
 		# If you are not, then stick to the ground
 		foot.global_position = foot_position
 		# If your sibling is too in sync
-		if foot.global_position.distance_to(global_target_position) > walk_distance * 0.9:
+		if foot.global_position.distance_to(global_target_position) > walk_distance * offset_percent:
 			if sibling_foot.foot.global_position.distance_to(sibling_foot.global_target_position) > walk_distance * 0.9:
 				if sibling_foot.foot_moving_forward == false and offset_foot == true:
 					foot_position = target_position_sprite.global_position
