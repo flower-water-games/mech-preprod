@@ -6,3 +6,4 @@
 movement_type = 1
 spline_amplitude = 50.0
 spline_frequency = 1.0
+bomber = true

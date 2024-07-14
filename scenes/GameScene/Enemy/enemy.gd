@@ -17,19 +17,24 @@ enum MovementType {
 @export var spline_randomized := false
 @export var score = 50 # when enemy dies, how much score
 @export var bomber := false
+@export var AP: AnimationPlayer
 
 signal enemy_died
 
+var _throw_timer: Timer
 var _spline_time = 0.9
 var _spline_initial_y : float
+var _cur_movement: MovementType
 
 var _actor_state: ACTOR_STATE
 enum ACTOR_STATE {
 	run,
 	dead,
-	throwing,
+	windup,
 	throw
 }
+
+#region Initialization
 
 func _ready() -> void:
 	_init_properties()
@@ -38,36 +43,80 @@ func _init_properties():
 	_actor_state = ACTOR_STATE.run
 
 	health.died.connect(_enemy_die)
-	$SpriteSheet/AnimationPlayer.animation_finished.connect(_deathanim_end)
+	AP.animation_finished.connect(_deathanim_end)
 
+	_cur_movement = movement_type
 	velocity = custom_velocity
 	if (spline_randomized):
 		_spline_initial_y = global_position.y + randf_range(-350, 350)
 	else:
 		_spline_initial_y = global_position.y
 
+	if (bomber):
+		_init_throw_timer()
+
+#endregion
+
+#region Processing
+
 func _process(delta: float) -> void:
 	_spline_time += delta
 	_process_animations()
 	_check_cleanup()
 
-func _check_cleanup():
-	if (global_position.x <= -100):
-		_enemy_destroy()
+func _physics_process(delta: float) -> void:
+	_process_movement(delta)
 
 func _process_animations():
-	var AP = $SpriteSheet/AnimationPlayer
 	match _actor_state:
 		ACTOR_STATE.run:
 			AP.play("run")
 		ACTOR_STATE.dead:
 			AP.play("death")
+		ACTOR_STATE.windup:
+			AP.play("windup")
+		ACTOR_STATE.throw:
+			AP.play("throw")
 
-func _physics_process(delta: float) -> void:
-	_process_movement(delta)
+#endregion
+
+#region Bomber Logic
+
+func _init_throw_timer():
+	_throw_timer = Timer.new()
+	_throw_timer.wait_time = 1
+	_throw_timer.autostart = true
+	_throw_timer.one_shot = true
+	_throw_timer.timeout.connect(_initbombthrow)
+	add_child(_throw_timer)
+
+func _initbombthrow():
+	if _isdead():
+		return
+	AP.animation_finished.connect(_windupanim_end)
+	_actor_state = ACTOR_STATE.windup
+	_cur_movement = MovementType.STOPPED
+
+func _windupanim_end(animation_name):
+	if _isdead():
+		return
+	if animation_name == "windup":
+		_actor_state = ACTOR_STATE.throw
+		AP.animation_finished.connect(_throwanim_end)
+
+func _throwanim_end(animation_name):
+	if _isdead():
+		return
+	if animation_name == "throw":
+		_actor_state = ACTOR_STATE.run
+		_cur_movement = movement_type
+
+#endregion
+
+#region Movement and Collisions
 
 func _process_movement(delta):
-	match movement_type:
+	match _cur_movement:
 		MovementType.LINEAR:
 			_move_linear(delta)
 		MovementType.VERTICAL_SPLINE:
@@ -95,19 +144,28 @@ func _handle_hit_collision(col : KinematicCollision2D) -> void:
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
 
+#endregion
+
 #region Death and Cleanup
+
+func _isdead():
+	return _actor_state == ACTOR_STATE.dead
 
 func _enemy_destroy() -> void:
 	queue_free()
 
 func _enemy_die() -> void:
 	enemy_died.emit()
-	movement_type = MovementType.STOPPED
+	_cur_movement = MovementType.STOPPED
 	_actor_state = ACTOR_STATE.dead
 	collision_layer = 0
 
 func _deathanim_end(animation_name):
 	if animation_name == "death":
+		_enemy_destroy()
+
+func _check_cleanup():
+	if (global_position.x <= -100):
 		_enemy_destroy()
 
 #endregion

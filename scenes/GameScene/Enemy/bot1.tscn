@@ -158,11 +158,12 @@ _data = {
 radius = 8.0
 height = 32.0
 
-[node name="Bot1" type="CharacterBody2D"]
+[node name="Bot1" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
 z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_5766m")
 movement_type = 0
+AP = NodePath("SpriteSheet/AnimationPlayer")
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
