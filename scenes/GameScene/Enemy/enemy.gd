@@ -9,10 +9,7 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-# Tweakable parameters,
-# btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
 @export var custom_velocity := Vector2(-125, 0)
-@export var shoots := false
 @export var on_hit_damage = 0.0
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
@@ -98,15 +95,19 @@ func _handle_hit_collision(col : KinematicCollision2D) -> void:
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
 
+#region Death and Cleanup
+
 func _enemy_destroy() -> void:
 	queue_free()
-
-func _deathanim_end(animation_name):
-	if animation_name == "death":
-		_enemy_destroy()
 
 func _enemy_die() -> void:
 	enemy_died.emit()
 	movement_type = MovementType.STOPPED
 	_actor_state = ACTOR_STATE.dead
 	collision_layer = 0
+
+func _deathanim_end(animation_name):
+	if animation_name == "death":
+		_enemy_destroy()
+
+#endregion
