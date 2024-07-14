@@ -9,8 +9,9 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
+@export var bomber := false
 @export var custom_velocity := Vector2(-125, 0)
-@export var on_hit_damage = 0.0
+@export var on_hit_damage = 0.1
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
@@ -19,9 +20,9 @@ enum MovementType {
 
 signal enemy_died
 
-var time_passed = 0.9
-var initial_y_position : float
-var player : Movement
+var spline_time = 0.9
+var spline_initial_y : float
+var player : Player
 
 var _actor_state: ACTOR_STATE
 enum ACTOR_STATE {
@@ -42,12 +43,12 @@ func _init_properties():
 
 	velocity = custom_velocity
 	if (spline_randomized):
-		initial_y_position = global_position.y + randf_range(-350, 350)
+		spline_initial_y = global_position.y + randf_range(-350, 350)
 	else:
-		initial_y_position = global_position.y
+		spline_initial_y = global_position.y
 
 func _process(delta: float) -> void:
-	time_passed += delta
+	spline_time += delta
 	_process_animations()
 	_check_cleanup()
 
@@ -83,8 +84,8 @@ func _move_linear(delta: float) -> void:
 
 func _move_vertical_spline(delta: float) -> void:
 	var horizontal_movement = velocity.x * delta
-	var vertical_movement = sin(time_passed * spline_frequency) * spline_amplitude
-	var target_position = Vector2(global_position.x + horizontal_movement, initial_y_position + vertical_movement)
+	var vertical_movement = sin(spline_time * spline_frequency) * spline_amplitude
+	var target_position = Vector2(global_position.x + horizontal_movement, spline_initial_y + vertical_movement)
 
 	var collision = move_and_collide(target_position - global_position)
 	if collision:

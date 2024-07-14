@@ -7,7 +7,7 @@ class_name GameManager
 @export var lose_scene: PackedScene
 
 # core services nodes
-@onready var player: Movement = get_node("/root/MainGameScene/World2D/Player/Body")
+@onready var player: Player = get_node("/root/MainGameScene/World2D/Player/Body")
 @onready var player_gun: Gun = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Gun")
 @onready var player_cursor: Cursor = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Cursor")
 @onready var enemy_factory: EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")

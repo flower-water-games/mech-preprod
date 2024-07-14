@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bjcx072xancx6"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/Player/movement.gd" id="1_lr0nm"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player/player.gd" id="1_lr0nm"]
 [ext_resource type="Texture2D" uid="uid://cputbot3m3j41" path="res://assets/images/player/player_spritesheet.png" id="2_cjq0t"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/gun.gd" id="2_pgd61"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="3_5ab8q"]
