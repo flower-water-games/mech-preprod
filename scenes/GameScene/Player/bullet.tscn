@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsuto3ei8ab8q"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/bullet.gd" id="1_oba2h"]
-[ext_resource type="Texture2D" uid="uid://b4wbwg1r76gir" path="res://assets/images/kenney/fire15.png" id="2_rynhp"]
+[ext_resource type="Texture2D" uid="uid://b4wbwg1r76gir" path="res://assets/images/projectiles/fire15.png" id="2_rynhp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_glcw5"]
 
