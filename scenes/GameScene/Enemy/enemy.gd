@@ -20,7 +20,6 @@ enum MovementType {
 @export var spline_randomized := false
 @export var score = 50 # when enemy dies, how much score
 
-signal bomb_thrown
 # after this value of time has elapsed, kill this entity
 var lifetime = 10.0
 var death_timer : Timer
@@ -30,8 +29,20 @@ var time_passed = 0.9
 var initial_y_position : float
 var player : Movement
 
+var _actor_state: ACTOR_STATE
+enum ACTOR_STATE {
+	run,
+	dead,
+	throwing,
+	throw
+}
+
 func _ready() -> void:
-	$SpriteSheet/AnimationPlayer.play("run")
+	_init_properties()
+	_init_cleanup_timer()
+
+func _init_properties():
+	_actor_state = ACTOR_STATE.run
 	health.died.connect(enemy_die)
 	velocity = custom_velocity
 	if (spline_randomized):
@@ -39,8 +50,9 @@ func _ready() -> void:
 	else:
 		initial_y_position = global_position.y
 
-	# set up death timer
-	 # Set up and start the death timer
+# Used to clean up enemies past the screen, may replace with something else later
+func _init_cleanup_timer():
+
 	death_timer = Timer.new()
 	death_timer.set_one_shot(true)
 	death_timer.set_wait_time(lifetime)
@@ -48,15 +60,21 @@ func _ready() -> void:
 	add_child(death_timer)
 	death_timer.start()
 
-	if (shoots):
-		player = get_node("/root/MainGameScene/World2D/Player/Body")
-
 func _process(delta: float) -> void:
 	time_passed += delta
-	if (shoots):
-		shoot()
+
+func _process_animations():
+	var AP = $SpriteSheet/AnimationPlayer
+	match _actor_state:
+		ACTOR_STATE.run:
+			AP.play("run")
+		ACTOR_STATE.dead:
+			AP.play("dead")
 
 func _physics_process(delta: float) -> void:
+	_process_movement(delta)
+
+func _process_movement(delta):
 	match movement_type:
 		MovementType.LINEAR:
 			move_linear(delta)
@@ -93,8 +111,3 @@ func enemy_die() -> void:
 	enemy_died.emit()
 	movement_type = MovementType.STOPPED
 	queue_free()
-
-func shoot() -> void:
-	bomb_thrown.emit()
-	# print("enemy pew")
-	return
