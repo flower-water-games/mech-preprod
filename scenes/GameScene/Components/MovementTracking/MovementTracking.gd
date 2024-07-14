@@ -13,6 +13,7 @@ var previous_position : Vector2 = Vector2.ZERO
 var foot_position : Vector2 = Vector2.ZERO
 var walk_distance : float = 48.0
 var target_position : Vector2 = Vector2.ZERO
+var global_target_position : Vector2 = Vector2.ZERO
 
 var foot_moving_forward : bool = false
 
@@ -41,8 +42,6 @@ func _ready():
 func update_foot_offset():
 	foot_position = global_position
 	previous_position = global_position
-	if offset_foot:
-		foot_position -= Vector2(walk_distance * 0.5, 0)
 
 func _process(delta):
 	# Moving direction
@@ -74,7 +73,7 @@ func _process(delta):
 	# If you are moving away then STICK TO THE GROUND
 	
 	# Smooth animate the jump between positions
-	var global_target_position = target_position_sprite.global_position
+	global_target_position = target_position_sprite.global_position
 	
 	# Check if you are moving towards the target, 
 	foot_moving_forward = foot.global_position.distance_to(global_target_position) > lerp_foot_position.distance_to(global_target_position)
@@ -86,11 +85,16 @@ func _process(delta):
 	else:
 		# If you are not, then stick to the ground
 		foot.global_position = foot_position
-		# If your sibling is stuck
-		if sibling_foot.foot_moving_forward == false and offset_foot == true:
-			if foot.global_position.distance_to(global_target_position) > walk_distance * 0.5:
+		# If your sibling is too in sync
+		if foot.global_position.distance_to(global_target_position) > walk_distance * 0.9:
+			if sibling_foot.foot.global_position.distance_to(sibling_foot.global_target_position) > walk_distance * 0.9:
+				if sibling_foot.foot_moving_forward == false and offset_foot == true:
+					foot_position = target_position_sprite.global_position
+				
+		#if sibling_foot.foot_moving_forward == false and offset_foot == true:
+		#	if foot.global_position.distance_to(global_target_position) > walk_distance * 0.5:
 				# Move foot early
-				foot_position = target_position_sprite.global_position
+		#		foot_position = target_position_sprite.global_position
 
 	# Store previous position
 	previous_position = global_position

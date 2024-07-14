@@ -148,20 +148,20 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 
 [node name="TopLeft" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(-64, -32)
+position = Vector2(-64, -48)
 sibling_foot = NodePath("../TopRight")
 
 [node name="TopRight" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(64, -32)
+position = Vector2(64, -48)
 offset_foot = true
 sibling_foot = NodePath("../TopLeft")
 
 [node name="BottomRight" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(64, 32)
+position = Vector2(64, 48)
 sibling_foot = NodePath("../BottomLeft")
 
 [node name="BottomLeft" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(-64, 32)
+position = Vector2(-64, 48)
 offset_foot = true
 sibling_foot = NodePath("../BottomRight")
 
