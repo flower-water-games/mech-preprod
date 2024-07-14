@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://j7nsp47cqnk7"]
 
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="1_namwy"]
-[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot2.tscn" id="2_28ond"]
+[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot_bomber.tscn" id="2_28ond"]
 
 [node name="PlaytestEnemy" type="Node2D"]
 

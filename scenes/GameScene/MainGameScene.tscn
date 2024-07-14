@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_klouh"]
 [ext_resource type="PackedScene" uid="uid://dyat0okx2fvdk" path="res://scenes/WinScreen/WinScreen.tscn" id="2_olcql"]
 [ext_resource type="PackedScene" uid="uid://cnpkkhm1h1p4l" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_gbbo0"]
-[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot1.tscn" id="4_fmvdt"]
-[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot2.tscn" id="5_ptvus"]
+[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot_basic.tscn" id="4_fr4pw"]
+[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot_bomber.tscn" id="5_2e4tu"]
 [ext_resource type="Script" path="res://scripts/managers/scroll_manager.gd" id="6_2xlkp"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
@@ -45,9 +45,8 @@ player_bullet = ExtResource("14_300t5")
 
 [node name="EnemyFactory" type="Node" parent="Services"]
 script = ExtResource("1_0p8pm")
-weak_enemy_scene = ExtResource("4_fmvdt")
-normal_enemy_scene = ExtResource("5_ptvus")
-strong_enemy_scene = ExtResource("5_ptvus")
+weak_enemy_scene = ExtResource("4_fr4pw")
+normal_enemy_scene = ExtResource("5_2e4tu")
 
 [node name="GameManager" type="Node" parent="Services"]
 script = ExtResource("1_klouh")
@@ -56,6 +55,7 @@ lose_scene = ExtResource("3_gbbo0")
 
 [node name="ScrollManager" type="Node" parent="Services"]
 script = ExtResource("6_2xlkp")
+total_game_time = 600.0
 difficulty_curve_texture = SubResource("CurveTexture_bredi")
 
 [node name="PauseMenuController" type="Node" parent="Services"]

@@ -29,31 +29,8 @@ var waves = [
 	{
 		"difficulty_threshold": 0.0,
 		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 1.5, "base_spawn_count": 20},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": .1, "base_spawn_count": 10},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .01, "base_spawn_count": 10},
-		]
-	},
-	{
-		"difficulty_threshold": 0.3,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.4, "base_spawn_count": 3},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": .1, "base_spawn_count": 10},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .1, "base_spawn_count": 10},
-		]
-	},
-	{
-		"difficulty_threshold": 0.5,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.3, "base_spawn_count": 4},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
-		]
-	},
-	{
-		"difficulty_threshold": 0.7,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.3, "base_spawn_count": 4},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
+			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.5, "base_spawn_count": 500},
+			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 2, "base_spawn_count": 500},
 		]
 	},
 ]

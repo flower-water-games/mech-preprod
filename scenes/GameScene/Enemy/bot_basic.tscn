@@ -158,7 +158,7 @@ _data = {
 radius = 8.0
 height = 32.0
 
-[node name="Bot1" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
+[node name="BotBasic" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
 z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_5766m")
