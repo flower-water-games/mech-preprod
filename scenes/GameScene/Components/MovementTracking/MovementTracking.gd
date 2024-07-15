@@ -11,7 +11,7 @@ extends Node2D
 
 var previous_position : Vector2 = Vector2.ZERO
 var foot_position : Vector2 = Vector2.ZERO
-var walk_distance : float = 48.0
+@export var walk_distance : float = 48.0
 var target_position : Vector2 = Vector2.ZERO
 var global_target_position : Vector2 = Vector2.ZERO
 
@@ -71,8 +71,8 @@ func _process(delta):
 
 	# Pre-calculate the new position
 	var lerp_foot_position : Vector2 = Vector2.ZERO
-	lerp_foot_position.x = lerpf(foot.global_position.x, foot_position.x, 0.1)
-	lerp_foot_position.y = lerpf(foot.global_position.y, foot_position.y, 0.1)
+	lerp_foot_position.x = lerpf(foot.global_position.x, foot_position.x, 0.2)
+	lerp_foot_position.y = lerpf(foot.global_position.y, foot_position.y, 0.2)
 
 	# Check if you are moving towards the TARGET
 	# If you are then LERP

@@ -151,21 +151,21 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_swn8e")
 position = Vector2(0, -32)
 offset_foot = true
 sibling_foot = NodePath("../Bottom")
+walk_distance = 24.0
 
 [node name="Left" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(-64, 0)
+position = Vector2(-72, 0)
 offset_foot = true
 sibling_foot = NodePath("../Right")
 
 [node name="Right" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
-position = Vector2(64, 0)
+position = Vector2(72, 0)
 sibling_foot = NodePath("../Left")
 
 [node name="Bottom" parent="World2D/Player/Body" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("21_rvsd4")]
 position = Vector2(0, 32)
-offset_foot = true
 sibling_foot = NodePath("../Left")
-offset_percent = 0.6
+walk_distance = 24.0
 
 [node name="MovementBody" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
 top_left_leg = NodePath("../Top")
