@@ -8,8 +8,9 @@ var _target_lock = true
 
 #region Public Functions
 
-func disable_target():
+func disable_targeting():
 	_target_lock = false
+	AP.play("lock")
 
 func destroy():
 	_cleanup()

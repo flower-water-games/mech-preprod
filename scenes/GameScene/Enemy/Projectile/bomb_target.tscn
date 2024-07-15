@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqc6smxgym0u1"]
+[gd_scene load_steps=7 format=3 uid="uid://cqc6smxgym0u1"]
 
 [ext_resource type="Texture2D" uid="uid://cw713cib2f08b" path="res://assets/images/bot1/bomb_targeting.png" id="1_iat53"]
 [ext_resource type="Script" path="res://scenes/GameScene/Enemy/Projectile/bomb_target.gd" id="1_koipt"]
@@ -35,10 +35,26 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_v5vgc"]
+resource_name = "lock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mtiuh"]
 _data = {
 "RESET": SubResource("Animation_ryx6c"),
-"idle": SubResource("Animation_2fsdx")
+"idle": SubResource("Animation_2fsdx"),
+"lock": SubResource("Animation_v5vgc")
 }
 
 [node name="BombTarget" type="Node2D" node_paths=PackedStringArray("AP")]

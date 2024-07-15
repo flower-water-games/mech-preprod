@@ -107,7 +107,7 @@ func _windupanim_end(animation_name):
 		_actor_state = ACTOR_STATE.throw
 		AP.animation_finished.connect(_throwanim_end)
 		var bombscene = GameContent.Bomb.instantiate()
-		bombscene.bomb_target = _bombtarget.position
+		bombscene.bomb_target = _bombtarget
 		add_child(bombscene)
 
 func _throwanim_end(animation_name):
@@ -160,7 +160,8 @@ func _isdead():
 
 func _enemy_destroy() -> void:
 	queue_free()
-	_bombtarget.queue_free()
+	if is_instance_valid(_bombtarget):
+		_bombtarget.queue_free()
 
 func _enemy_die() -> void:
 	enemy_died.emit()

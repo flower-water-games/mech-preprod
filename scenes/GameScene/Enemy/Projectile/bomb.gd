@@ -11,23 +11,30 @@ Algorithm:
 
 @export var AP: AnimationPlayer
 @export var PhysicsObj: CharacterBody2D
-var bomb_target: Vector2 = position
+var bomb_target: BombTarget
 
 func _ready():
 	_create_target_lock()
 	AP.play("throw")
 	AP.animation_finished.connect(_bomb_anim_finished)
+	if (is_instance_valid(bomb_target)):
+		bomb_target.disable_targeting()
 
-func _process(delta):
-	pass
+func _physics_process(delta):
+	PhysicsObj.move_and_collide(PhysicsObj.velocity * delta)
 
 func _create_target_lock():
-	#var dir_vector = get_angle_to(bomb_target.position)
-	pass
+	if (is_instance_valid(bomb_target)):
+		var bomb_dir = position.direction_to(bomb_target.position)
+		var dist = position.distance_to(bomb_target.position)
+		var bomb_spd = dist
+		PhysicsObj.velocity = bomb_dir * bomb_spd
 
 func _bomb_anim_finished(animation_name):
 	if animation_name == "throw":
 		_cleanup()
 
 func _cleanup():
+	if is_instance_valid(bomb_target):
+		bomb_target.queue_free()
 	queue_free()
