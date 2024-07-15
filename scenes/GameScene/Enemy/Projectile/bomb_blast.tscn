@@ -1,7 +1,46 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2byai2rjbqb8"]
+[gd_scene load_steps=8 format=3 uid="uid://b420434ynrps0"]
 
 [ext_resource type="Texture2D" uid="uid://dsuqkxjwy8sex" path="res://assets/images/projectiles/explosion_01_strip13.png" id="1_2iyts"]
-[ext_resource type="Script" path="res://scenes/GameScene/Enemy/Projectile/bomb_blast.gd" id="1_ksh3y"]
+
+[sub_resource type="GDScript" id="GDScript_36h10"]
+script/source = "extends CharacterBody2D
+
+@export var AP: AnimationPlayer
+var _collision_max_radius = 47 #Radius times max scale
+var _max_damage = 50
+
+func _ready():
+	AP.play(\"play\")
+	AP.animation_finished.connect(_playanim_end)
+	velocity = Vector2(0, 0)
+
+func _physics_process(delta):
+	if collision_mask == 0:
+		return
+	var col = move_and_collide(velocity * delta)
+	if (col):
+		_process_collision(col)
+
+func _process_collision(col : KinematicCollision2D):
+	var collider : Node2D = col.get_collider()
+	if collider.is_in_group(\"Player\"):
+		collision_mask = 0
+		var dist = global_position.distance_to(collider.global_position)
+		var percent_damage = 1 - (dist/_collision_max_radius)
+		var calc_damage = clamp(_max_damage * percent_damage, 0, _max_damage)
+		collider.health.add_or_subtract_health_by_value(-calc_damage)
+
+func _playanim_end(animation_name):
+	if (animation_name == \"play\"):
+		_cleanup()
+
+func _cleanup():
+	queue_free()
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aoac7"]
+radius = 40.345
+height = 80.69
 
 [sub_resource type="Animation" id="Animation_b55a3"]
 length = 0.001
@@ -16,6 +55,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:shape")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CapsuleShape2D_aoac7")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:shape:radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:shape:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30.0]
 }
 
 [sub_resource type="Animation" id="Animation_5a7vp"]
@@ -34,6 +121,42 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:shape:radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [10.0, 32.76, 40.345]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:shape:height")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0833334, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [30.0, 65.52, 80.69]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ful44"]
 _data = {
@@ -47,7 +170,7 @@ height = 54.0
 
 [node name="BombBlast" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
 collision_layer = 16
-script = ExtResource("1_ksh3y")
+script = SubResource("GDScript_36h10")
 AP = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
