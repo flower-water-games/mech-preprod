@@ -19,22 +19,6 @@ var global_target_position : Vector2 = Vector2.ZERO
 
 var foot_moving_forward : bool = false
 
-# Offsetting feet
-"""
-If I am going right I need the top feet to be out of sync
-If I am going up, I need the top feet to be out of sync
-# How to tell if they are in sync
-From a stopped position .. I need the right foot to move towards the target, and the left foot to be sliding away
-
-if BOTH feet are approximately 75% away from the target in the same direction
-Move one foot early
-
-If both feet are the same distance from the target
- and the movement is ZERO ...
-Then shift one foot closer to the target
-
-If both feet are moving towards the target, then they are in sync ...
-"""
 
 func _ready():
 	update_foot_offset.call_deferred()
@@ -50,11 +34,11 @@ func _process(delta):
 	var moving_direction = previous_position.direction_to(global_position)
 	var target_position = moving_direction * walk_distance
 	if target_position != Vector2.ZERO:
-		#var random_x_range : float = 8.0
-		#var random_y_range : float = 4.0
-		#var x_offset : float = randf_range(-random_x_range, random_x_range)
-		#var y_offset : float = randf_range(-random_y_range, random_y_range)
-		target_position_sprite.position = target_position #+ Vector2(random_x_range, random_y_range)
+		# Move foot to new position and randomize it a little bit
+		var offset_amount : float = (walk_distance * randf_range(0.8, 1.0)) - walk_distance
+		var random_offset = randf_range(-offset_amount, offset_amount)
+		var offset_position_tangentially : Vector2 = moving_direction.normalized().orthogonal() * random_offset
+		target_position_sprite.position = target_position + offset_position_tangentially
 	
 	
 	# Update tracking if you move past the distance
@@ -71,13 +55,10 @@ func _process(delta):
 
 	# Pre-calculate the new position
 	var lerp_foot_position : Vector2 = Vector2.ZERO
-	lerp_foot_position.x = lerpf(foot.global_position.x, foot_position.x, 0.2)
-	lerp_foot_position.y = lerpf(foot.global_position.y, foot_position.y, 0.2)
+	var lerp_speed : float = 0.15
+	lerp_foot_position.x = lerpf(foot.global_position.x, foot_position.x, lerp_speed)
+	lerp_foot_position.y = lerpf(foot.global_position.y, foot_position.y, lerp_speed)
 
-	# Check if you are moving towards the TARGET
-	# If you are then LERP
-	# If you are moving away then STICK TO THE GROUND
-	
 	# Smooth animate the jump between positions
 	global_target_position = target_position_sprite.global_position
 	
@@ -96,14 +77,6 @@ func _process(delta):
 			if sibling_foot.foot.global_position.distance_to(sibling_foot.global_target_position) > walk_distance * 0.9:
 				if sibling_foot.foot_moving_forward == false and offset_foot == true:
 					foot_position = target_position_sprite.global_position
-				
-		#if sibling_foot.foot_moving_forward == false and offset_foot == true:
-		#	if foot.global_position.distance_to(global_target_position) > walk_distance * 0.5:
-				# Move foot early
-		#		foot_position = target_position_sprite.global_position
-
+	
 	# Store previous position
 	previous_position = global_position
-
-	# Feet should not be able to PASS through each other (Could be fixed just by walk_distance)
-	# Feet need to remain OFFSET

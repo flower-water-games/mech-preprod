@@ -167,7 +167,7 @@ position = Vector2(0, 32)
 sibling_foot = NodePath("../Left")
 walk_distance = 24.0
 
-[node name="MovementBody" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
+[node name="Body" parent="World2D/Player/Body" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("22_xogi4")]
 top_left_leg = NodePath("../Top")
 top_right_leg = NodePath("../Right")
 bottom_left_leg = NodePath("../Bottom")
