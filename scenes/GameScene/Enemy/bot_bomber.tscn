@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot_basic.tscn" id="1_yglal"]
 
 [node name="BotBomber" instance=ExtResource("1_yglal")]
+y_sort_enabled = false
 spline_amplitude = 50.0
 spline_frequency = 1.0
 bomber = true

@@ -49,16 +49,20 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
 radius = 29.4228
-height = 141.23
+height = 76.4994
 
 [node name="Player" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Body" type="CharacterBody2D" parent="." groups=["Player"]]
 z_as_relative = false
+position = Vector2(0, -7)
 collision_mask = 11
 script = ExtResource("1_lr0nm")
 
 [node name="Mech" type="Sprite2D" parent="Body"]
+z_as_relative = false
 scale = Vector2(3, 3)
 texture = ExtResource("2_cjq0t")
 hframes = 24
@@ -70,7 +74,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
-position = Vector2(0, 10)
+position = Vector2(0, 22)
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("CapsuleShape2D_rhp08")
 
@@ -78,6 +82,7 @@ shape = SubResource("CapsuleShape2D_rhp08")
 position = Vector2(-100, 7)
 
 [node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
+z_as_relative = false
 position = Vector2(232, 0)
 texture = ExtResource("4_600tr")
 script = ExtResource("5_rb5or")
@@ -89,6 +94,7 @@ bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")
 
 [node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
+z_as_relative = false
 texture = ExtResource("7_h25id")
 
 [node name="Health" parent="Body" instance=ExtResource("8_lsi2y")]

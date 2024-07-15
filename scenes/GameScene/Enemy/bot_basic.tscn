@@ -168,7 +168,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ml7o7"]
 radius = 8.0
-height = 32.0
+height = 16.0
 
 [node name="BotBasic" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
 z_as_relative = false
@@ -178,6 +178,7 @@ movement_type = 0
 AP = NodePath("SpriteSheet/AnimationPlayer")
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
+z_as_relative = false
 scale = Vector2(2, 2)
 texture = ExtResource("1_6fti8")
 hframes = 24
@@ -189,7 +190,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_ml7o7")
 
 [node name="Health" parent="." instance=ExtResource("2_72isi")]
