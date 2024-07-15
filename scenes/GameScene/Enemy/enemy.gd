@@ -169,6 +169,8 @@ func _enemy_die() -> void:
 	_cur_movement = MovementType.STOPPED
 	_actor_state = ACTOR_STATE.dead
 	collision_layer = 0
+	var explodefx = GameContent.FXEnemyExplode.instantiate()
+	add_child(explodefx)
 
 func _deathanim_end(animation_name):
 	if animation_name == "death":

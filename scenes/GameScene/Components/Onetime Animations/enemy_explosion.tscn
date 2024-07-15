@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://05cm2t226pvg"]
+
+[ext_resource type="Texture2D" uid="uid://3xfe07j4clth" path="res://assets/images/projectiles/explosion_02_strip13.png" id="1_vvqi6"]
+[ext_resource type="Script" path="res://scenes/GameScene/Components/Onetime Animations/onetime_animation.gd" id="2_3e2m4"]
+
+[sub_resource type="Animation" id="Animation_3olh5"]
+resource_name = "play"
+length = 0.541671
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333, 0.375, 0.416667, 0.458333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_8nrk6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gio8b"]
+_data = {
+"RESET": SubResource("Animation_8nrk6"),
+"play": SubResource("Animation_3olh5")
+}
+
+[node name="EnemyExplosion" type="Sprite2D" node_paths=PackedStringArray("AP")]
+z_index = 1
+z_as_relative = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vvqi6")
+hframes = 13
+script = ExtResource("2_3e2m4")
+AP = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gio8b")
+}

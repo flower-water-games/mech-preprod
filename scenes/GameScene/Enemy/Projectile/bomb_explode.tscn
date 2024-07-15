@@ -128,12 +128,15 @@ _data = {
 }
 
 [node name="BombExplode" type="ShapeCast2D" node_paths=PackedStringArray("AP")]
+z_index = 1
+z_as_relative = false
 shape = SubResource("CapsuleShape2D_aoac7")
 target_position = Vector2(0, 1)
 script = ExtResource("1_on4oj")
 AP = NodePath("Sprite2D/AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_as_relative = false
 texture = ExtResource("2_pl57d")
 hframes = 13
 
