@@ -88,4 +88,5 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
-          curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"New build deployed! Build notes:\n$(cat build_notes.md)\"}" $DISCORD_WEBHOOK
+          CONTENT=$(cat build_notes.md | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
+          curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"New build deployed! Build notes:\\n$CONTENT\"}" $DISCORD_WEBHOOK
