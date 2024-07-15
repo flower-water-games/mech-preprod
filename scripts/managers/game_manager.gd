@@ -29,8 +29,8 @@ var waves = [
 	{
 		"difficulty_threshold": 0.0,
 		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.5, "base_spawn_count": 500},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 2, "base_spawn_count": 500},
+			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
+			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 5, "base_spawn_count": 500},
 		]
 	},
 ]
@@ -159,17 +159,5 @@ func are_enemies_alive() -> bool:
 
 func get_enemy_count() -> int:
 	return spawn_point.get_child_count()
-
-func _enemy_shoot(position : Vector2):
-	#identify current target position
-
-	# var target_position = player.global_position
-	# spawn a target
-	await get_tree().create_timer(0.5).timeout
-
-	# wait some time ("target_wait")
-	# shoot high velocity bullet
-	# print("enemy pew")
-	return
 
 #endregion

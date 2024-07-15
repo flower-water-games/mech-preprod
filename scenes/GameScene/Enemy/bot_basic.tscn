@@ -195,4 +195,4 @@ shape = SubResource("CapsuleShape2D_ml7o7")
 [node name="Health" parent="." instance=ExtResource("2_72isi")]
 visible = false
 position = Vector2(0, 32)
-max_health = 5.0
+max_health = 3.0
