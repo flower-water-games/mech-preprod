@@ -50,9 +50,8 @@ jobs:
           echo "# Build Notes" > build_notes.md
           echo "## Latest Changes" >> build_notes.md
           git log --pretty=format:"- %s" HEAD^..HEAD >> build_notes.md
-          echo "BUILD_NOTES<<EOF" >> $GITHUB_OUTPUT
-          cat build_notes.md >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "build_notes=$(cat build_notes.md | base64 -w 0)" >> $GITHUB_OUTPUT
+
 
       - name: Upload build notes artifact
         uses: actions/upload-artifact@v3
