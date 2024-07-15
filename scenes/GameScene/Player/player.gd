@@ -39,7 +39,7 @@ func _physics_process(delta):
 	velocity = motion
 	# Move to the position unless it hits a collision then it will stop at the collision point
 	move_and_slide()
-
+# input
 func get_input_axis():
 	var axis = Vector2.ZERO
 	axis.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
