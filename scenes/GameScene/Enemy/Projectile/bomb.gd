@@ -32,6 +32,9 @@ func _create_target_lock():
 
 func _bomb_anim_finished(animation_name):
 	if animation_name == "throw":
+		var explosion = GameContent.BombBlast.instantiate()
+		add_sibling(explosion)
+		explosion.global_position = PhysicsObj.global_position
 		_cleanup()
 
 func _cleanup():

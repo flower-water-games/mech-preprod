@@ -23,7 +23,7 @@ func _ready():
 	if (!_player_instance):
 		_cleanup()
 
-func _process(delta):
+func _process(_delta):
 	if _target_lock:
 		global_position = _player_instance.global_position
 

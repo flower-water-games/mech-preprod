@@ -95,8 +95,8 @@ func _initbombthrow():
 	if _isdead():
 		return
 	AP.animation_finished.connect(_windupanim_end)
-	_bombtarget = GameContent.BombTarget.instantiate()
-	add_child(_bombtarget)
+	_bombtarget = GameContent.BombTargetSc.instantiate()
+	add_sibling(_bombtarget)
 	_actor_state = ACTOR_STATE.windup
 	_cur_movement = MovementType.STOPPED
 
@@ -108,7 +108,8 @@ func _windupanim_end(animation_name):
 		AP.animation_finished.connect(_throwanim_end)
 		var bombscene = GameContent.Bomb.instantiate()
 		bombscene.bomb_target = _bombtarget
-		add_child(bombscene)
+		bombscene.position = position
+		add_sibling(bombscene)
 
 func _throwanim_end(animation_name):
 	if _isdead():
