@@ -74,7 +74,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
-position = Vector2(0, 22)
+position = Vector2(0, 6)
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("CapsuleShape2D_rhp08")
 

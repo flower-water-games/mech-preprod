@@ -19,5 +19,9 @@ movement_type = 2
 [node name="BotBomber" parent="." instance=ExtResource("2_28ond")]
 position = Vector2(598, 288)
 
-[node name="Player" parent="." instance=ExtResource("3_wh3fo")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Node2D"]
+
+[node name="Player" parent="Node2D/Node2D" instance=ExtResource("3_wh3fo")]
 position = Vector2(265, 304)

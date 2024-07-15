@@ -25,6 +25,7 @@ var _throw_timer: Timer
 var _spline_time = 0.9
 var _spline_initial_y : float
 var _cur_movement: MovementType
+var _bombtarget: BombTarget
 
 var _actor_state: ACTOR_STATE
 enum ACTOR_STATE {
@@ -94,6 +95,8 @@ func _initbombthrow():
 	if _isdead():
 		return
 	AP.animation_finished.connect(_windupanim_end)
+	_bombtarget = GameContent.BombTarget.instantiate()
+	add_child(_bombtarget)
 	_actor_state = ACTOR_STATE.windup
 	_cur_movement = MovementType.STOPPED
 
@@ -103,6 +106,9 @@ func _windupanim_end(animation_name):
 	if animation_name == "windup":
 		_actor_state = ACTOR_STATE.throw
 		AP.animation_finished.connect(_throwanim_end)
+		var bombscene = GameContent.Bomb.instantiate()
+		bombscene.bomb_target = _bombtarget.position
+		add_child(bombscene)
 
 func _throwanim_end(animation_name):
 	if _isdead():
@@ -111,7 +117,6 @@ func _throwanim_end(animation_name):
 		_actor_state = ACTOR_STATE.run
 		_cur_movement = movement_type
 		velocity = speed
-		AP.play("RESET")
 
 #endregion
 
@@ -155,6 +160,7 @@ func _isdead():
 
 func _enemy_destroy() -> void:
 	queue_free()
+	_bombtarget.queue_free()
 
 func _enemy_die() -> void:
 	enemy_died.emit()
