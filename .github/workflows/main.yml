@@ -89,4 +89,4 @@ jobs:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           CONTENT=$(cat build_notes.md | sed 's/"/\\"/g' | sed ':a;N;$!ba;s/\n/\\n/g')
-          curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"New build deployed! Build notes:\\n$CONTENT\"}" $DISCORD_WEBHOOK
+          curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"New build deployed! https://carlos-michael.itch.io/mechjam5 Build notes:\\n$CONTENT\"}" $DISCORD_WEBHOOK
