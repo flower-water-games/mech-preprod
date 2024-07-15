@@ -7,7 +7,7 @@ class_name GameManager
 @export var lose_scene: PackedScene
 
 # core services nodes
-@onready var player: Movement = get_node("/root/MainGameScene/World2D/Player/Body")
+@onready var player: Player = get_node("/root/MainGameScene/World2D/Player/Body")
 @onready var player_gun: Gun = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Gun")
 @onready var player_cursor: Cursor = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Cursor")
 @onready var enemy_factory: EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")
@@ -29,40 +29,10 @@ var waves = [
 	{
 		"difficulty_threshold": 0.0,
 		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 1.5, "base_spawn_count": 20},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": .1, "base_spawn_count": 10},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .01, "base_spawn_count": 10},
+			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
+			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 5, "base_spawn_count": 500},
 		]
 	},
-	{
-		"difficulty_threshold": 0.3,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.4, "base_spawn_count": 3},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": .1, "base_spawn_count": 10},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .1, "base_spawn_count": 10},
-		]
-	},
-	{
-		"difficulty_threshold": 0.5,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.3, "base_spawn_count": 4},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
-		]
-	},
-	{
-		"difficulty_threshold": 0.7,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.3, "base_spawn_count": 4},
-			{"type": EnemyFactory.EnemyType.STRONG, "base_spawn_rate": .3, "base_spawn_count": 20},
-		]
-	},
-	{
-		# to make this a "boss" you could do difficulty_threshold at .9 and just spawn one enemy. the game will wait until all enemies are dead anyways
-		"difficulty_threshold": 0.9,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.BOSS, "base_spawn_rate": 0.3, "base_spawn_count": 1},
-		]
-	}
 ]
 
 # state variables for waves, keep track of current wave and previously spawned waves
@@ -189,17 +159,5 @@ func are_enemies_alive() -> bool:
 
 func get_enemy_count() -> int:
 	return spawn_point.get_child_count()
-
-func _enemy_shoot(position : Vector2):
-	#identify current target position
-
-	# var target_position = player.global_position
-	# spawn a target
-	await get_tree().create_timer(0.5).timeout
-
-	# wait some time ("target_wait")
-	# shoot high velocity bullet
-	# print("enemy pew")
-	return
 
 #endregion

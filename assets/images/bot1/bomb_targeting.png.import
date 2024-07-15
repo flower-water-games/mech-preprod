@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4wbwg1r76gir"
-path="res://.godot/imported/fire15.png-e2d55b9f678b1879e23a5b6929dd7f61.ctex"
+uid="uid://cw713cib2f08b"
+path="res://.godot/imported/bomb_targeting.png-1bd9e6833bd42f1f0d47c444ce9f261a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/kenney/fire15.png"
-dest_files=["res://.godot/imported/fire15.png-e2d55b9f678b1879e23a5b6929dd7f61.ctex"]
+source_file="res://assets/images/bot1/bomb_targeting.png"
+dest_files=["res://.godot/imported/bomb_targeting.png-1bd9e6833bd42f1f0d47c444ce9f261a.ctex"]
 
 [params]
 

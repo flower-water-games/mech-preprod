@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs6pdg71ayf6w"]
+
+[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot_basic.tscn" id="1_yglal"]
+
+[node name="BotBomber" instance=ExtResource("1_yglal")]
+spline_amplitude = 50.0
+spline_frequency = 1.0
+bomber = true
+
+[node name="Health" parent="." index="2"]
+max_health = 3.0

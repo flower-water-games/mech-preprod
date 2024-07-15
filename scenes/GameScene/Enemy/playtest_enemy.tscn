@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://j7nsp47cqnk7"]
+
+[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot_bomber.tscn" id="2_28ond"]
+[ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot_basic.tscn" id="3_1s76k"]
+[ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="3_wh3fo"]
+
+[node name="PlaytestEnemy" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="BotBasic" parent="." instance=ExtResource("3_1s76k")]
+position = Vector2(472, 265)
+movement_type = 2
+
+[node name="BotBasic2" parent="." instance=ExtResource("3_1s76k")]
+position = Vector2(461, 316)
+movement_type = 2
+
+[node name="BotBomber" parent="." instance=ExtResource("2_28ond")]
+position = Vector2(598, 288)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Node2D"]
+
+[node name="Player" parent="Node2D/Node2D" instance=ExtResource("3_wh3fo")]
+position = Vector2(265, 304)

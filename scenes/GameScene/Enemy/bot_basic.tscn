@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc7tua5fm3ssc"]
+[gd_scene load_steps=11 format=3 uid="uid://cc7tua5fm3ssc"]
 
 [ext_resource type="Texture2D" uid="uid://drd26l0l0tmdi" path="res://assets/images/bot1/bot1_spritesheet.png" id="1_6fti8"]
 [ext_resource type="Script" path="res://scenes/GameScene/Enemy/enemy.gd" id="1_5766m"]
@@ -99,25 +99,86 @@ tracks/0/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteSheet:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_0t0xc"]
+resource_name = "throw"
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.13446, -1.43117, -1.43117, 0.364774]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteSheet:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -56), Vector2(-4.76837e-07, 1.14441e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_ubnc2"]
+resource_name = "windup"
+length = 2.00001
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteSheet:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.17294]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xdtx0"]
 _data = {
 "RESET": SubResource("Animation_nepo1"),
 "death": SubResource("Animation_q02yx"),
-"run": SubResource("Animation_cj2dl")
+"run": SubResource("Animation_cj2dl"),
+"throw": SubResource("Animation_0t0xc"),
+"windup": SubResource("Animation_ubnc2")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ml7o7"]
 radius = 8.0
-height = 32.0
+height = 16.0
 
-[node name="Bot1" type="CharacterBody2D"]
+[node name="BotBasic" type="CharacterBody2D" node_paths=PackedStringArray("AP")]
 z_as_relative = false
 collision_layer = 2
 script = ExtResource("1_5766m")
 movement_type = 0
+AP = NodePath("SpriteSheet/AnimationPlayer")
 
 [node name="SpriteSheet" type="Sprite2D" parent="."]
+z_as_relative = false
 scale = Vector2(2, 2)
 texture = ExtResource("1_6fti8")
 hframes = 24
@@ -129,10 +190,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_ml7o7")
 
 [node name="Health" parent="." instance=ExtResource("2_72isi")]
 visible = false
 position = Vector2(0, 32)
-max_health = 5.0
+max_health = 3.0

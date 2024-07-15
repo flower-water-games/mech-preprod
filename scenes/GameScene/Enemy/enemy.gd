@@ -9,72 +9,139 @@ enum MovementType {
 
 @onready var health : Health = $Health
 
-# Tweakable parameters,
-# btw, totally reasonable to refactor to set these variables in enemyfactory by code, but scenes work fine for this for now
-@export var custom_velocity := Vector2(-125, 0)
-@export var shoots := false
-@export var on_hit_damage = 5
+@export var speed := Vector2(-125, 0)
+@export var on_hit_damage = 0.1
 @export var movement_type : MovementType = MovementType.VERTICAL_SPLINE
 @export var spline_amplitude := 100.0  # Maximum vertical displacement
 @export var spline_frequency := 3.5  # How fast the enemy moves up and down
 @export var spline_randomized := false
 @export var score = 50 # when enemy dies, how much score
+@export var bomber := false
+@export var AP: AnimationPlayer
 
-signal bomb_thrown
-# after this value of time has elapsed, kill this entity
-var lifetime = 10.0
-var death_timer : Timer
 signal enemy_died
 
-var time_passed = 0.9
-var initial_y_position : float
-var player : Movement
+var _throw_timer: Timer
+var _spline_time = 0.9
+var _spline_initial_y : float
+var _cur_movement: MovementType
+var _bombtarget: BombTarget
+
+var _actor_state: ACTOR_STATE
+enum ACTOR_STATE {
+	run,
+	dead,
+	windup,
+	throw
+}
+
+#region Initialization
 
 func _ready() -> void:
-	$SpriteSheet/AnimationPlayer.play("run")
-	health.died.connect(enemy_die)
-	velocity = custom_velocity
+	_init_properties()
+
+func _init_properties():
+	_actor_state = ACTOR_STATE.run
+
+	health.died.connect(_enemy_die)
+	AP.animation_finished.connect(_deathanim_end)
+
+	_cur_movement = movement_type
+	velocity = speed
 	if (spline_randomized):
-		initial_y_position = global_position.y + randf_range(-350, 350)
+		_spline_initial_y = global_position.y + randf_range(-350, 350)
 	else:
-		initial_y_position = global_position.y
+		_spline_initial_y = global_position.y
 
-	# set up death timer
-	 # Set up and start the death timer
-	death_timer = Timer.new()
-	death_timer.set_one_shot(true)
-	death_timer.set_wait_time(lifetime)
-	death_timer.timeout.connect(enemy_destroy)
-	add_child(death_timer)
-	death_timer.start()
+	if (bomber):
+		_init_throw_timer()
 
-	if (shoots):
-		player = get_node("/root/MainGameScene/World2D/Player/Body")
+#endregion
+
+#region Processing
 
 func _process(delta: float) -> void:
-	time_passed += delta
-	if (shoots):
-		shoot()
+	_spline_time += delta
+	_process_animations()
+	_check_cleanup()
 
 func _physics_process(delta: float) -> void:
-	match movement_type:
+	_process_movement(delta)
+
+func _process_animations():
+	match _actor_state:
+		ACTOR_STATE.run:
+			AP.play("run")
+		ACTOR_STATE.dead:
+			AP.play("death")
+		ACTOR_STATE.windup:
+			AP.play("windup")
+		ACTOR_STATE.throw:
+			AP.play("throw")
+
+#endregion
+
+#region Bomber Logic
+
+func _init_throw_timer():
+	_throw_timer = Timer.new()
+	_throw_timer.wait_time = 1
+	_throw_timer.autostart = true
+	_throw_timer.one_shot = true
+	_throw_timer.timeout.connect(_initbombthrow)
+	add_child(_throw_timer)
+
+func _initbombthrow():
+	if _isdead():
+		return
+	AP.animation_finished.connect(_windupanim_end)
+	_bombtarget = GameContent.BombTargetSc.instantiate()
+	add_sibling(_bombtarget)
+	_actor_state = ACTOR_STATE.windup
+	_cur_movement = MovementType.STOPPED
+
+func _windupanim_end(animation_name):
+	if _isdead():
+		return
+	if animation_name == "windup":
+		_actor_state = ACTOR_STATE.throw
+		AP.animation_finished.connect(_throwanim_end)
+		var bombscene = GameContent.Bomb.instantiate()
+		bombscene.bomb_target = _bombtarget
+		bombscene.position = position
+		add_sibling(bombscene)
+
+func _throwanim_end(animation_name):
+	if _isdead():
+		return
+	if animation_name == "throw":
+		_actor_state = ACTOR_STATE.run
+		_cur_movement = movement_type
+		velocity = speed
+
+#endregion
+
+#region Movement and Collisions
+
+func _process_movement(delta):
+	match _cur_movement:
 		MovementType.LINEAR:
-			move_linear(delta)
+			_move_linear(delta)
 		MovementType.VERTICAL_SPLINE:
-			move_vertical_spline(delta)
+			_move_vertical_spline(delta)
 		MovementType.STOPPED:
 			velocity = Vector2(0,0)
 			move_and_slide()
 
-func move_linear(delta: float) -> void:
+func _move_linear(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		_handle_hit_collision(collision)
 
-func move_vertical_spline(delta: float) -> void:
+func _move_vertical_spline(delta: float) -> void:
 	var horizontal_movement = velocity.x * delta
-	var vertical_movement = sin(time_passed * spline_frequency) * spline_amplitude
-	var target_position = Vector2(global_position.x + horizontal_movement, initial_y_position + vertical_movement)
+	var vertical_movement = sin(_spline_time * spline_frequency) * spline_amplitude
+	var target_position = Vector2(global_position.x + horizontal_movement, _spline_initial_y + vertical_movement)
 
 	var collision = move_and_collide(target_position - global_position)
 	if collision:
@@ -84,17 +151,33 @@ func _handle_hit_collision(col : KinematicCollision2D) -> void:
 	var collider : Node2D = col.get_collider()
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
-		enemy_die()
 
-func enemy_destroy() -> void:
+#endregion
+
+#region Death and Cleanup
+
+func _isdead():
+	return _actor_state == ACTOR_STATE.dead
+
+func _enemy_destroy() -> void:
 	queue_free()
+	if is_instance_valid(_bombtarget):
+		_bombtarget.queue_free()
 
-func enemy_die() -> void:
+func _enemy_die() -> void:
 	enemy_died.emit()
-	movement_type = MovementType.STOPPED
-	queue_free()
+	_cur_movement = MovementType.STOPPED
+	_actor_state = ACTOR_STATE.dead
+	collision_layer = 0
+	var explodefx = GameContent.FXEnemyExplode.instantiate()
+	add_child(explodefx)
 
-func shoot() -> void:
-	bomb_thrown.emit()
-	# print("enemy pew")
-	return
+func _deathanim_end(animation_name):
+	if animation_name == "death":
+		_enemy_destroy()
+
+func _check_cleanup():
+	if (global_position.x <= -100):
+		_enemy_destroy()
+
+#endregion

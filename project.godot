@@ -22,6 +22,7 @@ AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.t
 SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
 ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
+GameContent="*res://autoload/game_content.gd"
 
 [display]
 
@@ -32,6 +33,10 @@ window/stretch/mode="viewport"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -118,6 +123,7 @@ cursor_left={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Bullets"
 2d_physics/layer_4="Walls"
+2d_physics/layer_5="EnemyAttack"
 
 [maaacks_game_template]
 
