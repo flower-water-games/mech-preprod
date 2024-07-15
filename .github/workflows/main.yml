@@ -48,7 +48,8 @@ jobs:
         id: build_notes
         run: |
           echo "# Build Notes" > build_notes.md
-          git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- %s" >> build_notes.md
+          echo "## Latest Changes" >> build_notes.md
+          git log --pretty=format:"- %s" HEAD^..HEAD >> build_notes.md
           echo "BUILD_NOTES<<EOF" >> $GITHUB_OUTPUT
           cat build_notes.md >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -62,7 +63,7 @@ jobs:
   deploy_web:
     needs: [export_game, generate_build_notes]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    # if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/download-artifact@v2
         with:
