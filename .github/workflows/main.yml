@@ -84,12 +84,6 @@ jobs:
           buildChannel: web
           buildNumber: ${{ github.run_number }}
 
-      - name: Update Itch.io description
-        env:
-          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
-        run: |
-          butler push --userversion ${{ github.run_number }} build_notes.md ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAMEID }}:notes
-
       - name: Send Discord notification
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
