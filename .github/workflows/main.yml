@@ -1,62 +1,97 @@
-env:
-    ITCH_USERNAME: carlos-michael
-    ITCH_GAMEID: mechjam5
-  # Whenever a tag push matching pattern "v*" then run the job
-on: 
-    push:
-        # only run on branch names /main and /playtest
-        branches:
-            - main
-            - playtest
-            - workflows
-#
-jobs:
-    #godot default export
-    export_game:
-        # Always use ubuntu-latest for this action
-        runs-on: ubuntu-latest
-        # Add permission for release creation. Can be made narrower according to your needs
-        permissions: write-all
-        # Job name, can be anything
-        name: Export Game
-        steps:
-            # Always include the checkout step so that 
-            # your project is available for Godot to export
-            - name: checkout
-              uses: actions/checkout@v3.3.0
-        
-            - name: export game
-              id: export
-            # Use latest version (see releases for all versions)
-              uses: firebelley/godot-export@v5.2.1
-              with:
-                # Defining all the required inputs
-                godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2.2/Godot_v4.2.2-stable_linux.x86_64.zip
-                godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2.2/Godot_v4.2.2-stable_export_templates.tpz
-                relative_project_path: ./
-                archive_output: true
-            - uses: actions/upload-artifact@v3
-              with:
-                name: godot-export
-                path: ${{ steps.export.outputs.archive_directory }}
-    #   deploy to itch step web / windows / linux
-    deploy_web:
-      needs: export_game
-      runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
-      steps:
-        - uses: actions/download-artifact@v2
-          with:
-            name: godot-export
-            path: ./
-        - name: Deploy - Itch.io - web
-          uses: KikimoraGames/itch-publish@v0.0.3
-          with:
-            butlerApiKey: ${{ secrets.BUTLER_CREDENTIALS }}
-            gameData: ./Web.zip
-            itchUsername: ${{ env.ITCH_USERNAME }}
-            itchGameId: ${{ env.ITCH_GAMEID }}
-            buildChannel: web
-            buildNumber: ${{ github.run_number }}
+name: Export and Deploy Game
 
-  
+env:
+  ITCH_USERNAME: carlos-michael
+  ITCH_GAMEID: mechjam5
+
+on:
+  push:
+    branches:
+      - main
+      - playtest
+      - workflows
+
+jobs:
+  export_game:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    name: Export Game
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+      
+      - name: Export game
+        id: export
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.2.2/Godot_v4.2.2-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.2.2/Godot_v4.2.2-stable_export_templates.tpz
+          relative_project_path: ./
+          archive_output: true
+      
+      - uses: actions/upload-artifact@v3
+        with:
+          name: godot-export
+          path: ${{ steps.export.outputs.archive_directory }}
+
+  generate_build_notes:
+    runs-on: ubuntu-latest
+    needs: export_game
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.3.0
+        with:
+          fetch-depth: 0
+
+      - name: Generate build notes
+        id: build_notes
+        run: |
+          echo "# Build Notes" > build_notes.md
+          git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"- %s" >> build_notes.md
+          echo "BUILD_NOTES<<EOF" >> $GITHUB_OUTPUT
+          cat build_notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Upload build notes artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-notes
+          path: build_notes.md
+
+  deploy_web:
+    needs: [export_game, generate_build_notes]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: godot-export
+          path: ./
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-notes
+          path: ./
+
+      - name: Deploy - Itch.io - web
+        uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{ secrets.BUTLER_CREDENTIALS }}
+          gameData: ./Web.zip
+          itchUsername: ${{ env.ITCH_USERNAME }}
+          itchGameId: ${{ env.ITCH_GAMEID }}
+          buildChannel: web
+          buildNumber: ${{ github.run_number }}
+
+      - name: Update Itch.io description
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: |
+          butler push --userversion ${{ github.run_number }} build_notes.md ${{ env.ITCH_USERNAME }}/${{ env.ITCH_GAMEID }}:notes
+
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          curl -H "Content-Type: application/json" -X POST -d "{\"content\": \"New build deployed! Build notes:\n$(cat build_notes.md)\"}" $DISCORD_WEBHOOK
