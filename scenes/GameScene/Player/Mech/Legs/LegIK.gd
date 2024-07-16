@@ -15,9 +15,12 @@ func _ready():
 
 func _process(delta):
 	line_2d.clear_points()
-	line_2d.add_point(thigh.position)
-	line_2d.add_point(knee.position)
-	line_2d.add_point(foot.position)
+	var thigh_position = thigh.global_position - global_position
+	line_2d.add_point(thigh_position)
+	var knee_position = knee.global_position - global_position
+	line_2d.add_point(knee_position)
+	var foot_position = foot.global_position - global_position
+	line_2d.add_point(foot_position)
 	# Match foot position to node
 	if not Engine.is_editor_hint():
 		foot_target.global_position = remote_foot_target.foot.global_position

@@ -14,5 +14,6 @@ texture = ExtResource("2_pclpp")
 [node name="Body" type="Sprite2D" parent="Shadow"]
 self_modulate = Color(1, 1, 1, 0.737255)
 z_index = 1
-position = Vector2(0, -213.333)
+position = Vector2(0, -128)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_pclpp")

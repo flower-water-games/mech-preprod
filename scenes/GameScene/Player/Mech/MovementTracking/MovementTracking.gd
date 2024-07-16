@@ -16,6 +16,7 @@ var target_position : Vector2 = Vector2.ZERO
 var global_target_position : Vector2 = Vector2.ZERO
 
 @export var offset_percent : float = 0.9
+@export var background_movement_speed : float = 1.0
 
 var foot_moving_forward : bool = false
 
@@ -39,7 +40,6 @@ func _process(delta):
 		var random_offset = randf_range(-offset_amount, offset_amount)
 		var offset_position_tangentially : Vector2 = moving_direction.normalized().orthogonal() * random_offset
 		target_position_sprite.position = target_position + offset_position_tangentially
-	
 	
 	# Update tracking if you move past the distance
 	if foot_position.distance_to(global_position) >= walk_distance:
