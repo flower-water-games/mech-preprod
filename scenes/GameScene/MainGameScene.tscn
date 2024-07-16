@@ -63,18 +63,12 @@ pause_menu_packed = ExtResource("8_0225l")
 [node name="InGameMenuController" type="Node" parent="Services"]
 script = ExtResource("9_octrj")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services"]
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="Services"]
 stream = ExtResource("13_x7v5r")
 autoplay = true
 bus = &"Music"
 
-[node name="SFXManager" type="Node" parent="Services"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services/SFXManager"]
-bus = &"SFX"
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Services/SFXManager"]
-bus = &"SFX"
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="Services"]
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)

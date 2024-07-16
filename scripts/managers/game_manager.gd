@@ -21,9 +21,9 @@ class_name GameManager
 @onready var bullet_spawn = get_node("/root/MainGameScene")
 
 # simple audio node stuff (will be updated w a proper sfx manager)
-@onready var death_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer")
-@onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
-
+# @onready var death_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer")
+# @onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
+@onready var sfx_player : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXPlayer")
 # spawn waves based on a diffulty threshold, can spawn multiple different types of enemies per waves
 var waves = [
 	{
@@ -114,7 +114,8 @@ func _player_shoot(position : Vector2):
 	b.rotation = sourcePos.angle_to(targetPos)
 
 	bullet_spawn.add_child(b)
-	shoot_sfx.play()
+	# shoot_sfx.play()
+	play_random_sound(GameContent.gatling_bullet_sounds)
 
 #endregion
 
@@ -147,7 +148,7 @@ func spawn_enemy_group(enemy_config: Dictionary) -> void:
 			var e = enemy_factory.create_enemy(enemy_config.type)
 			spawn_point.add_child(e)
 			e.enemy_died.connect(_add_score.bind(e.score))
-			e.enemy_died.connect(death_sfx.play)
+			e.enemy_died.connect(play_enemy_sound)
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
 		print("Completed spawning enemy type: ", enemy_config.type)
 
@@ -161,3 +162,11 @@ func get_enemy_count() -> int:
 	return spawn_point.get_child_count()
 
 #endregion
+
+func play_enemy_sound():
+	play_random_sound(GameContent.explosion_sounds)
+
+func play_random_sound(sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	sfx_player.stream = sound_array[random_index]
+	sfx_player.play()
