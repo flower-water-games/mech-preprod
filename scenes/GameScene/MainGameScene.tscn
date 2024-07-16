@@ -86,13 +86,13 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="SRTop" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
-position = Vector2(-112, -40)
+position = Vector2(48, -40)
 
 [node name="SRMid" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
-position = Vector2(-48, 17)
+position = Vector2(112, 17)
 
 [node name="SRBottom" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
-position = Vector2(-112, 81)
+position = Vector2(48, 81)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
 position = Vector2(-485, -130)
