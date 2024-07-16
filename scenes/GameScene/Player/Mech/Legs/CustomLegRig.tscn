@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://brrq6n2bnh24q"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/Legs/CustomLegRig.gd" id="1_sy81u"]
+[ext_resource type="Texture2D" uid="uid://bnqk7x4nuvhud" path="res://assets/images/player/placeholder/Shin.png" id="2_mmys2"]
+
+[node name="CustomLegRig" type="Node2D"]
+script = ExtResource("1_sy81u")
+
+[node name="Shin" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_mmys2")
