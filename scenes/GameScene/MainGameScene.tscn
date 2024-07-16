@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=22 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
@@ -11,10 +11,8 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="7_rslfr"]
 [ext_resource type="PackedScene" uid="uid://bmgtxeleq8l7b" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="8_0225l"]
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
-[ext_resource type="AudioStream" uid="uid://bcvfxprfarboc" path="res://assets/audio/tylerg/leveltrack v1.1.ogg" id="13_wcpky"]
+[ext_resource type="AudioStream" uid="uid://bn3tqhffq638a" path="res://assets/audio/OGG Deliveries/leveltracktrueloop.ogg" id="13_x7v5r"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="14_300t5"]
-[ext_resource type="AudioStream" uid="uid://dqhlqrhc8dbqg" path="res://assets/audio/lowFrequency_explosion_000.ogg" id="15_0vwig"]
-[ext_resource type="AudioStream" uid="uid://cwa6373kmiq32" path="res://assets/audio/laserSmall_004.ogg" id="15_kev3k"]
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="17_cjse5"]
 [ext_resource type="Script" path="res://scenes/GameScene/ParallaxLayer.gd" id="17_xitfh"]
 [ext_resource type="Texture2D" uid="uid://skmgf77epyva" path="res://assets/images/env/PHBackdrop.png" id="17_xo8pj"]
@@ -65,20 +63,12 @@ pause_menu_packed = ExtResource("8_0225l")
 [node name="InGameMenuController" type="Node" parent="Services"]
 script = ExtResource("9_octrj")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services"]
-stream = ExtResource("13_wcpky")
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="Services"]
+stream = ExtResource("13_x7v5r")
 autoplay = true
 bus = &"Music"
 
-[node name="SFXManager" type="Node" parent="Services"]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Services/SFXManager"]
-stream = ExtResource("15_0vwig")
-bus = &"SFX"
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Services/SFXManager"]
-stream = ExtResource("15_kev3k")
-bus = &"SFX"
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="Services"]
 
 [node name="World2D" type="Node2D" parent="."]
 position = Vector2(581, 322)

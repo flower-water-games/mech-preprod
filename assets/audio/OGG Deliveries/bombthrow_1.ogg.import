@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dk1yk5n0iumkg"
+path="res://.godot/imported/bombthrow_1.ogg-6cc4adf86d8832b8e4e5138c2c6944bf.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/bombthrow_1.ogg"
+dest_files=["res://.godot/imported/bombthrow_1.ogg-6cc4adf86d8832b8e4e5138c2c6944bf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
