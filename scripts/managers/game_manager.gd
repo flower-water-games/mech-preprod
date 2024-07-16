@@ -29,8 +29,8 @@ var waves = [
 	{
 		"difficulty_threshold": 0.0,
 		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 5, "base_spawn_count": 500},
+			{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
+			{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 		]
 	},
 ]
