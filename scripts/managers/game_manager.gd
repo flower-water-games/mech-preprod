@@ -25,34 +25,6 @@ class_name GameManager
 # @onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
 @onready var sfx_player : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXPlayer")
 
-# spawn waves based on a diffulty threshold, can spawn multiple different types of enemies per waves
-var waves = [
-	{
-		"progress": 0.0,
-		"spawngroup": [
-			{
-				"location": GameContent.SPAWNLOC.Top,
-				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
-				]
-			},
-		]
-	},
-	{
-		"progress": 0.1,
-		"spawngroup": [
-			{
-				"location": GameContent.SPAWNLOC.Bottom,
-				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
-				]
-			},
-		]
-	},
-]
-
 # state variables for waves, keep track of current wave and previously spawned waves
 var current_wave_index = 0
 var spawned_waves :Array[int]= []
@@ -190,3 +162,114 @@ func play_random_sound(sound_array: Array[AudioStream]):
 	var random_index = randi() % sound_array.size()
 	sfx_player.stream = sound_array[random_index]
 	sfx_player.play()
+
+#region Wave Setup
+
+var waves = [
+	{
+		"progress": 5,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 10,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 20,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 30,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 40,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 50,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+]
+
+#endregion
