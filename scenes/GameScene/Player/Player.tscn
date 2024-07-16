@@ -95,6 +95,14 @@ bottom_right_leg = NodePath("../LegTop")
 z_index = 1
 position = Vector2(32, -16)
 remote_foot_target = NodePath("../../LegRight")
+hip_location = Vector2(-32, 0)
+
+[node name="CustomLegRig2" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+z_index = 1
+position = Vector2(-32, -16)
+remote_foot_target = NodePath("../../LegLeft")
+flip_sprite = true
+hip_location = Vector2(32, 0)
 
 [node name="LegLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(-32, 0)

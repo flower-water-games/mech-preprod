@@ -23,8 +23,8 @@ var foot_moving_forward : bool = false
 
 func _ready():
 	update_foot_offset.call_deferred()
-	if offset_foot:
-		foot.modulate = Color("Yellow")
+	#if offset_foot:
+	#	foot.modulate = Color("Yellow")
 
 func update_foot_offset():
 	foot_position = global_position
