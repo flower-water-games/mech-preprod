@@ -6,6 +6,3 @@
 spline_amplitude = 50.0
 spline_frequency = 1.0
 bomber = true
-
-[node name="Health" parent="." index="2"]
-max_health = 3.0

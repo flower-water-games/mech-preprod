@@ -145,10 +145,10 @@ func spawn_wave(wave_index: int) -> void:
 func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	var spawn_task = func():
 		for i in range(enemy_config.base_spawn_count):
-			var e = enemy_factory.create_enemy(enemy_config.type)
+			var e : Enemy = enemy_factory.create_enemy(enemy_config.type)
 			spawn_point.add_child(e)
 			e.enemy_died.connect(_add_score.bind(e.score))
-			e.enemy_died.connect(play_enemy_sound)
+			e.enemy_died.connect(play_random_sound_player.bind(e.sfx_player, GameContent.explosion_sounds))
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
 		print("Completed spawning enemy type: ", enemy_config.type)
 
@@ -163,8 +163,10 @@ func get_enemy_count() -> int:
 
 #endregion
 
-func play_enemy_sound():
-	play_random_sound(GameContent.explosion_sounds)
+func play_random_sound_player(player : AudioStreamPlayer, sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	player.stream = sound_array[random_index]
+	player.play()
 
 func play_random_sound(sound_array: Array[AudioStream]):
 	var random_index = randi() % sound_array.size()

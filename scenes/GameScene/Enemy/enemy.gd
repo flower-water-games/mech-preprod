@@ -18,6 +18,7 @@ enum MovementType {
 @export var score = 50 # when enemy dies, how much score
 @export var bomber := false
 @export var AP: AnimationPlayer
+@onready var sfx_player : AudioStreamPlayer = $AudioStreamPlayer
 
 signal enemy_died
 
