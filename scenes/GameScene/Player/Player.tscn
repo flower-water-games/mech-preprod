@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjcx072xancx6"]
+[gd_scene load_steps=16 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/player.gd" id="1_lr0nm"]
 [ext_resource type="Texture2D" uid="uid://cputbot3m3j41" path="res://assets/images/player/player_spritesheet.png" id="2_cjq0t"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dyvp768i4sd0" path="res://scenes/GameScene/Player/Mech/MovementTracking/Body.tscn" id="3_fergb"]
 [ext_resource type="PackedScene" uid="uid://cxbk2r0h8hrbm" path="res://scenes/GameScene/Player/Mech/MovementTracking/MovementTracking.tscn" id="4_7imhk"]
 [ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
+[ext_resource type="PackedScene" uid="uid://cv8g3jwa2ivuc" path="res://scenes/GameScene/Player/Mech/Legs/LegIK.tscn" id="5_h7y8u"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/cursor.gd" id="5_rb5or"]
 [ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="8_lsi2y"]
@@ -89,6 +90,9 @@ top_left_leg = NodePath("../LegLeft")
 top_right_leg = NodePath("../LegRight")
 bottom_left_leg = NodePath("../LegBottom")
 bottom_right_leg = NodePath("../LegTop")
+
+[node name="LegIK" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("5_h7y8u")]
+remote_foot_target = NodePath("../../LegRight")
 
 [node name="LegLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(-32, 0)
