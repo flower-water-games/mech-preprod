@@ -31,7 +31,7 @@ var waves = [
 		"progress": 0.0,
 		"spawngroup": [
 			{
-				"location": GameContent.SPAWNLOC.Middle,
+				"location": GameContent.SPAWNLOC.Top,
 				"enemies": [
 					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
 					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
@@ -42,13 +42,6 @@ var waves = [
 	{
 		"progress": 0.1,
 		"spawngroup": [
-			{
-				"location": GameContent.SPAWNLOC.Top,
-				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
-				]
-			},
 			{
 				"location": GameContent.SPAWNLOC.Bottom,
 				"enemies": [
@@ -161,16 +154,19 @@ func spawn_wave(wave_index: int) -> void:
 	is_spawning = true
 	var wave = waves[wave_index]
 	for spawngroup in wave.spawngroup:
-		spawn_enemy_group(spawngroup)
+		spawn_enemy_group(spawngroup, wave_index)
 	spawned_waves.append(wave_index)
 	is_spawning = false
 
-func spawn_enemy_group(spawngroup: Dictionary) -> void:
+func spawn_enemy_group(spawngroup: Dictionary, wave_index: int):
 	var loc = spawngroup.location
 	var enemies = spawngroup.enemies
 	for enemy in enemies:
 		var spawn_task = func():
+			var this_wave_index = wave_index
 			for i in range(enemy.base_spawn_count):
+				if current_wave_index > this_wave_index:
+					break
 				var e : Enemy = enemy_factory.create_enemy(enemy.type, loc)
 				e.enemy_died.connect(_add_score.bind(e.score))
 				e.enemy_died.connect(play_random_sound_player.bind(e.sfx_player, GameContent.explosion_sounds))
