@@ -74,7 +74,6 @@ func _process(delta):
 		foot.global_position = foot_position
 		# If your sibling is too in sync
 		if foot.global_position.distance_to(global_target_position) > walk_distance * offset_percent:
-			if sibling_foot.foot.global_position.distance_to(sibling_foot.global_target_position) > walk_distance * 0.9:
 				if sibling_foot.foot_moving_forward == false and offset_foot == true:
 					foot_position = target_position_sprite.global_position
 	

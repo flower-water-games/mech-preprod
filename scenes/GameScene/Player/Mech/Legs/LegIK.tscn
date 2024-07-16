@@ -1,22 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv8g3jwa2ivuc"]
+[gd_scene load_steps=5 format=3 uid="uid://cv8g3jwa2ivuc"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/Legs/LegIK.gd" id="1_s7aoa"]
+
+[sub_resource type="SkeletonModification2DTwoBoneIK" id="SkeletonModification2DTwoBoneIK_nrfad"]
+target_nodepath = NodePath("../FootTarget")
+joint_one_bone_idx = 1
+joint_one_bone2d_node = NodePath("Thigh/Knee")
+joint_two_bone_idx = 2
+joint_two_bone2d_node = NodePath("Thigh/Knee/Foot")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_f6qde"]
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DTwoBoneIK_nrfad")
+
+[sub_resource type="Curve" id="Curve_ns6t7"]
+_data = [Vector2(0.00722022, 0.397776), 0.0, 0.0, 0, 0, Vector2(0.534296, 0.995985), 0.0, 0.0, 0, 0, Vector2(0.779783, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.413836), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [node name="LegIK" type="Node2D"]
 script = ExtResource("1_s7aoa")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_f6qde")
 
 [node name="Thigh" type="Bone2D" parent="Skeleton2D"]
 position = Vector2(0, -24)
 rest = Transform2D(1, 0, 0, 1, 0, -24)
 
 [node name="Knee" type="Bone2D" parent="Skeleton2D/Thigh"]
-position = Vector2(24, -24)
+position = Vector2(20, -24)
 rest = Transform2D(1, 0, 0, 1, 24, -24)
 
 [node name="Foot" type="Bone2D" parent="Skeleton2D/Thigh/Knee"]
-position = Vector2(16, 48)
+position = Vector2(12, 48)
 rest = Transform2D(1, 0, 0, 1, 16, 48)
 
 [node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, -24, 20, -48, 32, 0)
+width = 16.0
+width_curve = SubResource("Curve_ns6t7")
+joint_mode = 2
+
+[node name="FootTarget" type="Node2D" parent="."]
+position = Vector2(32, 0)
