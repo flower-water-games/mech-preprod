@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxbk2r0h8hrbm"]
 
-[ext_resource type="Script" path="res://scenes/GameScene/Components/MovementTracking/MovementTracking.gd" id="1_htt14"]
-[ext_resource type="Texture2D" uid="uid://dfs0m7hhu2quw" path="res://assets/images/kenney/numeralX.png" id="2_l6jkk"]
+[ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/MovementTracking/MovementTracking.gd" id="1_htt14"]
+[ext_resource type="Texture2D" uid="uid://drb310focadjn" path="res://assets/images/player/placeholder/numeralX.png" id="2_l6jkk"]
 
 [node name="MovementTracking" type="Node2D"]
 script = ExtResource("1_htt14")
@@ -13,7 +13,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Foot" type="Sprite2D" parent="."]
-z_index = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_l6jkk")
 
