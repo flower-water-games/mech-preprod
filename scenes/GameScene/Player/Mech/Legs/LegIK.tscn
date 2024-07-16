@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cv8g3jwa2ivuc"]
+
+[node name="LegIK" type="Node2D"]
