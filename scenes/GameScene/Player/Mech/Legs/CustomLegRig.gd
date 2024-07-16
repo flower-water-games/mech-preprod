@@ -3,11 +3,15 @@ extends Node2D
 @export var remote_foot_target : Node2D
 @export var flip_sprite : bool = false
 @export var hip_location : Vector2 = Vector2.ZERO
+@export var shin_texture : Texture2D
 
 @onready var shin : Sprite2D = $Shin
 @onready var leg_line : Line2D = $Line2D
 
 func _ready():
+	if not shin_texture == null:
+		shin.texture = shin_texture
+	
 	if flip_sprite:
 		shin.scale.y *= -1
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjcx072xancx6"]
+[gd_scene load_steps=17 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/player.gd" id="1_lr0nm"]
 [ext_resource type="Texture2D" uid="uid://cputbot3m3j41" path="res://assets/images/player/player_spritesheet.png" id="2_cjq0t"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
 [ext_resource type="PackedScene" uid="uid://brrq6n2bnh24q" path="res://scenes/GameScene/Player/Mech/Legs/CustomLegRig.tscn" id="4_k1kr3"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/cursor.gd" id="5_rb5or"]
+[ext_resource type="Texture2D" uid="uid://cgv1qh7pkh6xq" path="res://assets/images/player/placeholder/Middle-Shin.png" id="5_thheh"]
 [ext_resource type="Texture2D" uid="uid://cr15xsmb1egvn" path="res://assets/images/player/gatling_gun.png" id="7_h25id"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="8_lsi2y"]
 
@@ -104,6 +105,12 @@ remote_foot_target = NodePath("../../LegLeft")
 flip_sprite = true
 hip_location = Vector2(32, 0)
 
+[node name="CustomLegRig3" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+z_index = 1
+remote_foot_target = NodePath("../../LegBottom")
+hip_location = Vector2(0, -16)
+shin_texture = ExtResource("5_thheh")
+
 [node name="LegLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(-32, 0)
 offset_foot = true
@@ -122,9 +129,9 @@ sibling_foot = NodePath("../LegBottom")
 walk_distance = 20.0
 
 [node name="LegBottom" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
-position = Vector2(0, 32)
+position = Vector2(0, 16)
 sibling_foot = NodePath("../LegLeft")
-walk_distance = 20.0
+walk_distance = 16.0
 
 [node name="Shoot" type="Node2D" parent="Body"]
 position = Vector2(-100, 7)
