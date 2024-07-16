@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=21 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
@@ -11,13 +11,14 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
 [ext_resource type="AudioStream" uid="uid://bn3tqhffq638a" path="res://assets/audio/OGG Deliveries/leveltracktrueloop.ogg" id="13_x7v5r"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="14_300t5"]
+[ext_resource type="PackedScene" uid="uid://bx2kwbtxbfe1u" path="res://scenes/GameScene/Components/Spawn Areas/spawn_rectangle.tscn" id="15_l5riy"]
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="17_cjse5"]
 [ext_resource type="Script" path="res://scenes/GameScene/ParallaxLayer.gd" id="17_xitfh"]
 [ext_resource type="Texture2D" uid="uid://skmgf77epyva" path="res://assets/images/env/PHBackdrop.png" id="17_xo8pj"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
-_data = [Vector2(0, 0), 0.0, 1.04834, 0, 1, Vector2(0.757522, 0.794144), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.848968, 0.0, 1, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_bredi"]
 curve = SubResource("Curve_tktg1")
@@ -39,8 +40,12 @@ font_size = 33
 script = ExtResource("1_gp423")
 player_bullet = ExtResource("14_300t5")
 
-[node name="EnemyFactory" type="Node" parent="Services"]
+[node name="EnemyFactory" type="Node" parent="Services" node_paths=PackedStringArray("STop", "SMid", "SBtm", "SpawnNodeGroup")]
 script = ExtResource("1_0p8pm")
+STop = NodePath("../../World2D/SpawnPoint/SRTop")
+SMid = NodePath("../../World2D/SpawnPoint/SRMid")
+SBtm = NodePath("../../World2D/SpawnPoint/SRBottom")
+SpawnNodeGroup = NodePath("../../World2D/SpawnPoint/Enemies")
 
 [node name="GameManager" type="Node" parent="Services"]
 script = ExtResource("1_klouh")
@@ -49,7 +54,7 @@ lose_scene = ExtResource("3_gbbo0")
 
 [node name="ScrollManager" type="Node" parent="Services"]
 script = ExtResource("6_2xlkp")
-total_game_time = 600.0
+total_game_time = 60.0
 difficulty_curve_texture = SubResource("CurveTexture_bredi")
 
 [node name="PauseMenuController" type="Node" parent="Services"]
@@ -67,11 +72,27 @@ bus = &"Music"
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="Services"]
 
 [node name="World2D" type="Node2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(581, 322)
 
 [node name="SpawnPoint" type="Node2D" parent="World2D"]
 show_behind_parent = true
+z_as_relative = false
 position = Vector2(75, -90)
+
+[node name="Enemies" type="Node2D" parent="World2D/SpawnPoint"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="SRTop" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
+position = Vector2(-112, -40)
+
+[node name="SRMid" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
+position = Vector2(-48, 17)
+
+[node name="SRBottom" parent="World2D/SpawnPoint" instance=ExtResource("15_l5riy")]
+position = Vector2(-112, 81)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
 position = Vector2(-485, -130)

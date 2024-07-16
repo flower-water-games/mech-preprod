@@ -48,4 +48,4 @@ func get_raw_progress() -> float:
 ## shape of the difficulty curve.
 func get_difficulty() -> float:
 	var raw_progress = get_raw_progress()
-	return difficulty_curve_texture.get_curve().sample(raw_progress)
+	return raw_progress

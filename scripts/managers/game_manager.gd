@@ -17,7 +17,7 @@ class_name GameManager
 @onready var score: Label = get_node("/root/MainGameScene/CanvasLayer/Score")
 
 # spawning
-@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
+@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint/Enemies")
 @onready var bullet_spawn = get_node("/root/MainGameScene")
 
 # simple audio node stuff (will be updated w a proper sfx manager)
@@ -114,7 +114,6 @@ func _player_shoot(position : Vector2):
 	b.rotation = sourcePos.angle_to(targetPos)
 
 	bullet_spawn.add_child(b)
-	# shoot_sfx.play()
 	play_random_sound(GameContent.gatling_bullet_sounds)
 
 #endregion
@@ -145,8 +144,7 @@ func spawn_wave(wave_index: int) -> void:
 func spawn_enemy_group(enemy_config: Dictionary) -> void:
 	var spawn_task = func():
 		for i in range(enemy_config.base_spawn_count):
-			var e : Enemy = enemy_factory.create_enemy(enemy_config.type)
-			spawn_point.add_child(e)
+			var e : Enemy = enemy_factory.create_enemy(enemy_config.type, GameContent.SPAWNLOC.Top)
 			e.enemy_died.connect(_add_score.bind(e.score))
 			e.enemy_died.connect(play_random_sound_player.bind(e.sfx_player, GameContent.explosion_sounds))
 			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout

@@ -75,3 +75,11 @@ func _init_game_content():
 	level_track = load("res://assets/audio/OGG Deliveries/leveltracktrueloop.ogg")
 
 	#endregion
+
+#region Spawn Locations
+
+enum SPAWNLOC {
+	Top,
+	Middle,
+	Bottom
+}
