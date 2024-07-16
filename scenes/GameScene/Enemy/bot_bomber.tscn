@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs6pdg71ayf6w"]
+[gd_scene load_steps=3 format=3 uid="uid://cs6pdg71ayf6w"]
 
 [ext_resource type="PackedScene" uid="uid://cc7tua5fm3ssc" path="res://scenes/GameScene/Enemy/bot_basic.tscn" id="1_yglal"]
+[ext_resource type="PackedScene" uid="uid://ccw87p5pjqyq" path="res://shaders/Sprite2DExtOutline.tscn" id="2_1ryq4"]
 
 [node name="BotBomber" instance=ExtResource("1_yglal")]
 spline_amplitude = 50.0
 spline_frequency = 1.0
 bomber = true
+
+[node name="Sprite2dExtOutline" parent="SpriteSheet" index="1" instance=ExtResource("2_1ryq4")]
+ShaderColor = Vector4(1, 0, 0, 1)
+ShaderWidth = 1.0
+ShaderPattern = 1
+ShaderInside = false

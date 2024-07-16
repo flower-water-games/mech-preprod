@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbpap1jva8u4a"]
+
+[ext_resource type="PackedScene" uid="uid://cs6pdg71ayf6w" path="res://scenes/GameScene/Enemy/bot_bomber.tscn" id="1_goiw4"]
+
+[node name="ShaderTest" type="Node2D"]
+
+[node name="BotBomber" parent="." instance=ExtResource("1_goiw4")]
+position = Vector2(340, 168)
