@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bpfd7j1brqcqy"
+path="res://.godot/imported/Lockon.ogg-e704afb0e6b700ab0312a12020a80824.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/Lockon.ogg"
+dest_files=["res://.godot/imported/Lockon.ogg-e704afb0e6b700ab0312a12020a80824.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

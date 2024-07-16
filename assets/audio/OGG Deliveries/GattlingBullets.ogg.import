@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dechoemaderna"
+path="res://.godot/imported/GattlingBullets.ogg-30170f72e93e4e84793d14d3f0b03df2.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/GattlingBullets.ogg"
+dest_files=["res://.godot/imported/GattlingBullets.ogg-30170f72e93e4e84793d14d3f0b03df2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

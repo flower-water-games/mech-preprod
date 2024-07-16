@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ctglxkj1gjpns" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_qbc7r"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_rkjme"]
-[ext_resource type="AudioStream" uid="uid://oeewql88flad" path="res://assets/audio/tylerg/maintrack.ogg" id="3_lei8f"]
+[ext_resource type="AudioStream" uid="uid://pyufegqigonl" path="res://assets/audio/OGG Deliveries/menu v2 looping.ogg" id="3_d52ta"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -363,7 +363,7 @@ anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
 [node name="BackgroundMusicPlayer" parent="." index="3"]
-stream = ExtResource("3_lei8f")
+stream = ExtResource("3_d52ta")
 
 [node name="BackgroundTextureRect" parent="." index="4"]
 stretch_mode = 0

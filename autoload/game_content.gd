@@ -18,3 +18,5 @@ func _init_game_content():
 	BombBlast = preload("res://scenes/GameScene/Enemy/Projectile/bomb_explode.tscn")
 
 	FXEnemyExplode = preload("res://scenes/GameScene/Components/Onetime Animations/enemy_explosion.tscn")
+
+	## sound effects
