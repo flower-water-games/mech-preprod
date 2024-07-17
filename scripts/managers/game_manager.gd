@@ -17,23 +17,13 @@ class_name GameManager
 @onready var score: Label = get_node("/root/MainGameScene/CanvasLayer/Score")
 
 # spawning
-@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint")
+@onready var spawn_point : Node2D = get_node("/root/MainGameScene/World2D/SpawnPoint/Enemies")
 @onready var bullet_spawn = get_node("/root/MainGameScene")
 
 # simple audio node stuff (will be updated w a proper sfx manager)
-@onready var death_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer")
-@onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
-
-# spawn waves based on a diffulty threshold, can spawn multiple different types of enemies per waves
-var waves = [
-	{
-		"difficulty_threshold": 0.0,
-		"enemies": [
-			{"type": EnemyFactory.EnemyType.WEAK, "base_spawn_rate": 0.2, "base_spawn_count": 5000},
-			{"type": EnemyFactory.EnemyType.NORMAL, "base_spawn_rate": 5, "base_spawn_count": 500},
-		]
-	},
-]
+# @onready var death_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer")
+# @onready var shoot_sfx : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXManager/AudioStreamPlayer2")
+@onready var sfx_player : AudioStreamPlayer = get_node("/root/MainGameScene/Services/SFXPlayer")
 
 # state variables for waves, keep track of current wave and previously spawned waves
 var current_wave_index = 0
@@ -114,7 +104,7 @@ func _player_shoot(position : Vector2):
 	b.rotation = sourcePos.angle_to(targetPos)
 
 	bullet_spawn.add_child(b)
-	shoot_sfx.play()
+	play_random_sound(GameContent.gatling_bullet_sounds)
 
 #endregion
 
@@ -124,7 +114,7 @@ func _player_shoot(position : Vector2):
 
 func update_current_wave(difficulty: float) -> void:
 	for i in range(waves.size()):
-		if difficulty >= waves[i].difficulty_threshold and i not in spawned_waves:
+		if difficulty >= waves[i].progress and i not in spawned_waves:
 			current_wave_index = i
 			new_wave_spawned.emit()
 			return
@@ -135,29 +125,151 @@ func spawn_wave(wave_index: int) -> void:
 
 	is_spawning = true
 	var wave = waves[wave_index]
-	for enemy_config in wave.enemies:
-		spawn_enemy_group(enemy_config)
+	for spawngroup in wave.spawngroup:
+		spawn_enemy_group(spawngroup, wave_index)
 	spawned_waves.append(wave_index)
 	is_spawning = false
-	print("Completed spawning wave: ", wave_index)
 
-func spawn_enemy_group(enemy_config: Dictionary) -> void:
-	var spawn_task = func():
-		for i in range(enemy_config.base_spawn_count):
-			var e = enemy_factory.create_enemy(enemy_config.type)
-			spawn_point.add_child(e)
-			e.enemy_died.connect(_add_score.bind(e.score))
-			e.enemy_died.connect(death_sfx.play)
-			await get_tree().create_timer(enemy_config.base_spawn_rate).timeout
-		print("Completed spawning enemy type: ", enemy_config.type)
-
-	# Start the spawning task without waiting for it to complete (cool trick)
-	spawn_task.call_deferred()
+func spawn_enemy_group(spawngroup: Dictionary, wave_index: int):
+	var loc = spawngroup.location
+	var enemies = spawngroup.enemies
+	for enemy in enemies:
+		var spawn_task = func():
+			var this_wave_index = wave_index
+			for i in range(enemy.base_spawn_count):
+				if current_wave_index > this_wave_index:
+					break
+				var e : Enemy = enemy_factory.create_enemy(enemy.type, loc)
+				e.enemy_died.connect(_add_score.bind(e.score))
+				e.enemy_died.connect(play_random_sound_player.bind(e.sfx_player, GameContent.explosion_sounds))
+				await get_tree().create_timer(enemy.base_spawn_rate).timeout
+		spawn_task.call_deferred()
 
 func are_enemies_alive() -> bool:
 	return get_enemy_count() > 0
 
 func get_enemy_count() -> int:
 	return spawn_point.get_child_count()
+
+#endregion
+
+func play_random_sound_player(player : AudioStreamPlayer, sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	player.stream = sound_array[random_index]
+	player.play()
+
+func play_random_sound(sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	sfx_player.stream = sound_array[random_index]
+	sfx_player.play()
+
+#region Wave Setup
+
+var waves = [
+	{
+		"progress": 5,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 10,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 20,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 30,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 40,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+	{
+		"progress": 50,
+		"spawngroup": [
+			{
+				"location": GameContent.SPAWNLOC.Top,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Middle,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+			{
+				"location": GameContent.SPAWNLOC.Bottom,
+				"enemies": [
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+				]
+			},
+		]
+	},
+]
 
 #endregion

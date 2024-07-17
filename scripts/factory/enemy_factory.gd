@@ -1,32 +1,33 @@
 extends Node
 class_name EnemyFactory
 
-enum EnemyType { WEAK, NORMAL, STRONG, BOSS }
+# Rectangles setup where points are in order of math quadrants 2, 3, 4, 1
+var SPAWNS = {
+	GameContent.SPAWNLOC.Top: Polygon2D,
+	GameContent.SPAWNLOC.Middle: Polygon2D,
+	GameContent.SPAWNLOC.Bottom: Polygon2D,
+}
 
-@export var weak_enemy_scene: PackedScene
-@export var normal_enemy_scene: PackedScene
-@export var strong_enemy_scene: PackedScene
+@export var STop: SpawnRectangle
+@export var SMid: SpawnRectangle
+@export var SBtm: SpawnRectangle
+@export var SpawnNodeGroup: Node2D
 
-# prob needs special case
-@export var boss_enemy_scene: PackedScene
+func _ready():
+	SPAWNS[GameContent.SPAWNLOC.Top] = STop
+	SPAWNS[GameContent.SPAWNLOC.Middle] = SMid
+	SPAWNS[GameContent.SPAWNLOC.Bottom] = SBtm
 
-func create_enemy(enemy_type: EnemyType) -> CharacterBody2D:
+func create_enemy(enemy_type: GameContent.ENEMYTYPE, location: GameContent.SPAWNLOC) -> CharacterBody2D:
 	var enemy = get_enemy_scene(enemy_type)
 	if enemy:
 		var instance := enemy.instantiate()
-		instance.global_position.y += randf_range(-200, 200)
+		var spawn_location = SPAWNS[location]
+		SpawnNodeGroup.add_child(instance)
+		instance.global_position = spawn_location.get_spawn_point()
 		return instance
 	return null
 
-func get_enemy_scene(enemy_type: EnemyType) -> PackedScene:
-	match enemy_type:
-		EnemyType.WEAK:
-			return weak_enemy_scene
-		EnemyType.NORMAL:
-			return normal_enemy_scene
-		EnemyType.STRONG:
-			return strong_enemy_scene
-		EnemyType.BOSS:
-			return boss_enemy_scene
-	return null
-
+func get_enemy_scene(enemy_type: GameContent.ENEMYTYPE) -> PackedScene:
+	var retrieved = GameContent.ENEMYSCENES[enemy_type]
+	return retrieved

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx2kwbtxbfe1u"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Components/Spawn Areas/spawn_rectangle.gd" id="1_deox1"]
+
+[node name="SpawnRectangle" type="Polygon2D"]
+polygon = PackedVector2Array(-32, -40, -32, 40, 32, 40, 32, -40)
+script = ExtResource("1_deox1")

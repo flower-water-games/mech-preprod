@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://depergys3tqwu"
+path="res://.godot/imported/MechaFootsteps.ogg-e7aac2328677680891913a448116d06b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/MechaFootsteps.ogg"
+dest_files=["res://.godot/imported/MechaFootsteps.ogg-e7aac2328677680891913a448116d06b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

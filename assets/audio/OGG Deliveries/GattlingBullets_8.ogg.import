@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5sbv0jpp7g7a"
+path="res://.godot/imported/GattlingBullets_8.ogg-5afd322a548d939aa75534b24b8d30b1.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/GattlingBullets_8.ogg"
+dest_files=["res://.godot/imported/GattlingBullets_8.ogg-5afd322a548d939aa75534b24b8d30b1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

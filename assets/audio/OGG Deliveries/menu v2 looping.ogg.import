@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://pyufegqigonl"
+path="res://.godot/imported/menu v2 looping.ogg-c95651623c821f2da0002987aba52410.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/menu v2 looping.ogg"
+dest_files=["res://.godot/imported/menu v2 looping.ogg-c95651623c821f2da0002987aba52410.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

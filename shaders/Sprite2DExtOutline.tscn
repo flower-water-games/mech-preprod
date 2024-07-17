@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccw87p5pjqyq"]
+
+[ext_resource type="Script" path="res://shaders/Sprite2DExtOutline.gd" id="1_k6pyg"]
+
+[node name="Sprite2dExtOutline" type="Node"]
+script = ExtResource("1_k6pyg")

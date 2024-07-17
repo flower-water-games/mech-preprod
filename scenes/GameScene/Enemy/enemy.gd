@@ -18,6 +18,7 @@ enum MovementType {
 @export var score = 50 # when enemy dies, how much score
 @export var bomber := false
 @export var AP: AnimationPlayer
+@onready var sfx_player : AudioStreamPlayer = $AudioStreamPlayer
 
 signal enemy_died
 
@@ -85,7 +86,7 @@ func _process_animations():
 
 func _init_throw_timer():
 	_throw_timer = Timer.new()
-	_throw_timer.wait_time = 1
+	_throw_timer.wait_time = randi_range(2, 4)
 	_throw_timer.autostart = true
 	_throw_timer.one_shot = true
 	_throw_timer.timeout.connect(_initbombthrow)
