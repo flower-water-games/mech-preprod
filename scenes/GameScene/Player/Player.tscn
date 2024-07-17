@@ -148,7 +148,7 @@ sibling_foot = NodePath("../LegLeft")
 walk_distance = 16.0
 
 [node name="Shoot" type="Node2D" parent="Body"]
-position = Vector2(-100, 7)
+position = Vector2(-91, -18)
 
 [node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
 z_as_relative = false
@@ -158,7 +158,7 @@ script = ExtResource("5_rb5or")
 
 [node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
 z_index = 5
-position = Vector2(100, -32)
+position = Vector2(100, 0)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")

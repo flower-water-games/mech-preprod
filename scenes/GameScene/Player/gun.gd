@@ -1,8 +1,8 @@
 extends Node2D
 class_name Gun
 
-@export var initial_fire_rate := 0.2
-@export var max_fire_rate := 0.05
+@export var initial_fire_rate := 0.1
+@export var max_fire_rate := 0.04
 @export var ramp_up_time := 3.0
 @export var bullet_scene : PackedScene
 @export var cursor: Cursor
@@ -17,7 +17,6 @@ var is_shooting := false
 
 signal gun_shot(position : Vector2)
 signal fire_rate_changed(rate : float)
-
 
 func shoot() -> void:
 	# "signal up" to game manager to actually handle spawning the bullet, but from this node's location
@@ -54,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 	_rotate_turret()
-	
+
 	# Return to position
 	gun_sprite.position.x = lerpf(gun_sprite.position.x, 0, 0.2)
 	gun_sprite.position.y = lerpf(gun_sprite.position.y, 0, 0.2)
