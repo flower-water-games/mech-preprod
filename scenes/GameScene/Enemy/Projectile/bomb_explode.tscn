@@ -127,13 +127,14 @@ _data = {
 "play": SubResource("Animation_5a7vp")
 }
 
-[node name="BombExplode" type="ShapeCast2D" node_paths=PackedStringArray("AP")]
+[node name="BombExplode" type="ShapeCast2D" node_paths=PackedStringArray("AP", "ASP")]
 z_index = 1
 z_as_relative = false
 shape = SubResource("CapsuleShape2D_aoac7")
 target_position = Vector2(0, 1)
 script = ExtResource("1_on4oj")
 AP = NodePath("Sprite2D/AnimationPlayer")
+ASP = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false
@@ -144,3 +145,5 @@ hframes = 13
 libraries = {
 "": SubResource("AnimationLibrary_ful44")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

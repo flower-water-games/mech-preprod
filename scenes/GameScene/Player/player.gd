@@ -10,7 +10,7 @@ var motion : Vector2 = Vector2.ZERO
 var facing_right : bool = true
 
 @onready var health : Health = $Health
-@onready var gun : Gun = $Shoot/Gun  # Assuming the Gun is a child node of the player
+@export var gun : Gun
 
 # Initialize
 func _ready():

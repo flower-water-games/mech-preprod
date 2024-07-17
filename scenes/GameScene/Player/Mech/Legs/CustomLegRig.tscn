@@ -4,14 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://bnqk7x4nuvhud" path="res://assets/images/player/placeholder/Shin.png" id="2_mmys2"]
 
 [node name="CustomLegRig" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_sy81u")
 
 [node name="Line2D" type="Line2D" parent="."]
+z_as_relative = false
 width = 6.0
 default_color = Color(0.125911, 0.125911, 0.125911, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Shin" type="Sprite2D" parent="."]
+z_as_relative = false
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("2_mmys2")

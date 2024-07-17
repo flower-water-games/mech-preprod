@@ -66,3 +66,5 @@ texture = ExtResource("1_4pot6")
 libraries = {
 "": SubResource("AnimationLibrary_8yh0q")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

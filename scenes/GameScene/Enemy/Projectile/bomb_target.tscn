@@ -57,11 +57,12 @@ _data = {
 "lock": SubResource("Animation_v5vgc")
 }
 
-[node name="BombTarget" type="Node2D" node_paths=PackedStringArray("AP")]
+[node name="BombTarget" type="Node2D" node_paths=PackedStringArray("AP", "ASP")]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_koipt")
 AP = NodePath("Sprite2D/AnimationPlayer")
+ASP = NodePath("AudioStreamPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_as_relative = false
@@ -71,3 +72,5 @@ texture = ExtResource("1_iat53")
 libraries = {
 "": SubResource("AnimationLibrary_mtiuh")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

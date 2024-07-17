@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://drb310focadjn" path="res://assets/images/player/placeholder/numeralX.png" id="2_l6jkk"]
 
 [node name="MovementTracking" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 script = ExtResource("1_htt14")
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -16,6 +18,7 @@ end_cap_mode = 2
 
 [node name="Foot" type="Sprite2D" parent="."]
 self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+z_as_relative = false
 texture = ExtResource("2_l6jkk")
 
 [node name="TargetPosition" type="Sprite2D" parent="."]

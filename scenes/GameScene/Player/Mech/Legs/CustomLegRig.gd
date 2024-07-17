@@ -17,13 +17,13 @@ var shin_scale : Vector2 = Vector2(1, 1)
 func _ready():
 	leg_line.z_index = line_zindex
 	shin.z_index = shin_zindex
-	
+
 	if not shin_texture == null:
 		shin.texture = shin_texture
-	
+
 	if flip_sprite:
 		shin.scale.y *= -1
-	
+
 	shin_scale = shin.scale
 
 func _process(delta):
@@ -36,13 +36,13 @@ func _process(delta):
 	# Find shin connecting point
 	var shin_offset : float = -8.0
 	var shin_connecting_point = shin.global_position.direction_to(remote_foot_target.foot.global_position) * shin_offset
-	
+
 	# Distort the shin if it is the middle one
 	#if shin_distort:
 	#	shin.scale.x = shin_scale.x - remap(hip_location.distance_to(shin.position), 0.0, 64.0, 0.0, shin_scale.x * 0.5)
-	
+
 	# Draw the leg
-	leg_line.clear_points()
-	leg_line.add_point(hip_location)
-	leg_line.add_point(shin.position + shin_connecting_point)
-	leg_line.add_point(remote_foot_target.foot.global_position - global_position)
+	#leg_line.clear_points()
+	#leg_line.add_point(hip_location)
+	#leg_line.add_point(shin.position + shin_connecting_point)
+	#leg_line.add_point(remote_foot_target.foot.global_position - global_position)

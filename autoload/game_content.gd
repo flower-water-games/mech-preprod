@@ -19,6 +19,7 @@ var explosion_sounds: Array[AudioStream] = []
 var gatling_bullet_sounds: Array[AudioStream] = []
 var ui_sounds: Array[AudioStream] = []
 var bombthrow_sounds: Array[AudioStream] = []
+var locking_sounds: Array[AudioStream] = []
 var lockon_sounds: Array[AudioStream] = []
 var level_track: AudioStream
 
@@ -63,9 +64,8 @@ func _init_game_content():
 	for i in range(1, 3):
 		bombthrow_sounds.append(load("res://assets/audio/OGG Deliveries/bombthrow_" + str(i) + ".ogg"))
 
-	lockon_sounds.append(load("res://assets/audio/OGG Deliveries/Lockon.ogg"))
-	for i in range(1, 3):
-		lockon_sounds.append(load("res://assets/audio/OGG Deliveries/Lockon_" + str(i) + ".ogg"))
+	locking_sounds.append(load("res://assets/audio/OGG Deliveries/locking.ogg"))
+	lockon_sounds.append(load("res://assets/audio/OGG Deliveries/locked_on.ogg"))
 
 	#endregion
 

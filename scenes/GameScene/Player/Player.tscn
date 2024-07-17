@@ -59,11 +59,12 @@ height = 76.4994
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Body" type="CharacterBody2D" parent="." groups=["Player"]]
+[node name="Body" type="CharacterBody2D" parent="." node_paths=PackedStringArray("gun") groups=["Player"]]
 z_as_relative = false
 position = Vector2(0, -7)
 collision_mask = 11
 script = ExtResource("1_lr0nm")
+gun = NodePath("MechRig/Gun")
 
 [node name="Mech" type="Sprite2D" parent="Body"]
 visible = false
@@ -84,9 +85,10 @@ scale = Vector2(0.339872, 0.339872)
 shape = SubResource("CapsuleShape2D_rhp08")
 
 [node name="MechRig" type="Node2D" parent="Body"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="Body" parent="Body/MechRig" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("3_fergb")]
-z_index = 2
 top_left_leg = NodePath("../LegLeft")
 top_right_leg = NodePath("../LegRight")
 bottom_left_leg = NodePath("../LegBottom")
@@ -94,7 +96,6 @@ bottom_right_leg = NodePath("../LegTop")
 
 [node name="CustomLegRig4" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 modulate = Color(0.303233, 0.303233, 0.303233, 1)
-z_index = 1
 position = Vector2(0, -64)
 remote_foot_target = NodePath("../../LegTop")
 hip_location = Vector2(0, 36)
@@ -102,14 +103,12 @@ shin_texture = ExtResource("5_thheh")
 line_zindex = 1
 
 [node name="CustomLegRig" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
-z_index = 1
 position = Vector2(32, -16)
 remote_foot_target = NodePath("../../LegRight")
 hip_location = Vector2(-32, 0)
 shin_offset = Vector2(-6, 0)
 
 [node name="CustomLegRig2" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
-z_index = 1
 position = Vector2(-32, -16)
 remote_foot_target = NodePath("../../LegLeft")
 flip_sprite = true
@@ -119,7 +118,6 @@ shin_zindex = 3
 
 [node name="CustomLegRig3" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 visible = false
-z_index = 1
 remote_foot_target = NodePath("../../LegBottom")
 hip_location = Vector2(0, -16)
 shin_texture = ExtResource("5_thheh")
@@ -147,24 +145,48 @@ position = Vector2(0, 16)
 sibling_foot = NodePath("../LegLeft")
 walk_distance = 16.0
 
-[node name="Shoot" type="Node2D" parent="Body"]
-position = Vector2(-100, 7)
-
-[node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
+[node name="Cursor" type="Sprite2D" parent="Body/MechRig"]
+z_index = 1
 z_as_relative = false
-position = Vector2(232, 0)
+position = Vector2(100, -16)
 texture = ExtResource("4_600tr")
 script = ExtResource("5_rb5or")
 
-[node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
-z_index = 5
-position = Vector2(100, -32)
+[node name="Gun" type="Node2D" parent="Body/MechRig" node_paths=PackedStringArray("cursor", "bulletspawn", "gunpos")]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, -8)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")
+bulletspawn = NodePath("GunSprite2D/BarrelPoint")
+gunpos = NodePath("GunSprite2D")
 
-[node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
+[node name="GunSprite2D" type="Sprite2D" parent="Body/MechRig/Gun"]
+z_as_relative = false
+position = Vector2(0, 3)
 texture = ExtResource("7_h25id")
+offset = Vector2(0, -3)
+
+[node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun/GunSprite2D"]
+position = Vector2(37, 0)
+
+[node name="Gun2" type="Node2D" parent="Body/MechRig" node_paths=PackedStringArray("cursor", "bulletspawn", "gunpos")]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(6, -32)
+script = ExtResource("2_pgd61")
+bullet_scene = ExtResource("3_5ab8q")
+cursor = NodePath("../Cursor")
+bulletspawn = NodePath("GunSprite2/BarrelPoint")
+gunpos = NodePath("GunSprite2")
+
+[node name="GunSprite2" type="Sprite2D" parent="Body/MechRig/Gun2"]
+z_as_relative = false
+texture = ExtResource("7_h25id")
+
+[node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun2/GunSprite2"]
+position = Vector2(37, 2)
 
 [node name="Health" parent="Body" instance=ExtResource("8_lsi2y")]
 position = Vector2(1, -52)

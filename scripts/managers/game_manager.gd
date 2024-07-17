@@ -8,8 +8,9 @@ class_name GameManager
 
 # core services nodes
 @onready var player: Player = get_node("/root/MainGameScene/World2D/Player/Body")
-@onready var player_gun: Gun = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Gun")
-@onready var player_cursor: Cursor = get_node("/root/MainGameScene/World2D/Player/Body/Shoot/Cursor")
+@onready var player_gun: Gun = get_node("/root/MainGameScene/World2D/Player/Body/MechRig/Gun")
+@onready var player_gun2: Gun = get_node("/root/MainGameScene/World2D/Player/Body/MechRig/Gun2")
+@onready var player_cursor: Cursor = get_node("/root/MainGameScene/World2D/Player/Body/MechRig/Cursor")
 @onready var enemy_factory: EnemyFactory = get_node("/root/MainGameScene/Services/EnemyFactory")
 @onready var bullet_factory: BulletFactory = get_node("/root/MainGameScene/Services/BulletFactory")
 @onready var scroll_manager: ScrollManager = get_node("/root/MainGameScene/Services/ScrollManager")
@@ -45,6 +46,7 @@ func _ready():
 	await player.ready
 	player.health.died.connect(_on_game_lost)
 	player_gun.gun_shot.connect(_player_shoot)
+	player_gun2.gun_shot.connect(_player_shoot)
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
 	new_wave_spawned.connect(_cross_checkpoint)
 
@@ -94,14 +96,14 @@ func _add_score(value:int)->void:
 
 #region Player
 
-func _player_shoot(position : Vector2):
+func _player_shoot(inputpos : Vector2):
 	var b = bullet_factory.create_bullet(BulletFactory.BulletType.PLAYER_BULLET)
-	b.global_position = position
+	b.position = inputpos
 
-	var sourcePos = player_gun.position
-	var targetPos = player_cursor.position
+	var sourcePos = inputpos
+	var targetPos = player_cursor.global_position
 	b.bullet_dir = sourcePos.direction_to(targetPos)
-	b.rotation = sourcePos.angle_to(targetPos)
+	b.rotation = sourcePos.angle_to_point(targetPos)
 
 	bullet_spawn.add_child(b)
 	play_random_sound(GameContent.gatling_bullet_sounds)

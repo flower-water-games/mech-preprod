@@ -111,6 +111,7 @@ func _windupanim_end(animation_name):
 		bombscene.bomb_target = _bombtarget
 		bombscene.position = position
 		add_sibling(bombscene)
+		play_random_sound(GameContent.bombthrow_sounds)
 
 func _throwanim_end(animation_name):
 	if _isdead():
@@ -152,6 +153,15 @@ func _handle_hit_collision(col : KinematicCollision2D) -> void:
 	var collider : Node2D = col.get_collider()
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
+
+#endregion
+
+#region SFX
+
+func play_random_sound(sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	sfx_player.stream = sound_array[random_index]
+	sfx_player.play()
 
 #endregion
 

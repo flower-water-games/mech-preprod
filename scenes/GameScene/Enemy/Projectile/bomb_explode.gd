@@ -1,12 +1,14 @@
 extends ShapeCast2D
 
 @export var AP: AnimationPlayer
+@export var ASP: AudioStreamPlayer
 var _collision_max_radius = 47 #Radius times max scale
 var _max_damage = 10
 
 func _ready():
 	AP.play("play")
 	AP.animation_finished.connect(_playanim_end)
+	play_random_sound(GameContent.explosion_sounds)
 
 func _physics_process(_delta):
 	if is_colliding():
@@ -28,3 +30,12 @@ func _playanim_end(animation_name):
 
 func _cleanup():
 	queue_free()
+
+#region SFX
+
+func play_random_sound(sound_array: Array[AudioStream]):
+	var random_index = randi() % sound_array.size()
+	ASP.stream = sound_array[random_index]
+	ASP.play()
+
+#endregion
