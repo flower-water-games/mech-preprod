@@ -119,6 +119,7 @@ shape = SubResource("RectangleShape2D_fwqsb")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="World2D/ParallaxBackground"]
 motion_mirroring = Vector2(640, 0)
 script = ExtResource("17_xitfh")
+HSpeed = 0.0
 
 [node name="BG" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
 z_index = -1
