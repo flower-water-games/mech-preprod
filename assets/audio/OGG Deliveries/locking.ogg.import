@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cume43xc6da2e"
+path="res://.godot/imported/locking.ogg-f0abf891170ddc5ccc146013dd48ccb4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/locking.ogg"
+dest_files=["res://.godot/imported/locking.ogg-f0abf891170ddc5ccc146013dd48ccb4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

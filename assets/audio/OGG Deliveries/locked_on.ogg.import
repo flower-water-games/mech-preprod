@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7nm125tro4pd"
+path="res://.godot/imported/locked_on.ogg-579ad37b27a7d89b8b6536e8198e1b5e.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/OGG Deliveries/locked_on.ogg"
+dest_files=["res://.godot/imported/locked_on.ogg-579ad37b27a7d89b8b6536e8198e1b5e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
