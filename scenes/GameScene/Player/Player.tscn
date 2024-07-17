@@ -95,9 +95,9 @@ bottom_right_leg = NodePath("../LegTop")
 [node name="CustomLegRig4" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 modulate = Color(0.303233, 0.303233, 0.303233, 1)
 z_index = 1
-position = Vector2(0, -48)
+position = Vector2(0, -64)
 remote_foot_target = NodePath("../../LegTop")
-hip_location = Vector2(0, 28)
+hip_location = Vector2(0, 36)
 shin_texture = ExtResource("5_thheh")
 line_zindex = 1
 
@@ -115,6 +115,7 @@ remote_foot_target = NodePath("../../LegLeft")
 flip_sprite = true
 hip_location = Vector2(32, 0)
 shin_offset = Vector2(6, 0)
+shin_zindex = 3
 
 [node name="CustomLegRig3" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 visible = false
@@ -156,8 +157,8 @@ texture = ExtResource("4_600tr")
 script = ExtResource("5_rb5or")
 
 [node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
-z_index = 4
-position = Vector2(111, -40)
+z_index = 5
+position = Vector2(100, -32)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")

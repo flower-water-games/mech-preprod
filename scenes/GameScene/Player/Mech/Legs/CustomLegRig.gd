@@ -7,6 +7,7 @@ extends Node2D
 @export var shin_distort : bool = false
 @export var shin_offset : Vector2 = Vector2.ZERO
 @export var line_zindex : int = 0
+@export var shin_zindex : int = 0
 
 @onready var shin : Sprite2D = $Shin
 @onready var leg_line : Line2D = $Line2D
@@ -15,6 +16,7 @@ var shin_scale : Vector2 = Vector2(1, 1)
 
 func _ready():
 	leg_line.z_index = line_zindex
+	shin.z_index = shin_zindex
 	
 	if not shin_texture == null:
 		shin.texture = shin_texture
