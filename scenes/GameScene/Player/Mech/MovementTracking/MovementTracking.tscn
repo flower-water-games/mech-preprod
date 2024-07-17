@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxbk2r0h8hrbm"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/MovementTracking/MovementTracking.gd" id="1_htt14"]
+[ext_resource type="Texture2D" uid="uid://drb310focadjn" path="res://assets/images/player/placeholder/numeralX.png" id="2_l6jkk"]
+
+[node name="MovementTracking" type="Node2D"]
+script = ExtResource("1_htt14")
+
+[node name="Line2D" type="Line2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.270588)
+width = 8.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Foot" type="Sprite2D" parent="."]
+self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
+texture = ExtResource("2_l6jkk")
+
+[node name="TargetPosition" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+z_index = 1
+texture = ExtResource("2_l6jkk")

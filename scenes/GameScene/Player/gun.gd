@@ -13,8 +13,11 @@ var fire_rate_timer := 0.0
 var continuous_fire_timer := 0.0
 var is_shooting := false
 
+@onready var gun_sprite : Sprite2D = $GunSprite2D
+
 signal gun_shot(position : Vector2)
 signal fire_rate_changed(rate : float)
+
 
 func shoot() -> void:
 	# "signal up" to game manager to actually handle spawning the bullet, but from this node's location
@@ -26,6 +29,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if can_fire:
 			shoot()
+			gun_sprite.position = position.direction_to(cursor.position) * -4.0
 			can_fire = false
 			fire_rate_timer = current_fire_rate
 
@@ -50,6 +54,10 @@ func _physics_process(delta: float) -> void:
 	#endregion
 
 	_rotate_turret()
+	
+	# Return to position
+	gun_sprite.position.x = lerpf(gun_sprite.position.x, 0, 0.2)
+	gun_sprite.position.y = lerpf(gun_sprite.position.y, 0, 0.2)
 
 func _rotate_turret():
 	rotation = position.angle_to_point(cursor.position)
