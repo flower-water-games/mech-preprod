@@ -96,7 +96,6 @@ bottom_right_leg = NodePath("../LegTop")
 
 [node name="CustomLegRig4" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 modulate = Color(0.303233, 0.303233, 0.303233, 1)
-z_as_relative = false
 position = Vector2(0, -64)
 remote_foot_target = NodePath("../../LegTop")
 hip_location = Vector2(0, 36)
@@ -104,14 +103,12 @@ shin_texture = ExtResource("5_thheh")
 line_zindex = 1
 
 [node name="CustomLegRig" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
-z_as_relative = false
 position = Vector2(32, -16)
 remote_foot_target = NodePath("../../LegRight")
 hip_location = Vector2(-32, 0)
 shin_offset = Vector2(-6, 0)
 
 [node name="CustomLegRig2" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
-z_as_relative = false
 position = Vector2(-32, -16)
 remote_foot_target = NodePath("../../LegLeft")
 flip_sprite = true
@@ -121,26 +118,22 @@ shin_zindex = 3
 
 [node name="CustomLegRig3" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 visible = false
-z_as_relative = false
 remote_foot_target = NodePath("../../LegBottom")
 hip_location = Vector2(0, -16)
 shin_texture = ExtResource("5_thheh")
 
 [node name="LegLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
-z_as_relative = false
 position = Vector2(-32, 0)
 offset_foot = true
 sibling_foot = NodePath("../LegRight")
 walk_distance = 32.0
 
 [node name="LegRight" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
-z_as_relative = false
 position = Vector2(32, 0)
 sibling_foot = NodePath("../LegLeft")
 walk_distance = 32.0
 
 [node name="LegTop" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
-z_as_relative = false
 position = Vector2(0, -16)
 offset_foot = true
 sibling_foot = NodePath("../LegBottom")
@@ -148,7 +141,6 @@ walk_distance = 20.0
 
 [node name="LegBottom" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 visible = false
-z_as_relative = false
 position = Vector2(0, 16)
 sibling_foot = NodePath("../LegLeft")
 walk_distance = 16.0
