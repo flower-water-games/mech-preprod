@@ -43,3 +43,4 @@ func _process(delta):
 	leg_line.clear_points()
 	leg_line.add_point(hip_location)
 	leg_line.add_point(shin.position + shin_connecting_point)
+	leg_line.add_point(remote_foot_target.foot.global_position - global_position)
