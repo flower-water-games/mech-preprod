@@ -148,23 +148,26 @@ sibling_foot = NodePath("../LegLeft")
 walk_distance = 16.0
 
 [node name="Shoot" type="Node2D" parent="Body"]
-position = Vector2(-91, -18)
+position = Vector2(0, -16)
 
 [node name="Cursor" type="Sprite2D" parent="Body/Shoot"]
 z_as_relative = false
-position = Vector2(232, 0)
+position = Vector2(100, 0)
 texture = ExtResource("4_600tr")
 script = ExtResource("5_rb5or")
 
-[node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor")]
+[node name="Gun" type="Node2D" parent="Body/Shoot" node_paths=PackedStringArray("cursor", "bulletspawn")]
 z_index = 5
-position = Vector2(100, 0)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")
+bulletspawn = NodePath("GunSprite2D/BarrelPoint")
 
 [node name="GunSprite2D" type="Sprite2D" parent="Body/Shoot/Gun"]
 texture = ExtResource("7_h25id")
+
+[node name="BarrelPoint" type="Node2D" parent="Body/Shoot/Gun/GunSprite2D"]
+position = Vector2(37, 2)
 
 [node name="Health" parent="Body" instance=ExtResource("8_lsi2y")]
 position = Vector2(1, -52)
