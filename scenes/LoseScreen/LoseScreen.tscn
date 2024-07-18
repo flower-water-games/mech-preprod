@@ -10,4 +10,8 @@ main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
 [node name="LoseMessage" parent="PanelContainer/MarginContainer/VBoxContainer" index="0"]
 text = "The revolution cannot be stopped!
 
+Tip: Basic enemies don't do much damage,
+sometimes its worth letting go of firing to
+avoid a bomb and take melee damage instead.
+
 Thanks for playing!"
