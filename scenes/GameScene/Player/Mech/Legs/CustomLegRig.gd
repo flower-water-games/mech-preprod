@@ -28,9 +28,10 @@ func _ready():
 
 func _process(delta):
 	var distance_to_foot = shin.global_position.distance_to(remote_foot_target.foot.global_position)
-	var leg_length : float = 20.0
-	shin.global_position.y = remote_foot_target.foot.global_position.y - leg_length + remap(distance_to_foot, leg_length, 32, 0, 8)
-	shin.position.x = remap(distance_to_foot, leg_length, 32, 0.0, 4.0) + shin_offset.x
+	var leg_length : float = 28.0
+	var max_leg_length : float = 40.0
+	shin.global_position.y = remote_foot_target.foot.global_position.y - leg_length + remap(distance_to_foot, leg_length, max_leg_length, 0, 8)
+	shin.position.x = remap(distance_to_foot, leg_length, max_leg_length, 0.0, 4.0) + shin_offset.x
 	shin.rotation = shin.global_position.angle_to_point(remote_foot_target.foot.global_position)
 
 	# Find shin connecting point
