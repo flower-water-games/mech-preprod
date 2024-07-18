@@ -13,3 +13,6 @@ ShaderColor = Vector4(1, 0, 0, 1)
 ShaderWidth = 1.0
 ShaderPattern = 1
 ShaderInside = false
+
+[node name="Health" parent="." index="2"]
+max_health = 10.0
