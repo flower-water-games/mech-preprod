@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if can_fire:
 			shoot()
-			muzzle_flash_sprite.scale = Vector2(randf_range(1.0, 3.0), randf_range(1.5, 3.0))
+			muzzle_flash_sprite.scale = Vector2(randf_range(2.0, 6.0), randf_range(3, 6.0))
 			gunpos.position = gunpos.position.direction_to(cursor.position) * -8.0
 			can_fire = false
 			fire_rate_timer = current_fire_rate

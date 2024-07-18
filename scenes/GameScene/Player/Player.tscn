@@ -60,6 +60,7 @@ remote_foot_target = NodePath("../../FootRight")
 hip_location = Vector2(-32, 0)
 shin_texture = ExtResource("5_ovn1y")
 shin_offset = Vector2(-6, 0)
+line_zindex = -1
 
 [node name="Left" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 position = Vector2(-32, -16)
