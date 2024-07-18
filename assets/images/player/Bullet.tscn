@@ -4,6 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://c5xf145s1bjh8" path="res://assets/images/player/mechparts/Bullet.png" id="2_qrywi"]
 
 [node name="Bullet" type="Sprite2D"]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_qrywi")
 script = ExtResource("1_oite3")
