@@ -1,9 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyat0okx2fvdk"]
 
-[ext_resource type="PackedScene" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.tscn" id="1_vjrd4"]
+[ext_resource type="PackedScene" uid="uid://dt5ses55itjy4" path="res://addons/maaacks_game_template/extras/scenes/WinScreen/WinScreen.tscn" id="1_vjrd4"]
 [ext_resource type="Script" path="res://scenes/WinScreen/WinScreen.gd" id="2_4vcn8"]
 
 [node name="WinScreen" instance=ExtResource("1_vjrd4")]
 script = ExtResource("2_4vcn8")
 next_scene = "res://scenes/EndCredits/EndCredits.tscn"
 main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
+
+[node name="WinMessage" parent="PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "You won! That's ridiculous! 
+It means you killed over 3,000 bots.
+You were never meant to see this..."
