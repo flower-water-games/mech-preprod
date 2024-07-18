@@ -9,6 +9,14 @@ func _ready():
 
 #region Global resources
 
+var HighScore: int = 0
+func updateHiScore(newScore):
+	if newScore > HighScore:
+		HighScore = newScore
+
+func getHiScore():
+	return HighScore
+
 var Bomb: PackedScene
 var BombTargetSc: PackedScene
 var BombBlast: PackedScene

@@ -15,4 +15,4 @@ ShaderPattern = 1
 ShaderInside = false
 
 [node name="Health" parent="." index="2"]
-max_health = 10.0
+max_health = 12.0

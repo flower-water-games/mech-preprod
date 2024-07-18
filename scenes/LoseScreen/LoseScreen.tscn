@@ -6,3 +6,8 @@
 [node name="LoseScreen" instance=ExtResource("1_d63hg")]
 script = ExtResource("2_rbhe1")
 main_menu_scene = "res://scenes/Menus/MainMenu/MainMenuWithAnimations.tscn"
+
+[node name="LoseMessage" parent="PanelContainer/MarginContainer/VBoxContainer" index="0"]
+text = "The revolution cannot be stopped!
+
+Thanks for playing!"

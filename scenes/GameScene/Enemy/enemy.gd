@@ -48,6 +48,8 @@ func _init_properties():
 	AP.animation_finished.connect(_deathanim_end)
 
 	_cur_movement = movement_type
+	var speedVariance = randi_range(0, 150)
+	speed.x -= speedVariance
 	velocity = speed
 	if (spline_randomized):
 		_spline_initial_y = global_position.y + randf_range(-350, 350)
@@ -86,7 +88,7 @@ func _process_animations():
 
 func _init_throw_timer():
 	_throw_timer = Timer.new()
-	_throw_timer.wait_time = randi_range(2, 4)
+	_throw_timer.wait_time = randi_range(1, 4)
 	_throw_timer.autostart = true
 	_throw_timer.one_shot = true
 	_throw_timer.timeout.connect(_initbombthrow)

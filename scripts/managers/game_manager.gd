@@ -33,6 +33,7 @@ var waiting_for_all_enemies_dead = false
 var is_spawning = false
 
 var player_score = 0
+var hi_score = GameContent.getHiScore()
 
 # signals
 signal spawning_completed
@@ -80,10 +81,11 @@ func _cross_checkpoint():
 	player.health.add_or_subtract_health_by_value(10)
 
 func update_ui():
-	label.text = "Progress: %d%% | Wave: %d" % [int(scroll_manager.get_raw_progress() * 100), current_wave_index + 1]
-	score.text = "Score: %d" % player_score
+	label.text = "Revolution Momentum %d%%" % [int(scroll_manager.get_raw_progress() * 100)]
+	score.text = "Score: %d HiScore: %d" % [player_score, hi_score]
 
 func _on_game_lost():
+	GameContent.updateHiScore(player_score)
 	InGameMenuController.open_menu(lose_scene, get_viewport())
 
 func _on_game_won():
