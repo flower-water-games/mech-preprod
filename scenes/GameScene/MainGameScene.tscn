@@ -72,6 +72,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="Services"]
+bus = &"SFX"
 
 [node name="World2D" type="Node2D" parent="."]
 z_as_relative = false

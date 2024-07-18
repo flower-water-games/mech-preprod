@@ -190,3 +190,4 @@ position = Vector2(0, 32)
 max_health = 3.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
