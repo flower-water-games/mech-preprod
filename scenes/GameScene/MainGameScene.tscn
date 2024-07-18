@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ddoagydwlh5c1"]
+[gd_scene load_steps=23 format=3 uid="uid://ddoagydwlh5c1"]
 
 [ext_resource type="Script" path="res://scripts/factory/enemy_factory.gd" id="1_0p8pm"]
 [ext_resource type="Script" path="res://scripts/factory/bullet_factory.gd" id="1_gp423"]
@@ -11,10 +11,12 @@
 [ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/InGameMenuController.gd" id="9_octrj"]
 [ext_resource type="AudioStream" uid="uid://bn3tqhffq638a" path="res://assets/audio/OGG Deliveries/leveltracktrueloop.ogg" id="13_x7v5r"]
 [ext_resource type="PackedScene" uid="uid://dsuto3ei8ab8q" path="res://scenes/GameScene/Player/bullet.tscn" id="14_300t5"]
+[ext_resource type="Texture2D" uid="uid://c1j8dd2ubioe4" path="res://assets/images/env/back.png" id="15_3gvg3"]
 [ext_resource type="PackedScene" uid="uid://bx2kwbtxbfe1u" path="res://scenes/GameScene/Components/Spawn Areas/spawn_rectangle.tscn" id="15_l5riy"]
+[ext_resource type="Texture2D" uid="uid://7ysoleod8mb4" path="res://assets/images/env/buildings.png" id="16_2k81j"]
 [ext_resource type="PackedScene" uid="uid://bjcx072xancx6" path="res://scenes/GameScene/Player/Player.tscn" id="17_cjse5"]
+[ext_resource type="Texture2D" uid="uid://dp1iuoeyewu65" path="res://assets/images/env/road.png" id="17_vn2ys"]
 [ext_resource type="Script" path="res://scenes/GameScene/ParallaxLayer.gd" id="17_xitfh"]
-[ext_resource type="Texture2D" uid="uid://skmgf77epyva" path="res://assets/images/env/PHBackdrop.png" id="17_xo8pj"]
 
 [sub_resource type="Curve" id="Curve_tktg1"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -70,6 +72,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="Services"]
+bus = &"SFX"
 
 [node name="World2D" type="Node2D" parent="."]
 z_as_relative = false
@@ -95,7 +98,7 @@ position = Vector2(112, 17)
 position = Vector2(48, 81)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
-position = Vector2(-485, -130)
+position = Vector2(-469, -33)
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 position = Vector2(-261, -140)
@@ -130,8 +133,16 @@ HSpeed = 0.0
 
 [node name="BG" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
 z_index = -1
-texture = ExtResource("17_xo8pj")
+texture = ExtResource("15_3gvg3")
 centered = false
+
+[node name="Buildings" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("16_2k81j")
+offset = Vector2(320, 180)
+
+[node name="Road" type="Sprite2D" parent="World2D/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("17_vn2ys")
+offset = Vector2(320, 180)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

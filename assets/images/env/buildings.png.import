@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://skmgf77epyva"
-path="res://.godot/imported/PHBackdrop.png-2661e006a51207dd7ebba0ae2dc3b584.ctex"
+uid="uid://7ysoleod8mb4"
+path="res://.godot/imported/buildings.png-df8feafdbe58af8746b1959dd62ea9ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/env/PHBackdrop.png"
-dest_files=["res://.godot/imported/PHBackdrop.png-2661e006a51207dd7ebba0ae2dc3b584.ctex"]
+source_file="res://assets/images/env/buildings.png"
+dest_files=["res://.godot/imported/buildings.png-df8feafdbe58af8746b1959dd62ea9ce.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjcx072xancx6"]
+[gd_scene load_steps=15 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/player.gd" id="1_lr0nm"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/gun.gd" id="2_pgd61"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
 [ext_resource type="Texture2D" uid="uid://cnx0jlahb3vxh" path="res://assets/images/player/mechparts/Left.png" id="4_fucil"]
 [ext_resource type="PackedScene" uid="uid://brrq6n2bnh24q" path="res://scenes/GameScene/Player/Mech/Legs/CustomLegRig.tscn" id="4_k1kr3"]
-[ext_resource type="Texture2D" uid="uid://bgdyiimw6m0xv" path="res://assets/images/player/mechparts/3_Legged_RightLeg_4.png" id="5_i3ui0"]
 [ext_resource type="Texture2D" uid="uid://celpwb8bbwcgd" path="res://assets/images/player/mechparts/Right.png" id="5_ovn1y"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/cursor.gd" id="5_rb5or"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="8_lsi2y"]
@@ -17,7 +16,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
 radius = 58.8457
-height = 347.19
+height = 253.036
 
 [node name="Player" type="Node2D"]
 z_as_relative = false
@@ -31,7 +30,7 @@ script = ExtResource("1_lr0nm")
 gun = NodePath("MechRig/Gun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
-position = Vector2(0, 6)
+position = Vector2(2, -17)
 rotation = 1.5708
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("CapsuleShape2D_rhp08")
@@ -81,29 +80,23 @@ position = Vector2(-48, 2.08165e-12)
 offset_foot = true
 sibling_foot = NodePath("../FootRight")
 walk_distance = 32.0
-foot_texture = ExtResource("5_i3ui0")
-contrast_value = Color(0.591114, 0.591114, 0.591114, 1)
 
 [node name="FootRight" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(48, -15)
 sibling_foot = NodePath("../FootLeft")
 walk_distance = 32.0
-foot_texture = ExtResource("5_i3ui0")
 
 [node name="FootTop" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(2.08165e-12, -40)
 offset_foot = true
 sibling_foot = NodePath("../FootBottom")
 walk_distance = 20.0
-foot_texture = ExtResource("5_i3ui0")
-contrast_value = Color(0.217701, 0.217701, 0.217701, 1)
 
 [node name="FootBottom" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 visible = false
 position = Vector2(0, 16)
 sibling_foot = NodePath("../FootLeft")
 walk_distance = 16.0
-foot_texture = ExtResource("5_i3ui0")
 
 [node name="Cursor" type="Sprite2D" parent="Body/MechRig"]
 z_index = 1
