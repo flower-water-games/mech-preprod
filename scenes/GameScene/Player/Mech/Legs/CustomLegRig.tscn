@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://brrq6n2bnh24q"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/Legs/CustomLegRig.gd" id="1_sy81u"]
-[ext_resource type="Texture2D" uid="uid://bjyoac4p37gph" path="res://assets/images/player/mechparts/3_Legged_RightLeg_3.png" id="2_lkrrp"]
+[ext_resource type="Texture2D" uid="uid://celpwb8bbwcgd" path="res://assets/images/player/mechparts/Right.png" id="2_3aajx"]
 
 [node name="CustomLegRig" type="Node2D"]
 z_as_relative = false
@@ -17,4 +17,5 @@ end_cap_mode = 2
 
 [node name="Shin" type="Sprite2D" parent="."]
 z_as_relative = false
-texture = ExtResource("2_lkrrp")
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_3aajx")

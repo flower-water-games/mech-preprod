@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjcx072xancx6"]
+[gd_scene load_steps=16 format=3 uid="uid://bjcx072xancx6"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/player.gd" id="1_lr0nm"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/gun.gd" id="2_pgd61"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dyvp768i4sd0" path="res://scenes/GameScene/Player/Mech/MovementTracking/Body.tscn" id="3_fergb"]
 [ext_resource type="PackedScene" uid="uid://cxbk2r0h8hrbm" path="res://scenes/GameScene/Player/Mech/MovementTracking/MovementTracking.tscn" id="4_7imhk"]
 [ext_resource type="Texture2D" uid="uid://bs16d65px4nqx" path="res://assets/images/player/reticle.png" id="4_600tr"]
+[ext_resource type="Texture2D" uid="uid://cnx0jlahb3vxh" path="res://assets/images/player/mechparts/Left.png" id="4_fucil"]
 [ext_resource type="PackedScene" uid="uid://brrq6n2bnh24q" path="res://scenes/GameScene/Player/Mech/Legs/CustomLegRig.tscn" id="4_k1kr3"]
+[ext_resource type="Texture2D" uid="uid://bgdyiimw6m0xv" path="res://assets/images/player/mechparts/3_Legged_RightLeg_4.png" id="5_i3ui0"]
+[ext_resource type="Texture2D" uid="uid://celpwb8bbwcgd" path="res://assets/images/player/mechparts/Right.png" id="5_ovn1y"]
 [ext_resource type="Script" path="res://scenes/GameScene/Player/cursor.gd" id="5_rb5or"]
 [ext_resource type="PackedScene" uid="uid://bl2nhe0rhlhui" path="res://scenes/GameScene/Components/Health.tscn" id="8_lsi2y"]
 [ext_resource type="Texture2D" uid="uid://dgukbbhywt6de" path="res://assets/images/player/mechparts/3_Legged_RightGun.png" id="10_4nkqa"]
@@ -38,59 +41,68 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="Body" parent="Body/MechRig" node_paths=PackedStringArray("top_left_leg", "top_right_leg", "bottom_left_leg", "bottom_right_leg") instance=ExtResource("3_fergb")]
-top_left_leg = NodePath("../LegLeft")
-top_right_leg = NodePath("../LegRight")
-bottom_left_leg = NodePath("../LegBottom")
-bottom_right_leg = NodePath("../LegTop")
+top_left_leg = NodePath("../FootLeft")
+top_right_leg = NodePath("../FootRight")
+bottom_left_leg = NodePath("../FootBottom")
+bottom_right_leg = NodePath("../FootTop")
 
-[node name="CustomLegRig4" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+[node name="Top" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 modulate = Color(0.303233, 0.303233, 0.303233, 1)
-position = Vector2(0, -64)
-remote_foot_target = NodePath("../../LegTop")
+position = Vector2(2.08165e-12, -68)
+remote_foot_target = NodePath("../../FootTop")
 hip_location = Vector2(0, 36)
+shin_texture = ExtResource("4_fucil")
 line_zindex = 1
 
-[node name="CustomLegRig" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+[node name="Right" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 position = Vector2(35, -15)
-remote_foot_target = NodePath("../../LegRight")
+remote_foot_target = NodePath("../../FootRight")
 hip_location = Vector2(-32, 0)
+shin_texture = ExtResource("5_ovn1y")
 shin_offset = Vector2(-6, 0)
 
-[node name="CustomLegRig2" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+[node name="Left" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 position = Vector2(-32, -16)
-remote_foot_target = NodePath("../../LegLeft")
+remote_foot_target = NodePath("../../FootLeft")
 flip_sprite = true
 hip_location = Vector2(32, 0)
+shin_texture = ExtResource("4_fucil")
 shin_offset = Vector2(6, 0)
 shin_zindex = 3
 
-[node name="CustomLegRig3" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
+[node name="Bottom" parent="Body/MechRig/Body" node_paths=PackedStringArray("remote_foot_target") instance=ExtResource("4_k1kr3")]
 visible = false
-remote_foot_target = NodePath("../../LegBottom")
+remote_foot_target = NodePath("../../FootBottom")
 hip_location = Vector2(0, -16)
 
-[node name="LegLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
+[node name="FootLeft" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(-32, 0)
 offset_foot = true
-sibling_foot = NodePath("../LegRight")
+sibling_foot = NodePath("../FootRight")
 walk_distance = 32.0
+foot_texture = ExtResource("5_i3ui0")
+contrast_value = Color(0.591114, 0.591114, 0.591114, 1)
 
-[node name="LegRight" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
+[node name="FootRight" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 position = Vector2(40, -15)
-sibling_foot = NodePath("../LegLeft")
+sibling_foot = NodePath("../FootLeft")
 walk_distance = 32.0
+foot_texture = ExtResource("5_i3ui0")
 
-[node name="LegTop" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
-position = Vector2(0, -16)
+[node name="FootTop" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
+position = Vector2(2.08165e-12, -20)
 offset_foot = true
-sibling_foot = NodePath("../LegBottom")
+sibling_foot = NodePath("../FootBottom")
 walk_distance = 20.0
+foot_texture = ExtResource("5_i3ui0")
+contrast_value = Color(0.217701, 0.217701, 0.217701, 1)
 
-[node name="LegBottom" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
+[node name="FootBottom" parent="Body/MechRig" node_paths=PackedStringArray("sibling_foot") instance=ExtResource("4_7imhk")]
 visible = false
 position = Vector2(0, 16)
-sibling_foot = NodePath("../LegLeft")
+sibling_foot = NodePath("../FootLeft")
 walk_distance = 16.0
+foot_texture = ExtResource("5_i3ui0")
 
 [node name="Cursor" type="Sprite2D" parent="Body/MechRig"]
 z_index = 1
@@ -102,7 +114,7 @@ script = ExtResource("5_rb5or")
 [node name="Gun" type="Node2D" parent="Body/MechRig" node_paths=PackedStringArray("cursor", "bulletspawn", "gunpos")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-14, -32)
+position = Vector2(0.34, -36)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")
@@ -110,18 +122,18 @@ bulletspawn = NodePath("GunSprite2D/BarrelPoint")
 gunpos = NodePath("GunSprite2D")
 
 [node name="GunSprite2D" type="Sprite2D" parent="Body/MechRig/Gun"]
+z_index = 2
 z_as_relative = false
-position = Vector2(1, 10)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("10_4nkqa")
-offset = Vector2(11, 13)
 
 [node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun/GunSprite2D"]
-position = Vector2(45, -18)
+position = Vector2(32, -4)
 
 [node name="Gun2" type="Node2D" parent="Body/MechRig" node_paths=PackedStringArray("cursor", "bulletspawn", "gunpos")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(-7, -73)
+position = Vector2(9, -56)
 script = ExtResource("2_pgd61")
 bullet_scene = ExtResource("3_5ab8q")
 cursor = NodePath("../Cursor")
@@ -130,12 +142,11 @@ gunpos = NodePath("GunSprite2")
 
 [node name="GunSprite2" type="Sprite2D" parent="Body/MechRig/Gun2"]
 z_as_relative = false
-position = Vector2(-1, 13)
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("11_kjnsp")
-offset = Vector2(13, 33)
 
 [node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun2/GunSprite2"]
-position = Vector2(47, -18)
+position = Vector2(31, -4)
 
 [node name="Health" parent="Body" instance=ExtResource("8_lsi2y")]
 position = Vector2(3, -112)
