@@ -18,8 +18,8 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Foot" type="Sprite2D" parent="."]
-self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
 z_as_relative = false
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_n4f17")
 
 [node name="TargetPosition" type="Sprite2D" parent="."]

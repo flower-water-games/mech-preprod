@@ -17,14 +17,17 @@ var global_target_position : Vector2 = Vector2.ZERO
 
 @export var offset_percent : float = 0.9
 @export var background_movement_speed : float = 1.0
+@export var foot_texture : Texture2D
+
+@export var contrast_value : Color = Color("#ffffff")
 
 var foot_moving_forward : bool = false
 
 
 func _ready():
 	update_foot_offset.call_deferred()
-	#if offset_foot:
-	#	foot.modulate = Color("Yellow")
+	foot.texture = foot_texture
+	foot.self_modulate = contrast_value
 
 func update_foot_offset():
 	foot_position = global_position
