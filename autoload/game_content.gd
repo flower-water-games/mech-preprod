@@ -13,6 +13,7 @@ var HighScore: int = 0
 func updateHiScore(newScore):
 	if newScore > HighScore:
 		HighScore = newScore
+		Config.set_config("Hiscore", "Hiscore", HighScore)
 
 func getHiScore():
 	return HighScore
@@ -45,6 +46,8 @@ var ENEMYSCENES = {
 #endregion
 
 func _init_game_content():
+
+	HighScore = Config.get_config("Hiscore", "Hiscore", 0)
 
 	#region Packed Scenes
 
