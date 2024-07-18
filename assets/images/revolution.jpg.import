@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwv0gvwmjuu8d"
-path="res://.godot/imported/revolution.png-706e3dd7d23dee62b0a252aab45ec699.ctex"
+uid="uid://c66u5qvi1d7cn"
+path="res://.godot/imported/revolution.jpg-c0b1a2b64c1215d22c45875b3083816e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/revolution.png"
-dest_files=["res://.godot/imported/revolution.png-706e3dd7d23dee62b0a252aab45ec699.ctex"]
+source_file="res://assets/images/revolution.jpg"
+dest_files=["res://.godot/imported/revolution.jpg-c0b1a2b64c1215d22c45875b3083816e.ctex"]
 
 [params]
 
