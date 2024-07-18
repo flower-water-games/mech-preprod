@@ -42,7 +42,7 @@ func _process(delta):
 	#	shin.scale.x = shin_scale.x - remap(hip_location.distance_to(shin.position), 0.0, 64.0, 0.0, shin_scale.x * 0.5)
 
 	# Draw the leg
-	#leg_line.clear_points()
-	#leg_line.add_point(hip_location)
-	#leg_line.add_point(shin.position + shin_connecting_point)
-	#leg_line.add_point(remote_foot_target.foot.global_position - global_position)
+	leg_line.clear_points()
+	leg_line.add_point(hip_location)
+	leg_line.add_point(shin.position + shin_connecting_point)
+	leg_line.add_point(remote_foot_target.foot.global_position - global_position)
