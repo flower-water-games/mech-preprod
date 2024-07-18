@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxbk2r0h8hrbm"]
+[gd_scene load_steps=4 format=3 uid="uid://cxbk2r0h8hrbm"]
 
 [ext_resource type="Script" path="res://scenes/GameScene/Player/Mech/MovementTracking/MovementTracking.gd" id="1_htt14"]
 [ext_resource type="Texture2D" uid="uid://drb310focadjn" path="res://assets/images/player/placeholder/numeralX.png" id="2_l6jkk"]
+[ext_resource type="Texture2D" uid="uid://bgdyiimw6m0xv" path="res://assets/images/player/mechparts/3_Legged_RightLeg_4.png" id="2_n4f17"]
 
 [node name="MovementTracking" type="Node2D"]
 z_as_relative = false
@@ -19,7 +20,7 @@ end_cap_mode = 2
 [node name="Foot" type="Sprite2D" parent="."]
 self_modulate = Color(0.167451, 0.167451, 0.167451, 1)
 z_as_relative = false
-texture = ExtResource("2_l6jkk")
+texture = ExtResource("2_n4f17")
 
 [node name="TargetPosition" type="Sprite2D" parent="."]
 visible = false

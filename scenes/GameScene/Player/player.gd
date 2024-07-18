@@ -16,7 +16,6 @@ var facing_right : bool = true
 func _ready():
 	add_to_group("Player")
 	health.died.connect(player_died)
-	$Mech/AnimationPlayer.play("idle")
 
 func player_died():
 	# queue_free()
