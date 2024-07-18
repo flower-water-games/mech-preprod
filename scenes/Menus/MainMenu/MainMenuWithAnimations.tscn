@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bm1g4f2pd0cf"]
+[gd_scene load_steps=21 format=3 uid="uid://bm1g4f2pd0cf"]
 
 [ext_resource type="PackedScene" uid="uid://ctglxkj1gjpns" path="res://scenes/Menus/MainMenu/MainMenu.tscn" id="1_qbc7r"]
 [ext_resource type="Script" path="res://scenes/Menus/MainMenu/MainMenuWithAnimations.gd" id="2_rkjme"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://by7mm785ev8mi" path="res://assets/audio/OGG Deliveries/UI.ogg" id="3_o8hcm"]
 [ext_resource type="AudioStream" uid="uid://bgmioq82o6cdm" path="res://assets/audio/OGG Deliveries/UI_1.ogg" id="4_4k4tx"]
 [ext_resource type="AudioStream" uid="uid://c1yb55tn7spdb" path="res://assets/audio/OGG Deliveries/UI_2.ogg" id="5_ytey2"]
+[ext_resource type="Texture2D" uid="uid://cwv0gvwmjuu8d" path="res://assets/images/revolution.png" id="7_l4hhg"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "Intro"
@@ -355,28 +356,32 @@ graph_offset = Vector2(-180.277, 49)
 script = ExtResource("2_rkjme")
 game_scene_path = "res://scenes/GameScene/MainGameScene.tscn"
 
-[node name="UISoundController" parent="." index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("7_l4hhg")
+offset = Vector2(320, 180)
+
+[node name="UISoundController" parent="." index="1"]
 button_hovered = ExtResource("3_o8hcm")
 button_focused = ExtResource("4_4k4tx")
 button_pressed = ExtResource("5_ytey2")
 
-[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+[node name="MenuAnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
 "": SubResource("AnimationLibrary_2kqig")
 }
 
-[node name="MenuAnimationTree" type="AnimationTree" parent="." index="2"]
+[node name="MenuAnimationTree" type="AnimationTree" parent="." index="3"]
 tree_root = SubResource("AnimationNodeStateMachine_vikuh")
 anim_player = NodePath("../MenuAnimationPlayer")
 parameters/conditions/intro_done = false
 
-[node name="BackgroundMusicPlayer" parent="." index="3"]
+[node name="BackgroundMusicPlayer" parent="." index="4"]
 stream = ExtResource("3_d52ta")
 
-[node name="BackgroundTextureRect" parent="." index="4"]
+[node name="BackgroundTextureRect" parent="." index="5"]
 stretch_mode = 0
 
-[node name="VersionNameLabel" parent="." index="5"]
+[node name="VersionNameLabel" parent="." index="6"]
 modulate = Color(1, 1, 1, 0)
 
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
@@ -390,3 +395,7 @@ text = "freshwater games"
 [node name="MenuButtons" parent="MenuContainer/VBoxContainer/MenuMargin" index="0"]
 modulate = Color(1, 1, 1, 0)
 lock = true
+
+[node name="FlowControlContainer" parent="." index="10"]
+layout_mode = 1
+anchors_preset = 15
