@@ -98,7 +98,7 @@ position = Vector2(112, 17)
 position = Vector2(48, 81)
 
 [node name="Player" parent="World2D" instance=ExtResource("17_cjse5")]
-position = Vector2(-485, -130)
+position = Vector2(-469, -33)
 
 [node name="Camera2D" type="Camera2D" parent="World2D"]
 position = Vector2(-261, -140)

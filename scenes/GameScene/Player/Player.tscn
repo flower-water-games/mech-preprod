@@ -16,7 +16,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rhp08"]
 radius = 58.8457
-height = 347.19
+height = 253.036
 
 [node name="Player" type="Node2D"]
 z_as_relative = false
@@ -30,7 +30,7 @@ script = ExtResource("1_lr0nm")
 gun = NodePath("MechRig/Gun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body" groups=["Player"]]
-position = Vector2(0, 6)
+position = Vector2(2, -17)
 rotation = 1.5708
 scale = Vector2(0.339872, 0.339872)
 shape = SubResource("CapsuleShape2D_rhp08")
