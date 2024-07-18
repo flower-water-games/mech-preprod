@@ -15,9 +15,17 @@ var fire_rate_timer := 0.0
 var continuous_fire_timer := 0.0
 var is_shooting := false
 
+var muzzle_flash_sprite : Sprite2D = Sprite2D.new()
+var muzzle_flash_texture : Texture2D = load("res://assets/images/player/flame_gun.png")
+
 signal gun_shot(position : Vector2)
 signal fire_rate_changed(rate : float)
 
+func _ready():
+	muzzle_flash_sprite.texture = muzzle_flash_texture
+	muzzle_flash_sprite.scale = Vector2.ZERO
+	gunpos.add_child(muzzle_flash_sprite)
+	
 func shoot() -> void:
 	# "signal up" to game manager to actually handle spawning the bullet, but from this node's location
 	gun_shot.emit(bulletspawn.global_position)
@@ -28,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if can_fire:
 			shoot()
+			muzzle_flash_sprite.scale = Vector2(randf_range(1.0, 3.0), randf_range(1.5, 3.0))
 			gunpos.position = gunpos.position.direction_to(cursor.position) * -8.0
 			can_fire = false
 			fire_rate_timer = current_fire_rate
@@ -57,6 +66,11 @@ func _physics_process(delta: float) -> void:
 	# Return to position
 	gunpos.position.x = lerpf(gunpos.position.x, 0, 0.2)
 	gunpos.position.y = lerpf(gunpos.position.y, 0, 0.2)
+	
+	# Muzzle flash return to hidden
+	muzzle_flash_sprite.global_position = bulletspawn.global_position
+	muzzle_flash_sprite.scale.x = lerpf(muzzle_flash_sprite.scale.x, 0.0, 0.6)
+	muzzle_flash_sprite.scale.y = lerpf(muzzle_flash_sprite.scale.y, 0.0, 0.3)
 
 func _rotate_turret():
 	gunpos.rotation = gunpos.position.angle_to_point(cursor.position)
