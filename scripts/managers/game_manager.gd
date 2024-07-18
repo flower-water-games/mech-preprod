@@ -33,6 +33,7 @@ var waiting_for_all_enemies_dead = false
 var is_spawning = false
 
 var player_score = 0
+var hi_score = GameContent.getHiScore()
 
 # signals
 signal spawning_completed
@@ -48,7 +49,7 @@ func _ready():
 	player_gun.gun_shot.connect(_player_shoot)
 	player_gun2.gun_shot.connect(_player_shoot)
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
-	new_wave_spawned.connect(_cross_checkpoint)
+	#new_wave_spawned.connect(_cross_checkpoint)
 
 func _process(_delta: float) -> void:
 	# current "end state" condition - when all waves are spawned, just clear the screen to trigger the end
@@ -77,13 +78,15 @@ func _on_scroll_completed():
 
 ## triggers crossing a checkpoint functionality
 func _cross_checkpoint():
-	player.health.add_or_subtract_health_by_value(10)
+	#player.health.add_or_subtract_health_by_value(10)
+	pass
 
 func update_ui():
-	label.text = "Progress: %d%% | Wave: %d" % [int(scroll_manager.get_raw_progress() * 100), current_wave_index + 1]
-	score.text = "Score: %d" % player_score
+	label.text = "Revolution Momentum %d%%" % [int(scroll_manager.get_raw_progress() * 100)]
+	score.text = "Score: %d HiScore: %d" % [player_score, hi_score]
 
 func _on_game_lost():
+	GameContent.updateHiScore(player_score)
 	InGameMenuController.open_menu(lose_scene, get_viewport())
 
 func _on_game_won():
@@ -253,13 +256,13 @@ var waves = [
 				"location": GameContent.SPAWNLOC.Top,
 				"enemies": [
 					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Middle,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
 					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
 				]
 			},
@@ -267,7 +270,7 @@ var waves = [
 				"location": GameContent.SPAWNLOC.Bottom,
 				"enemies": [
 					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
 				]
 			},
 		]

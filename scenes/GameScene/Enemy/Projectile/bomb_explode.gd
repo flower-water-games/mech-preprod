@@ -3,7 +3,7 @@ extends ShapeCast2D
 @export var AP: AnimationPlayer
 @export var ASP: AudioStreamPlayer
 var _collision_max_radius = 47 #Radius times max scale
-var _max_damage = 10
+var _max_damage = 50
 
 func _ready():
 	AP.play("play")

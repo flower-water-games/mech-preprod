@@ -118,11 +118,12 @@ gunpos = NodePath("GunSprite2D")
 [node name="GunSprite2D" type="Sprite2D" parent="Body/MechRig/Gun"]
 z_index = 2
 z_as_relative = false
+position = Vector2(-0.34, 0)
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("10_4nkqa")
 
 [node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun/GunSprite2D"]
-position = Vector2(32, -4)
+position = Vector2(32.2222, 1.11111)
 
 [node name="Gun2" type="Node2D" parent="Body/MechRig" node_paths=PackedStringArray("cursor", "bulletspawn", "gunpos")]
 z_as_relative = false
@@ -140,7 +141,7 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("11_kjnsp")
 
 [node name="BarrelPoint" type="Node2D" parent="Body/MechRig/Gun2/GunSprite2"]
-position = Vector2(31, -4)
+position = Vector2(32.2222, -1.43051e-06)
 
 [node name="Health" parent="Body" instance=ExtResource("8_lsi2y")]
 position = Vector2(3, -112)
