@@ -49,7 +49,7 @@ func _ready():
 	player_gun.gun_shot.connect(_player_shoot)
 	player_gun2.gun_shot.connect(_player_shoot)
 	scroll_manager.scroll_completed.connect(_on_scroll_completed)
-	new_wave_spawned.connect(_cross_checkpoint)
+	#new_wave_spawned.connect(_cross_checkpoint)
 
 func _process(_delta: float) -> void:
 	# current "end state" condition - when all waves are spawned, just clear the screen to trigger the end
@@ -78,7 +78,8 @@ func _on_scroll_completed():
 
 ## triggers crossing a checkpoint functionality
 func _cross_checkpoint():
-	player.health.add_or_subtract_health_by_value(10)
+	#player.health.add_or_subtract_health_by_value(10)
+	pass
 
 func update_ui():
 	label.text = "Revolution Momentum %d%%" % [int(scroll_manager.get_raw_progress() * 100)]
