@@ -384,6 +384,9 @@ stretch_mode = 0
 [node name="VersionNameLabel" parent="." index="6"]
 modulate = Color(1, 1, 1, 0)
 
+[node name="TitlesMargin" parent="MenuContainer/VBoxContainer" index="0"]
+visible = false
+
 [node name="Title" parent="MenuContainer/VBoxContainer/TitlesMargin/TitlesContainer" index="0"]
 modulate = Color(1, 1, 1, 0)
 text = "mechjam5"
@@ -399,3 +402,5 @@ lock = true
 [node name="FlowControlContainer" parent="." index="10"]
 layout_mode = 1
 anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
