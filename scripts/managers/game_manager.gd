@@ -177,22 +177,22 @@ var waves = [
 			{
 				"location": GameContent.SPAWNLOC.Top,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Middle,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Bottom,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 		]
@@ -203,22 +203,22 @@ var waves = [
 			{
 				"location": GameContent.SPAWNLOC.Top,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Middle,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Bottom,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 500},
 				]
 			},
 		]
@@ -229,22 +229,22 @@ var waves = [
 			{
 				"location": GameContent.SPAWNLOC.Top,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.5, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 3, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Middle,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 1, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 			{
 				"location": GameContent.SPAWNLOC.Bottom,
 				"enemies": [
-					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 5000},
-					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 5000},
+					{"type": GameContent.ENEMYTYPE.Bot, "base_spawn_rate": 0.75, "base_spawn_count": 500},
+					{"type": GameContent.ENEMYTYPE.Bomber, "base_spawn_rate": 5, "base_spawn_count": 500},
 				]
 			},
 		]
