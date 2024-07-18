@@ -18,6 +18,8 @@ var is_shooting := false
 var muzzle_flash_sprite : Sprite2D = Sprite2D.new()
 var muzzle_flash_texture : Texture2D = load("res://assets/images/player/flame_gun.png")
 
+var bullet_particle = preload("res://assets/images/player/Bullet.tscn")
+
 signal gun_shot(position : Vector2)
 signal fire_rate_changed(rate : float)
 
@@ -30,12 +32,18 @@ func shoot() -> void:
 	# "signal up" to game manager to actually handle spawning the bullet, but from this node's location
 	gun_shot.emit(bulletspawn.global_position)
 
+func generate_bullet():
+	var bullet = bullet_particle.instantiate()
+	get_tree().current_scene.add_child(bullet)
+	bullet.global_position = gunpos.global_position
+
 func _physics_process(delta: float) -> void:
 
 	#region Shooting
 	if Input.is_action_pressed("shoot"):
 		if can_fire:
 			shoot()
+			generate_bullet()
 			muzzle_flash_sprite.scale = Vector2(randf_range(2.0, 6.0), randf_range(3, 6.0))
 			gunpos.position = gunpos.position.direction_to(cursor.position) * -8.0
 			can_fire = false
