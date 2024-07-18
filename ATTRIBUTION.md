@@ -1,20 +1,21 @@
 # Attribution
 ## Collaborators
 
-### Role
-Bokhum - Art Director/Art asset creation
-Chris Manasse - Art asset creation/emergency developer
-jason - PM, developer
-bbp - developer, lead designer
-cm - developer
-elliot - asset curation, QA, writing
-Tyler Gonelli - audio
+### Team
+Lyndon - Developer, Lead Designer
+Bokhum - Art Director, 3D Artist
+Chris Manasse - 3D Artist
+Jason - PM, Developer, Designer
+cm - Developer
+Elliot - Art Assistant
+Tyler Gonelli - Music, Audio
 Lori - Technical artist
 
 
 ## Sourced / Unaffiliated
 Simple Explosion - Bleed's Game Art | OpenGameArt.org
 https://opengameart.org/content/simple-explosion-bleeds-game-art
+
 
 ## Tools
 #### Godot
