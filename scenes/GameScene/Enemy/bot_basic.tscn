@@ -163,7 +163,7 @@ z_as_relative = false
 y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_5766m")
-on_hit_damage = 0.5
+on_hit_damage = 0.15
 movement_type = 0
 AP = NodePath("SpriteSheet/AnimationPlayer")
 
@@ -188,7 +188,7 @@ shape = SubResource("CapsuleShape2D_ml7o7")
 [node name="Health" parent="." instance=ExtResource("2_72isi")]
 visible = false
 position = Vector2(0, 32)
-max_health = 6.0
+max_health = 5.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"SFX"
