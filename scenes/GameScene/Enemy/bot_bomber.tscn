@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ccw87p5pjqyq" path="res://shaders/Sprite2DExtOutline.tscn" id="2_1ryq4"]
 
 [node name="BotBomber" instance=ExtResource("1_yglal")]
+on_hit_damage = 20.0
 spline_amplitude = 50.0
 spline_frequency = 1.0
 bomber = true
@@ -15,4 +16,7 @@ ShaderPattern = 1
 ShaderInside = false
 
 [node name="Health" parent="." index="2"]
-max_health = 12.0
+visible = true
+position = Vector2(2.08165e-12, 15)
+scale = Vector2(0.4, 0.4)
+max_health = 25.0

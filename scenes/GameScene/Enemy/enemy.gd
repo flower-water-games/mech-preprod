@@ -88,7 +88,7 @@ func _process_animations():
 
 func _init_throw_timer():
 	_throw_timer = Timer.new()
-	_throw_timer.wait_time = randi_range(1, 4)
+	_throw_timer.wait_time = randi_range(1,1.5)
 	_throw_timer.autostart = true
 	_throw_timer.one_shot = true
 	_throw_timer.timeout.connect(_initbombthrow)
@@ -155,7 +155,7 @@ func _handle_hit_collision(col : KinematicCollision2D) -> void:
 	var collider : Node2D = col.get_collider()
 	if collider.is_in_group("Player"):
 		collider.health.add_or_subtract_health_by_value(-on_hit_damage)
-
+		health.add_or_subtract_health_by_value(-100)
 #endregion
 
 #region SFX

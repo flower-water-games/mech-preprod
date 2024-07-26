@@ -43,3 +43,7 @@ func get_raw_progress() -> float:
 # Modifying game to simply work on time
 func get_difficulty() -> float:
 	return current_game_time
+
+func get_current_difficulty() -> float:
+	var raw_progress = get_raw_progress()
+	return difficulty_curve_texture.get_curve().sample(raw_progress)
